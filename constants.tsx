@@ -1,71 +1,65 @@
 
-import { Property } from './types';
+import { Project } from './types';
 
-export const MOCK_PROPERTIES: Property[] = [
+export const MOCK_PROJECTS: Project[] = [
   {
     id: '1',
-    title: 'The Azure Peninsula',
-    price: '$12,500,000',
-    location: 'Malibu, California',
-    beds: 6,
-    baths: 7,
-    sqft: 8400,
-    image: 'https://picsum.photos/id/10/800/600',
-    type: 'Villa'
+    title: 'Digital Experience',
+    description: 'A modern web application showcasing innovative design and seamless user interactions.',
+    category: 'Web Development',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&q=90&w=1200',
+    tags: ['React', 'TypeScript', 'Design'],
+    link: '#'
   },
   {
     id: '2',
-    title: 'Summit Peak Manor',
-    price: '$8,900,000',
-    location: 'Aspen, Colorado',
-    beds: 5,
-    baths: 6,
-    sqft: 6200,
-    image: 'https://picsum.photos/id/11/800/600',
-    type: 'Estate'
+    title: 'Brand Identity',
+    description: 'Complete brand redesign focusing on minimalism and timeless elegance.',
+    category: 'Branding',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=90&w=1200',
+    tags: ['Identity', 'Strategy', 'Design'],
+    link: '#'
   },
   {
     id: '3',
-    title: 'Neo-Tokyo Penthouse',
-    price: '$22,000,000',
-    location: 'Shibuya, Tokyo',
-    beds: 4,
-    baths: 4.5,
-    sqft: 5100,
-    image: 'https://picsum.photos/id/20/800/600',
-    type: 'Penthouse'
+    title: 'Creative Direction',
+    description: 'Visual storytelling through photography and motion design.',
+    category: 'Creative',
+    year: '2023',
+    image: 'https://images.unsplash.com/photo-1558655146-364adaf1fcc9?auto=format&fit=crop&q=90&w=1200',
+    tags: ['Photography', 'Motion', 'Art Direction'],
+    link: '#'
   },
   {
     id: '4',
-    title: 'Belle Époque Château',
-    price: '$45,000,000',
-    location: 'Provence, France',
-    beds: 12,
-    baths: 10,
-    sqft: 15000,
-    image: 'https://picsum.photos/id/13/800/600',
-    type: 'Mansion'
+    title: 'Product Design',
+    description: 'User-centered design approach for a mobile-first experience.',
+    category: 'Product',
+    year: '2023',
+    image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=90&w=1200',
+    tags: ['UI/UX', 'Mobile', 'Research'],
+    link: '#'
   },
   {
     id: '5',
-    title: 'Oceanic Glass House',
-    price: '$15,750,000',
-    location: 'Santorini, Greece',
-    beds: 4,
-    baths: 5,
-    sqft: 4800,
-    image: 'https://picsum.photos/id/15/800/600',
-    type: 'Villa'
+    title: 'Visual System',
+    description: 'Comprehensive design system for scalable digital products.',
+    category: 'Design System',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=90&w=1200',
+    tags: ['System Design', 'Components', 'Documentation'],
+    link: '#'
   },
   {
     id: '6',
-    title: 'The Gilded Observatory',
-    price: '$31,000,000',
-    location: 'New York, NY',
-    beds: 5,
-    baths: 6,
-    sqft: 9200,
-    image: 'https://picsum.photos/id/18/800/600',
-    type: 'Penthouse'
+    title: 'Art Direction',
+    description: 'Curating visual narratives that resonate with contemporary audiences.',
+    category: 'Art Direction',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=90&w=1200',
+    tags: ['Direction', 'Concept', 'Production'],
+    link: '#'
   }
 ];

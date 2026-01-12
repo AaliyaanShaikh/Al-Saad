@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { getRealEstateAdvice } from '../services/geminiService';
+import { getPortfolioAdvice } from '../services/geminiService';
 import { ChatMessage } from '../types';
 
 const AIChatAssistant: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', content: "Welcome to Elysian Estates. I am your personal concierge. How may I assist you today?" }
+    { role: 'model', content: "Hi! I'm here to answer questions about my work, process, or collaborations. How can I help?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +27,7 @@ const AIChatAssistant: React.FC = () => {
     setIsLoading(true);
 
     const history = messages.map(m => ({ role: m.role, content: m.content }));
-    const response = await getRealEstateAdvice(userMsg, history);
+    const response = await getPortfolioAdvice(userMsg, history);
     setMessages(prev => [...prev, { role: 'model', content: response }]);
     setIsLoading(false);
   };
@@ -40,11 +40,11 @@ const AIChatAssistant: React.FC = () => {
           <div className="p-8 border-b border-white/5 flex justify-between items-center bg-[#0a0a0a]">
             <div className="flex items-center space-x-4">
               <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center">
-                <span className="text-black font-black text-xs">EE</span>
+                <span className="text-black font-black text-xs">AS</span>
               </div>
               <div>
-                <span className="block font-bold text-sm text-white tracking-tight">Concierge Desk</span>
-                <span className="block text-[9px] text-stone-500 font-black uppercase tracking-widest">Active Portfolio Advisory</span>
+                <span className="block font-bold text-sm text-white tracking-tight">Let's Chat</span>
+                <span className="block text-[9px] text-stone-500 font-black uppercase tracking-widest">Ask Me Anything</span>
               </div>
             </div>
             <button 
@@ -91,7 +91,7 @@ const AIChatAssistant: React.FC = () => {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Inquire about our collection..."
+                placeholder="Ask about my work or process..."
                 className="flex-1 bg-[#1a1a1a] border border-transparent rounded-2xl px-6 py-4 text-sm text-white focus:outline-none focus:border-white/10 transition-all placeholder:text-stone-700"
               />
               <button 
