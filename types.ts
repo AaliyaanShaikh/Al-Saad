@@ -8,6 +8,10 @@ export interface Project {
   image: string;
   tags: string[];
   link?: string;
+  location?: string;
+  price?: string;
+  beds?: string;
+  sqft?: string;
 }
 
 export interface ChatMessage {
