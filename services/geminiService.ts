@@ -60,7 +60,9 @@ export const getPortfolioAdvice = async (userPrompt: string, history: {role: str
     
     return text;
   } catch (error: any) {
-    console.error("Gemini API Error:", error);
+    if (import.meta.env.DEV) {
+      console.error("Gemini API Error:", error);
+    }
     
     // Provide specific error messages
     if (error?.message?.includes('API_KEY') || error?.message?.includes('API key')) {
