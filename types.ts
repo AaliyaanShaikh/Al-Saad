@@ -1,14 +1,13 @@
 
-export interface Property {
+export interface Project {
   id: string;
   title: string;
-  price: string;
-  location: string;
-  beds: number;
-  baths: number;
-  sqft: number;
+  description: string;
+  category: string;
+  year: string;
   image: string;
-  type: 'Villa' | 'Penthouse' | 'Mansion' | 'Estate';
+  tags: string[];
+  link?: string;
 }
 
 export interface ChatMessage {

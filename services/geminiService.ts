@@ -3,7 +3,7 @@ import { GoogleGenAI } from "@google/genai";
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
 
-export const getRealEstateAdvice = async (userPrompt: string, history: {role: string, content: string}[]) => {
+export const getPortfolioAdvice = async (userPrompt: string, history: {role: string, content: string}[]) => {
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
@@ -12,14 +12,14 @@ export const getRealEstateAdvice = async (userPrompt: string, history: {role: st
         { role: 'user', parts: [{ text: userPrompt }] }
       ],
       config: {
-        systemInstruction: "You are the Elysian Estates Concierge. You are a highly sophisticated, polite, and knowledgeable luxury real estate agent. Help users find their dream home, explain market trends, or discuss property features. You represent a multi-billion dollar real estate group. Keep responses concise, elegant, and professional.",
+        systemInstruction: "You are Al-Saad's portfolio assistant. You help answer questions about design work, creative process, collaborations, and projects. You're friendly, professional, and knowledgeable about design, branding, and digital experiences. Keep responses concise, helpful, and personable. If asked about specific projects, refer to the portfolio work shown on the website.",
         temperature: 0.7,
       },
     });
 
-    return response.text || "I apologize, I'm having trouble connecting to my network. How else can I assist you today?";
+    return response.text || "I'm having trouble connecting right now. Please try again in a moment.";
   } catch (error) {
     console.error("Gemini API Error:", error);
-    return "The concierge is momentarily unavailable. Please try again in a few moments.";
+    return "I'm temporarily unavailable. Feel free to reach out via email at hello@al-saad.com";
   }
 };
