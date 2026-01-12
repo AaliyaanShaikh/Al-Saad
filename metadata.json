@@ -1,0 +1,8 @@
+{
+  "name": "Elysian Estates | Elite Brokerage Portfolio",
+  "description": "The definitive portfolio for high-end residential architecture and global real estate investment.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
