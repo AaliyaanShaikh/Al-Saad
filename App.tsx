@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import IntroAnimation from './components/IntroAnimation';
+import PropertiesSection from './components/PropertiesSection';
 import ProjectCard from './components/ProjectCard';
 import AIChatAssistant from './components/AIChatAssistant';
 import CallbackForm from './components/CallbackForm';
@@ -35,7 +36,10 @@ const App: React.FC = () => {
     }, observerOptions);
 
     if (appState === AppState.HOME) {
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      // Observe all reveal elements
+      setTimeout(() => {
+        document.querySelectorAll('.reveal, .reveal-pop').forEach(el => observer.observe(el));
+      }, 100);
     }
     
     return () => {
@@ -193,29 +197,9 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Work Section */}
-        <section id="work" className="py-24 sm:py-32 md:py-48 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 relative">
-          {/* Animated Background Elements */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl animate-pulse-glow pointer-events-none"></div>
-          
-          <div className="flex flex-col lg:flex-row justify-between items-end mb-32 reveal">
-            <div className="max-w-2xl">
-              <p className="text-stone-600 uppercase tracking-[0.6em] text-[10px] font-black mb-8 animate-slide-left">Our Project</p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-serif leading-[1.1] tracking-tighter animate-scale-in">Featured <br/> Listings.</h2>
-            </div>
-            <p className="mt-12 lg:mt-0 text-stone-500 text-sm max-w-md leading-relaxed reveal animate-slide-right">
-              A curated selection of exceptional properties showcasing luxury living, 
-              prime locations, and exceptional value.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {MOCK_PROJECTS.slice(0, 3).map((project, i) => (
-              <div key={project.id} className="reveal hover-lift" style={{ transitionDelay: `${(i % 3) * 150}ms` }}>
-                <ProjectCard project={project} />
-              </div>
-            ))}
-          </div>
+        {/* Properties Section */}
+        <section id="work" className="relative">
+          <PropertiesSection properties={MOCK_PROJECTS} />
         </section>
 
         {/* About Section */}
@@ -228,13 +212,13 @@ const App: React.FC = () => {
           <div className="absolute top-20 left-20 w-32 h-32 border border-white/5 rounded-full animate-float"></div>
           <div className="absolute bottom-20 right-20 w-24 h-24 border border-white/5 rounded-full animate-float-reverse"></div>
           
-          <div className="max-w-4xl mx-auto text-center px-10 relative z-10 reveal">
-            <h3 className="text-stone-700 uppercase tracking-[1em] text-[10px] font-black mb-20 animate-scale-in">About</h3>
-            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-7xl font-serif mb-8 sm:mb-12 md:mb-16 leading-[1.3] italic text-white/90 animate-text-reveal px-4">
-              "A home is not just a place—it's <span className="text-stone-500 not-italic animate-shimmer">where life happens</span>."
+          <div className="max-w-4xl mx-auto text-center px-10 relative z-10">
+            <h3 className="text-stone-700 uppercase tracking-[1em] text-[10px] font-black mb-20 reveal-pop">About</h3>
+            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-7xl font-serif mb-8 sm:mb-12 md:mb-16 leading-[1.3] italic text-white/90 reveal-pop px-4" style={{ transitionDelay: '0.1s' }}>
+              "A home is not just a place—it's <span className="text-stone-500 not-italic">where life happens</span>."
             </p>
-            <div className="w-40 h-[1px] bg-stone-900 mx-auto mb-16 animate-shimmer"></div>
-            <p className="text-stone-400 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto animate-slide-left">
+            <div className="w-40 h-[1px] bg-stone-900 mx-auto mb-16 reveal-pop" style={{ transitionDelay: '0.2s' }}></div>
+            <p className="text-stone-400 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto reveal-pop" style={{ transitionDelay: '0.3s' }}>
               With years of experience in real estate, I specialize in helping clients find their perfect property. 
               Whether you're buying, selling, or investing, I provide expert guidance, market insights, 
               and personalized service to make your real estate journey seamless and successful.
@@ -242,17 +226,42 @@ const App: React.FC = () => {
           </div>
         </section>
 
+        {/* ProjectCard Grid Section */}
+        <section className="py-24 sm:py-32 md:py-48 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 relative">
+          {/* Animated Background Elements */}
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl animate-pulse-glow pointer-events-none"></div>
+          
+          <div className="flex flex-col lg:flex-row justify-between items-end mb-16 sm:mb-24 md:mb-32 reveal active">
+            <div className="max-w-2xl">
+              <p className="text-stone-600 uppercase tracking-[0.6em] text-[10px] font-black mb-8 animate-slide-left">Featured Properties</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-serif leading-[1.1] tracking-tighter animate-scale-in">Premium <br/> Showcase.</h2>
+            </div>
+            <p className="mt-12 lg:mt-0 text-stone-500 text-sm max-w-md leading-relaxed reveal active animate-slide-right">
+              A curated selection of exceptional properties showcasing luxury living, 
+              prime locations, and exceptional value.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 relative z-10">
+            {MOCK_PROJECTS.slice(0, 3).map((project, i) => (
+              <div key={project.id} className="reveal active hover-lift" style={{ transitionDelay: `${(i % 3) * 150}ms` }}>
+                <ProjectCard project={project} />
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Skills Section */}
-        <section className="py-24 sm:py-32 md:py-48 bg-[#050505] rounded-luxury mx-2 sm:mx-4 md:mx-8 mb-12 sm:mb-16 md:mb-24 border border-white/5 reveal hover-glow relative overflow-hidden">
+        <section className="py-24 sm:py-32 md:py-48 bg-[#050505] rounded-luxury mx-2 sm:mx-4 md:mx-8 mb-12 sm:mb-16 md:mb-24 border border-white/5 reveal active hover-glow relative overflow-hidden">
           {/* Animated Background Gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5 animate-gradient opacity-50"></div>
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
-            <div className="text-center mb-20">
+            <div className="text-center mb-20 reveal active">
               <p className="text-stone-600 uppercase tracking-[0.6em] text-[10px] font-black mb-8 animate-slide-left">Services</p>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif leading-[1.1] tracking-tighter animate-scale-in">What I Offer.</h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16 md:gap-24 lg:gap-32">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16 md:gap-24 lg:gap-32 reveal active">
               {[
                 { title: "Property Sales", desc: "Expert assistance in buying and selling residential and commercial properties with comprehensive market analysis and negotiation." },
                 { title: "Property Consultation", desc: "Personalized guidance on property investment, market trends, and strategic real estate decisions tailored to your goals." },
