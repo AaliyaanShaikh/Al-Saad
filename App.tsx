@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import IntroAnimation from './components/IntroAnimation';
 import PropertiesSection from './components/PropertiesSection';
 import ProjectCard from './components/ProjectCard';
@@ -15,14 +15,11 @@ const App: React.FC = () => {
   const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
   const [isCallbackFormOpen, setIsCallbackFormOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 80);
-      // Check if scrolled past hero section (100vh = full viewport height)
-      const heroHeight = window.innerHeight;
-      setHasScrolledPastHero(window.scrollY > heroHeight);
+      setHasScrolledPastHero(window.scrollY > window.innerHeight);
     };
     window.addEventListener('scroll', handleScroll);
     
@@ -65,18 +62,18 @@ const App: React.FC = () => {
       {/* Animated Background Graphics */}
       <div className="fixed inset-0 pointer-events-none z-0">
         {/* Floating Circles */}
-        <div className="graphic-circle animate-float w-96 h-96 top-20 left-10 opacity-20" style={{ animationDelay: '0s' }}></div>
-        <div className="graphic-circle animate-float-reverse w-64 h-64 top-1/2 right-20 opacity-15" style={{ animationDelay: '2s' }}></div>
-        <div className="graphic-circle animate-float w-80 h-80 bottom-40 left-1/4 opacity-10" style={{ animationDelay: '4s' }}></div>
-        <div className="graphic-circle animate-pulse-glow w-72 h-72 top-1/3 right-1/3 opacity-10"></div>
+        <div className="graphic-circle animate-float w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 top-10 sm:top-20 left-4 sm:left-10 opacity-20" style={{ animationDelay: '0s' }}></div>
+        <div className="graphic-circle animate-float-reverse w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 top-1/2 right-4 sm:right-10 md:right-20 opacity-15" style={{ animationDelay: '2s' }}></div>
+        <div className="graphic-circle animate-float w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 bottom-20 sm:bottom-32 md:bottom-40 left-1/4 opacity-10" style={{ animationDelay: '4s' }}></div>
+        <div className="graphic-circle animate-pulse-glow w-36 h-36 sm:w-48 sm:h-48 md:w-60 md:h-60 lg:w-72 lg:h-72 top-1/3 right-1/3 opacity-10"></div>
         
         {/* Geometric Shapes */}
-        <div className="geometric-shape w-32 h-32 top-1/4 left-1/4 border-white/5 animate-rotate-slow" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}></div>
-        <div className="geometric-shape w-24 h-24 bottom-1/4 right-1/4 border-white/5 animate-rotate-slow" style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)', animationDirection: 'reverse', animationDuration: '15s' }}></div>
+        <div className="geometric-shape w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 top-1/4 left-1/4 border-white/5 animate-rotate-slow" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}></div>
+        <div className="geometric-shape w-12 h-12 sm:w-18 sm:h-18 md:w-24 md:h-24 bottom-1/4 right-1/4 border-white/5 animate-rotate-slow" style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)', animationDirection: 'reverse', animationDuration: '15s' }}></div>
         
         {/* Animated Lines */}
-        <div className="graphic-line w-px h-96 top-0 left-1/4 animate-pulse-glow" style={{ background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.1), transparent)' }}></div>
-        <div className="graphic-line w-96 h-px top-1/2 right-0 animate-pulse-glow" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)', animationDelay: '1s' }}></div>
+        <div className="graphic-line w-px h-48 sm:h-64 md:h-80 lg:h-96 top-0 left-1/4 animate-pulse-glow" style={{ background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.1), transparent)' }}></div>
+        <div className="graphic-line w-48 sm:w-64 md:w-80 lg:w-96 h-px top-1/2 right-0 animate-pulse-glow" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)', animationDelay: '1s' }}></div>
       </div>
 
       {/* Navigation */}
@@ -163,7 +160,7 @@ const App: React.FC = () => {
 
       <main>
         {/* Hero Section */}
-        <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+        <section className="relative h-screen flex items-center justify-center overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <img 
@@ -209,16 +206,16 @@ const App: React.FC = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] border border-white/5 rounded-full pointer-events-none animate-rotate-slow" style={{ animationDuration: '20s', animationDirection: 'reverse' }} />
           
           {/* Floating Shapes */}
-          <div className="absolute top-20 left-20 w-32 h-32 border border-white/5 rounded-full animate-float"></div>
-          <div className="absolute bottom-20 right-20 w-24 h-24 border border-white/5 rounded-full animate-float-reverse"></div>
+          <div className="absolute top-10 sm:top-20 left-4 sm:left-10 md:left-20 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 border border-white/5 rounded-full animate-float"></div>
+          <div className="absolute bottom-10 sm:bottom-20 right-4 sm:right-10 md:right-20 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 border border-white/5 rounded-full animate-float-reverse"></div>
           
-          <div className="max-w-4xl mx-auto text-center px-10 relative z-10">
-            <h3 className="text-stone-700 uppercase tracking-[1em] text-[10px] font-black mb-20 reveal-pop">About</h3>
-            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-7xl font-serif mb-8 sm:mb-12 md:mb-16 leading-[1.3] italic text-white/90 reveal-pop px-4" style={{ transitionDelay: '0.1s' }}>
+          <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 md:px-10 relative z-10">
+            <h3 className="text-stone-700 uppercase tracking-[0.8em] sm:tracking-[1em] text-[9px] sm:text-[10px] font-black mb-12 sm:mb-16 md:mb-20 reveal-pop">About</h3>
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-7xl font-serif mb-6 sm:mb-8 md:mb-12 lg:mb-16 leading-[1.3] italic text-white/90 reveal-pop px-2 sm:px-4" style={{ transitionDelay: '0.1s' }}>
               "A home is not just a place—it's <span className="text-stone-500 not-italic">where life happens</span>."
             </p>
-            <div className="w-40 h-[1px] bg-stone-900 mx-auto mb-16 reveal-pop" style={{ transitionDelay: '0.2s' }}></div>
-            <p className="text-stone-400 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto reveal-pop" style={{ transitionDelay: '0.3s' }}>
+            <div className="w-32 sm:w-40 h-[1px] bg-stone-900 mx-auto mb-10 sm:mb-12 md:mb-16 reveal-pop" style={{ transitionDelay: '0.2s' }}></div>
+            <p className="text-stone-400 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-3xl mx-auto px-2 sm:px-4 reveal-pop" style={{ transitionDelay: '0.3s' }}>
               With years of experience in real estate, I specialize in helping clients find their perfect property. 
               Whether you're buying, selling, or investing, I provide expert guidance, market insights, 
               and personalized service to make your real estate journey seamless and successful.
@@ -231,20 +228,20 @@ const App: React.FC = () => {
           {/* Animated Background Elements */}
           <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl animate-pulse-glow pointer-events-none"></div>
           
-          <div className="flex flex-col lg:flex-row justify-between items-end mb-16 sm:mb-24 md:mb-32 reveal active">
-            <div className="max-w-2xl">
-              <p className="text-stone-600 uppercase tracking-[0.6em] text-[10px] font-black mb-8 animate-slide-left">Featured Properties</p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-serif leading-[1.1] tracking-tighter animate-scale-in">Premium <br/> Showcase.</h2>
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-12 sm:mb-16 md:mb-24 lg:mb-32 reveal">
+            <div className="max-w-2xl w-full lg:w-auto">
+              <p className="text-stone-600 uppercase tracking-[0.5em] sm:tracking-[0.6em] text-[9px] sm:text-[10px] font-black mb-4 sm:mb-6 md:mb-8 animate-slide-left">Featured Properties</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-8xl font-serif leading-[1.1] tracking-tighter animate-scale-in">Premium <br/> Showcase.</h2>
             </div>
-            <p className="mt-12 lg:mt-0 text-stone-500 text-sm max-w-md leading-relaxed reveal active animate-slide-right">
+            <p className="mt-8 sm:mt-10 md:mt-12 lg:mt-0 lg:ml-8 text-stone-500 text-xs sm:text-sm max-w-md leading-relaxed reveal animate-slide-right">
               A curated selection of exceptional properties showcasing luxury living, 
               prime locations, and exceptional value.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12 relative z-10">
             {MOCK_PROJECTS.slice(0, 3).map((project, i) => (
-              <div key={project.id} className="reveal active hover-lift" style={{ transitionDelay: `${(i % 3) * 150}ms` }}>
+              <div key={project.id} className="reveal hover-lift" style={{ transitionDelay: `${(i % 3) * 150}ms` }}>
                 <ProjectCard project={project} />
               </div>
             ))}
@@ -252,27 +249,27 @@ const App: React.FC = () => {
         </section>
 
         {/* Skills Section */}
-        <section className="py-24 sm:py-32 md:py-48 bg-[#050505] rounded-luxury mx-2 sm:mx-4 md:mx-8 mb-12 sm:mb-16 md:mb-24 border border-white/5 reveal active hover-glow relative overflow-hidden">
+        <section className="py-24 sm:py-32 md:py-48 bg-[#050505] rounded-luxury mx-2 sm:mx-4 md:mx-8 mb-12 sm:mb-16 md:mb-24 border border-white/5 reveal hover-glow relative overflow-hidden">
           {/* Animated Background Gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5 animate-gradient opacity-50"></div>
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
-            <div className="text-center mb-20 reveal active">
-              <p className="text-stone-600 uppercase tracking-[0.6em] text-[10px] font-black mb-8 animate-slide-left">Services</p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif leading-[1.1] tracking-tighter animate-scale-in">What I Offer.</h2>
+            <div className="text-center mb-12 sm:mb-16 md:mb-20 reveal">
+              <p className="text-stone-600 uppercase tracking-[0.5em] sm:tracking-[0.6em] text-[9px] sm:text-[10px] font-black mb-4 sm:mb-6 md:mb-8 animate-slide-left">Services</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-serif leading-[1.1] tracking-tighter animate-scale-in">What I Offer.</h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16 md:gap-24 lg:gap-32 reveal active">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 md:gap-16 lg:gap-24 xl:gap-32 reveal">
               {[
                 { title: "Property Sales", desc: "Expert assistance in buying and selling residential and commercial properties with comprehensive market analysis and negotiation." },
                 { title: "Property Consultation", desc: "Personalized guidance on property investment, market trends, and strategic real estate decisions tailored to your goals." },
                 { title: "Market Expertise", desc: "Deep knowledge of local markets, property values, and investment opportunities to help you make informed decisions." }
               ].map((skill, idx) => (
                 <div key={idx} className="group cursor-pointer hover-lift animate-scale-in" style={{ animationDelay: `${idx * 0.2}s` }}>
-                  <div className="w-16 h-16 bg-black border border-white/10 rounded-2xl flex items-center justify-center mb-10 group-hover:bg-white group-hover:scale-110 transition-all duration-500 animate-glow">
-                    <span className="text-white group-hover:text-black font-serif text-xl italic">0{idx + 1}</span>
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-black border border-white/10 rounded-2xl flex items-center justify-center mb-6 sm:mb-8 md:mb-10 group-hover:bg-white group-hover:scale-110 transition-all duration-500 animate-glow">
+                    <span className="text-white group-hover:text-black font-serif text-lg sm:text-xl italic">0{idx + 1}</span>
                   </div>
-                  <h4 className="text-3xl font-serif text-white mb-6 tracking-tight group-hover:text-white/80 transition-colors">{skill.title}</h4>
-                  <p className="text-stone-600 text-lg leading-relaxed font-light italic group-hover:text-stone-400 transition-colors">
+                  <h4 className="text-xl sm:text-2xl md:text-3xl font-serif text-white mb-4 sm:mb-6 tracking-tight group-hover:text-white/80 transition-colors">{skill.title}</h4>
+                  <p className="text-stone-600 text-sm sm:text-base md:text-lg leading-relaxed font-light italic group-hover:text-stone-400 transition-colors">
                     {skill.desc}
                   </p>
                 </div>
@@ -293,33 +290,33 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 sm:gap-16 md:gap-24 lg:gap-32 mb-20 sm:mb-32 md:mb-40">
             <div className="lg:col-span-2 reveal animate-slide-left">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif text-white mb-6 sm:mb-8 md:mb-10 tracking-[0.2em] hover-lift">AL-SAAD</h1>
-              <p className="text-stone-600 max-w-sm mb-16 leading-loose text-lg font-light italic">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif text-white mb-4 sm:mb-6 md:mb-8 lg:mb-10 tracking-[0.2em] hover-lift">AL-SAAD</h1>
+              <p className="text-stone-600 max-w-sm mb-8 sm:mb-12 md:mb-16 leading-loose text-base sm:text-lg font-light italic">
                 Let's find your perfect property together. 
                 I'm always available to discuss your real estate needs and answer any questions.
               </p>
-              <div className="flex space-x-12">
+              <div className="flex flex-wrap gap-6 sm:gap-8 md:gap-10 lg:space-x-12">
                 {[
                   { name: 'Instagram', url: 'https://www.instagram.com/alsaad.in/' },
                   { name: 'YouTube', url: 'https://www.youtube.com/@alsaad_in' },
                   { name: 'WhatsApp', url: 'https://www.whatsapp.com/channel/0029Vb7A5K0BadmfcCLWAj2z?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnNlqOuz0dgQNmXOt453HIOTxizLmYdebXLDe9FVKYTvCoGafxQ0aFJUgxHhM_aem_CdEdI7ABSjCZiOBk48imCw' }
                 ].map((social, idx) => (
-                  <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer" className="text-[10px] uppercase tracking-[0.6em] font-black text-stone-700 hover:text-white transition-all border-b border-stone-900 hover:border-white pb-2 hover-lift animate-slide-left" style={{ animationDelay: `${idx * 0.1}s` }}>
+                  <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer" className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-black text-stone-700 hover:text-white transition-all border-b border-stone-900 hover:border-white pb-2 hover-lift animate-slide-left" style={{ animationDelay: `${idx * 0.1}s` }}>
                     {social.name}
                   </a>
                 ))}
               </div>
             </div>
             <div className="reveal animate-slide-right">
-              <h5 className="text-[10px] uppercase tracking-[0.6em] font-black text-stone-500 mb-10">Navigation</h5>
-              <ul className="space-y-6 text-[11px] uppercase tracking-[0.3em] text-stone-600 font-black">
+              <h5 className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-black text-stone-500 mb-6 sm:mb-8 md:mb-10">Navigation</h5>
+              <ul className="space-y-4 sm:space-y-6 text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-stone-600 font-black">
                 <li><a href="#work" className="hover:text-white transition-colors hover-lift inline-block">Properties</a></li>
                 <li><a href="#about" className="hover:text-white transition-colors hover-lift inline-block">About</a></li>
                 <li><a href="#contact" className="hover:text-white transition-colors hover-lift inline-block">Contact</a></li>
               </ul>
             </div>
             <div className="lg:col-span-2 reveal animate-scale-in">
-              <h5 className="text-[10px] uppercase tracking-[0.6em] font-black text-stone-500 mb-10">Get In Touch</h5>
+              <h5 className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-black text-stone-500 mb-6 sm:mb-8 md:mb-10">Get In Touch</h5>
               <div className="space-y-4 sm:space-y-6">
                 <div className="bg-[#0a0a0a] p-6 sm:p-8 md:p-10 rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-between border border-white/5 shadow-2xl hover-lift hover-glow transition-all">
                   <div className="flex-1 min-w-0">
@@ -342,9 +339,9 @@ const App: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-[0.6em] font-black text-stone-800">
-            <span>© 2025 Al-Saad. All rights reserved. Designed by Ezor.</span>
-            <div className="flex space-x-12 mt-8 md:mt-0">
+          <div className="pt-12 sm:pt-14 md:pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-black text-stone-800">
+            <span className="text-center md:text-left mb-4 md:mb-0">© 2025 Al-Saad. All rights reserved. Designed by Ezor.</span>
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 lg:space-x-12 mt-4 md:mt-0">
               <button onClick={() => setAppState(AppState.PRIVACY)} className="hover:text-white transition-all hover-lift cursor-pointer">
                 Privacy
               </button>
