@@ -2,16 +2,27 @@ import React, { useState, useEffect, useRef } from 'react';
 import IntroAnimation from './components/IntroAnimation';
 import ProjectCard from './components/ProjectCard';
 import AIChatAssistant from './components/AIChatAssistant';
+import CallbackForm from './components/CallbackForm';
+import PrivacyPage from './pages/PrivacyPage';
+import TermsPage from './pages/TermsPage';
 import { AppState } from './types';
 import { MOCK_PROJECTS } from './constants';
 
 const App: React.FC = () => {
   const [appState, setAppState] = useState<AppState>(AppState.INTRO);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
+  const [isCallbackFormOpen, setIsCallbackFormOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 80);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 80);
+      // Check if scrolled past hero section (100vh = full viewport height)
+      const heroHeight = window.innerHeight;
+      setHasScrolledPastHero(window.scrollY > heroHeight);
+    };
     window.addEventListener('scroll', handleScroll);
     
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
@@ -37,6 +48,14 @@ const App: React.FC = () => {
     return <IntroAnimation onComplete={() => setAppState(AppState.HOME)} />;
   }
 
+  if (appState === AppState.PRIVACY) {
+    return <PrivacyPage onNavigate={setAppState} />;
+  }
+
+  if (appState === AppState.TERMS) {
+    return <TermsPage onNavigate={setAppState} />;
+  }
+
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black relative overflow-hidden">
       {/* Animated Background Graphics */}
@@ -57,13 +76,22 @@ const App: React.FC = () => {
       </div>
 
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 px-10 pt-10 ${isScrolled ? 'translate-y-[-20px]' : ''}`}>
-        <div className={`max-w-7xl mx-auto px-10 py-6 flex items-center justify-between rounded-full transition-all duration-700 ${isScrolled ? 'glass-dark py-4 px-8 shadow-2xl' : 'bg-transparent'}`}>
-          <div className="flex items-center space-x-16">
-            <h1 className="text-2xl font-serif tracking-[0.3em] font-medium text-white hover-lift cursor-pointer">AL-SAAD</h1>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 px-4 sm:px-6 md:px-10 pt-4 sm:pt-6 md:pt-10 ${isScrolled ? 'translate-y-[-20px]' : ''}`}>
+        <div className={`max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-4 sm:py-5 md:py-6 flex items-center justify-between rounded-full transition-all duration-700 ${isScrolled ? 'glass-dark py-3 sm:py-4 px-4 sm:px-6 md:px-8 shadow-2xl' : 'bg-transparent'}`}>
+          <div className="flex items-center space-x-4 sm:space-x-8 md:space-x-16">
+            <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
+              {hasScrolledPastHero && (
+                <img 
+                  src="/ChatGPT Image Jan 13, 2026 at 02_37_17 AM.png" 
+                  alt="Al-Saad Logo"
+                  className="h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 xl:h-14 xl:w-14 2xl:h-16 2xl:w-16 object-contain hover-lift cursor-pointer transition-all duration-300"
+                />
+              )}
+              <h1 className="text-lg sm:text-xl md:text-2xl font-serif tracking-[0.2em] sm:tracking-[0.3em] font-medium text-white hover-lift cursor-pointer">AL-SAAD</h1>
+            </div>
             <div className="hidden lg:flex space-x-12 text-[10px] uppercase tracking-[0.4em] font-black text-stone-500">
               <a href="#work" className="hover:text-white transition-all relative group">
-                Work
+                Properties
                 <span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>
               </a>
               <a href="#about" className="hover:text-white transition-all relative group">
@@ -76,63 +104,88 @@ const App: React.FC = () => {
               </a>
             </div>
           </div>
-          <button className="bg-white text-black px-12 py-4 rounded-full text-[10px] uppercase tracking-[0.4em] font-black hover:bg-stone-200 transition-all shadow-xl hover-lift hover-glow">
-            Inquire
-          </button>
+          <div className="flex items-center space-x-3 sm:space-x-4">
+            <button 
+              onClick={() => setIsCallbackFormOpen(true)}
+              className="bg-stone-100 text-black px-4 sm:px-6 md:px-8 lg:px-12 py-2 sm:py-3 md:py-4 rounded-full text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] font-black hover:bg-stone-200 transition-all shadow-xl hover-lift"
+            >
+              <span className="hidden sm:inline">Request Call</span>
+              <span className="sm:hidden">Call</span>
+            </button>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+            >
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
+        
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden mt-4 px-4 sm:px-6 md:px-10 py-6 glass-dark rounded-2xl border border-white/10">
+            <div className="flex flex-col space-y-4 text-[10px] uppercase tracking-[0.4em] font-black">
+              <a 
+                href="#work" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-stone-500 hover:text-white transition-all py-2 border-b border-white/5"
+              >
+                Properties
+              </a>
+              <a 
+                href="#about" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-stone-500 hover:text-white transition-all py-2 border-b border-white/5"
+              >
+                About
+              </a>
+              <a 
+                href="#contact" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-stone-500 hover:text-white transition-all py-2"
+              >
+                Contact
+              </a>
+            </div>
+          </div>
+        )}
       </nav>
 
       <main>
         {/* Hero Section */}
         <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
-          {/* Animated Background Image with Parallax */}
-          <div className="absolute inset-0 z-0 scale-100">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
             <img 
-              src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=90&w=2560" 
-              className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale transition-transform duration-[30s] hover:scale-110"
+              src="/ChatGPT Image Jan 13, 2026 at 02_30_41 AM.png" 
+              className="absolute inset-0 w-full h-full object-cover"
               alt="Background"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.src = "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=90&w=2560";
-              }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black animate-gradient" style={{ background: 'linear-gradient(180deg, #000 0%, transparent 50%, #000 100%)' }} />
-            
-            {/* Animated Particles */}
-            {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className="particle animate-float"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 5}s`,
-                  animationDuration: `${5 + Math.random() * 5}s`,
-                }}
-              />
-            ))}
           </div>
 
-          {/* Morphing Background Shape */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-white/5 to-white/0 animate-morph blur-3xl pointer-events-none"></div>
-
-          <div className="relative z-10 text-center px-10 max-w-5xl">
-            <div className="overflow-hidden mb-8">
-              <p className="text-stone-500 uppercase tracking-[0.8em] text-[11px] font-black reveal active animate-text-reveal">
-                Designer • Creative Director • Visionary
-              </p>
-            </div>
-            <h2 className="text-6xl md:text-[8rem] font-serif mb-8 leading-[0.95] tracking-tighter reveal active animate-scale-in" style={{ transitionDelay: '300ms' }}>
-              Crafting <br /><span className="italic font-light animate-shimmer">Digital Experiences.</span>
-            </h2>
-            <p className="text-stone-400 text-lg md:text-xl max-w-2xl mx-auto mb-16 leading-relaxed reveal active animate-slide-left" style={{ transitionDelay: '600ms' }}>
-              I create meaningful connections between brands and audiences through thoughtful design, 
-              strategic thinking, and innovative solutions.
+          {/* Top Fixed Text */}
+          <div className="absolute left-1/2 -translate-x-1/2 z-10 w-full px-4 sm:px-6 md:px-10 top-24 sm:top-32 md:top-36 lg:top-[150px]">
+            <p className="text-stone-500 uppercase tracking-[0.5em] sm:tracking-[0.6em] md:tracking-[0.8em] text-[8px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-black reveal active text-center">
+              Visionary • Realtor • Educator
             </p>
           </div>
 
-          {/* Scroll Indicator with Animation */}
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-4 reveal active animate-float" style={{ transitionDelay: '1000ms' }}>
+          {/* Bottom Fixed Text */}
+          <div className="absolute left-1/2 -translate-x-1/2 z-10 w-full px-4 sm:px-6 md:px-10 bottom-20 sm:bottom-24 md:bottom-28 lg:bottom-[130px]">
+            <p className="text-stone-400 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl max-w-2xl mx-auto leading-relaxed reveal active text-center" style={{ transitionDelay: '600ms' }}>
+              Helping you find your dream property with expert guidance, 
+              personalized service, and deep market knowledge.
+            </p>
+          </div>
+
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-4 reveal active" style={{ transitionDelay: '1000ms' }}>
             <span className="text-[9px] uppercase tracking-[0.6em] text-stone-600 font-black">Explore</span>
             <div className="scroll-indicator-container">
               <div className="scroll-indicator-line"></div>
@@ -141,23 +194,23 @@ const App: React.FC = () => {
         </section>
 
         {/* Work Section */}
-        <section id="work" className="py-48 max-w-7xl mx-auto px-10 relative">
+        <section id="work" className="py-24 sm:py-32 md:py-48 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 relative">
           {/* Animated Background Elements */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl animate-pulse-glow pointer-events-none"></div>
           
           <div className="flex flex-col lg:flex-row justify-between items-end mb-32 reveal">
             <div className="max-w-2xl">
-              <p className="text-stone-600 uppercase tracking-[0.6em] text-[10px] font-black mb-8 animate-slide-left">Selected Work</p>
-              <h2 className="text-5xl md:text-8xl font-serif leading-[1.1] tracking-tighter animate-scale-in">Recent <br/> Projects.</h2>
+              <p className="text-stone-600 uppercase tracking-[0.6em] text-[10px] font-black mb-8 animate-slide-left">Our Project</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-serif leading-[1.1] tracking-tighter animate-scale-in">Featured <br/> Listings.</h2>
             </div>
             <p className="mt-12 lg:mt-0 text-stone-500 text-sm max-w-md leading-relaxed reveal animate-slide-right">
-              A collection of projects that represent my approach to design, 
-              strategy, and creative problem-solving.
+              A curated selection of exceptional properties showcasing luxury living, 
+              prime locations, and exceptional value.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {MOCK_PROJECTS.map((project, i) => (
+            {MOCK_PROJECTS.slice(0, 3).map((project, i) => (
               <div key={project.id} className="reveal hover-lift" style={{ transitionDelay: `${(i % 3) * 150}ms` }}>
                 <ProjectCard project={project} />
               </div>
@@ -166,7 +219,7 @@ const App: React.FC = () => {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-60 relative overflow-hidden bg-black">
+        <section id="about" className="py-24 sm:py-32 md:py-48 lg:py-60 relative overflow-hidden bg-black">
           {/* Animated Circle Background */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vw] border border-white/5 rounded-full pointer-events-none reveal animate-rotate-slow" style={{ animationDuration: '30s' }} />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] border border-white/5 rounded-full pointer-events-none animate-rotate-slow" style={{ animationDuration: '20s', animationDirection: 'reverse' }} />
@@ -177,33 +230,33 @@ const App: React.FC = () => {
           
           <div className="max-w-4xl mx-auto text-center px-10 relative z-10 reveal">
             <h3 className="text-stone-700 uppercase tracking-[1em] text-[10px] font-black mb-20 animate-scale-in">About</h3>
-            <p className="text-4xl md:text-7xl font-serif mb-16 leading-[1.3] italic text-white/90 animate-text-reveal">
-              "Design is not just what it looks like—design is <span className="text-stone-500 not-italic animate-shimmer">how it works</span>."
+            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-7xl font-serif mb-8 sm:mb-12 md:mb-16 leading-[1.3] italic text-white/90 animate-text-reveal px-4">
+              "A home is not just a place—it's <span className="text-stone-500 not-italic animate-shimmer">where life happens</span>."
             </p>
             <div className="w-40 h-[1px] bg-stone-900 mx-auto mb-16 animate-shimmer"></div>
             <p className="text-stone-400 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto animate-slide-left">
-              With a passion for creating meaningful digital experiences, I blend aesthetic sensibility 
-              with functional design. Every project is an opportunity to tell a story, solve a problem, 
-              and connect with people on a deeper level.
+              With years of experience in real estate, I specialize in helping clients find their perfect property. 
+              Whether you're buying, selling, or investing, I provide expert guidance, market insights, 
+              and personalized service to make your real estate journey seamless and successful.
             </p>
           </div>
         </section>
 
         {/* Skills Section */}
-        <section className="py-48 bg-[#050505] rounded-luxury mx-8 mb-24 border border-white/5 reveal hover-glow relative overflow-hidden">
+        <section className="py-24 sm:py-32 md:py-48 bg-[#050505] rounded-luxury mx-2 sm:mx-4 md:mx-8 mb-12 sm:mb-16 md:mb-24 border border-white/5 reveal hover-glow relative overflow-hidden">
           {/* Animated Background Gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5 animate-gradient opacity-50"></div>
           
-          <div className="max-w-7xl mx-auto px-12 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
             <div className="text-center mb-20">
-              <p className="text-stone-600 uppercase tracking-[0.6em] text-[10px] font-black mb-8 animate-slide-left">Capabilities</p>
-              <h2 className="text-5xl md:text-7xl font-serif leading-[1.1] tracking-tighter animate-scale-in">What I Do.</h2>
+              <p className="text-stone-600 uppercase tracking-[0.6em] text-[10px] font-black mb-8 animate-slide-left">Services</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif leading-[1.1] tracking-tighter animate-scale-in">What I Offer.</h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-32">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16 md:gap-24 lg:gap-32">
               {[
-                { title: "Design Strategy", desc: "Transforming complex ideas into clear, compelling visual narratives that resonate with audiences." },
-                { title: "Creative Direction", desc: "Leading multidisciplinary teams to create cohesive brand experiences across all touchpoints." },
-                { title: "Digital Innovation", desc: "Exploring emerging technologies and platforms to push the boundaries of digital design." }
+                { title: "Property Sales", desc: "Expert assistance in buying and selling residential and commercial properties with comprehensive market analysis and negotiation." },
+                { title: "Property Consultation", desc: "Personalized guidance on property investment, market trends, and strategic real estate decisions tailored to your goals." },
+                { title: "Market Expertise", desc: "Deep knowledge of local markets, property values, and investment opportunities to help you make informed decisions." }
               ].map((skill, idx) => (
                 <div key={idx} className="group cursor-pointer hover-lift animate-scale-in" style={{ animationDelay: `${idx * 0.2}s` }}>
                   <div className="w-16 h-16 bg-black border border-white/10 rounded-2xl flex items-center justify-center mb-10 group-hover:bg-white group-hover:scale-110 transition-all duration-500 animate-glow">
@@ -221,25 +274,29 @@ const App: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer id="contact" className="bg-black pt-60 pb-20 border-t border-white/5 rounded-t-[5rem] relative overflow-hidden">
+      <footer id="contact" className="bg-black pt-24 sm:pt-32 md:pt-48 lg:pt-60 pb-12 sm:pb-16 md:pb-20 border-t border-white/5 rounded-t-[2rem] sm:rounded-t-[3rem] md:rounded-t-[5rem] relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="absolute top-20 left-20 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-pulse-glow"></div>
           <div className="absolute bottom-20 right-20 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1s' }}></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-12 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-32 mb-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 sm:gap-16 md:gap-24 lg:gap-32 mb-20 sm:mb-32 md:mb-40">
             <div className="lg:col-span-2 reveal animate-slide-left">
-              <h1 className="text-4xl font-serif text-white mb-10 tracking-[0.2em] hover-lift">AL-SAAD</h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif text-white mb-6 sm:mb-8 md:mb-10 tracking-[0.2em] hover-lift">AL-SAAD</h1>
               <p className="text-stone-600 max-w-sm mb-16 leading-loose text-lg font-light italic">
-                Let's create something meaningful together. 
-                I'm always open to discussing new projects and creative opportunities.
+                Let's find your perfect property together. 
+                I'm always available to discuss your real estate needs and answer any questions.
               </p>
               <div className="flex space-x-12">
-                {['Instagram', 'LinkedIn', 'Dribbble'].map((social, idx) => (
-                  <a key={social} href="#" className="text-[10px] uppercase tracking-[0.6em] font-black text-stone-700 hover:text-white transition-all border-b border-stone-900 hover:border-white pb-2 hover-lift animate-slide-left" style={{ animationDelay: `${idx * 0.1}s` }}>
-                    {social}
+                {[
+                  { name: 'Instagram', url: 'https://www.instagram.com/alsaad.in/' },
+                  { name: 'YouTube', url: 'https://www.youtube.com/@alsaad_in' },
+                  { name: 'WhatsApp', url: 'https://www.whatsapp.com/channel/0029Vb7A5K0BadmfcCLWAj2z?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnNlqOuz0dgQNmXOt453HIOTxizLmYdebXLDe9FVKYTvCoGafxQ0aFJUgxHhM_aem_CdEdI7ABSjCZiOBk48imCw' }
+                ].map((social, idx) => (
+                  <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer" className="text-[10px] uppercase tracking-[0.6em] font-black text-stone-700 hover:text-white transition-all border-b border-stone-900 hover:border-white pb-2 hover-lift animate-slide-left" style={{ animationDelay: `${idx * 0.1}s` }}>
+                    {social.name}
                   </a>
                 ))}
               </div>
@@ -247,35 +304,51 @@ const App: React.FC = () => {
             <div className="reveal animate-slide-right">
               <h5 className="text-[10px] uppercase tracking-[0.6em] font-black text-stone-500 mb-10">Navigation</h5>
               <ul className="space-y-6 text-[11px] uppercase tracking-[0.3em] text-stone-600 font-black">
-                <li><a href="#work" className="hover:text-white transition-colors hover-lift inline-block">Work</a></li>
+                <li><a href="#work" className="hover:text-white transition-colors hover-lift inline-block">Properties</a></li>
                 <li><a href="#about" className="hover:text-white transition-colors hover-lift inline-block">About</a></li>
                 <li><a href="#contact" className="hover:text-white transition-colors hover-lift inline-block">Contact</a></li>
               </ul>
             </div>
             <div className="lg:col-span-2 reveal animate-scale-in">
               <h5 className="text-[10px] uppercase tracking-[0.6em] font-black text-stone-500 mb-10">Get In Touch</h5>
-              <div className="bg-[#0a0a0a] p-10 rounded-[2.5rem] flex items-center justify-between border border-white/5 shadow-2xl hover-lift hover-glow transition-all">
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.4em] font-black text-stone-600 mb-2">Email</p>
-                  <p className="text-white font-bold text-xl">hello@al-saad.com</p>
+              <div className="space-y-4 sm:space-y-6">
+                <div className="bg-[#0a0a0a] p-6 sm:p-8 md:p-10 rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-between border border-white/5 shadow-2xl hover-lift hover-glow transition-all">
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] font-black text-stone-600 mb-2">Email</p>
+                    <p className="text-white font-bold text-sm sm:text-base md:text-xl truncate">alsaad.in@gmail.com</p>
+                  </div>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white text-black rounded-full flex items-center justify-center shadow-xl hover-scale transition-transform flex-shrink-0 ml-4">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  </div>
                 </div>
-                <div className="w-14 h-14 bg-white text-black rounded-full flex items-center justify-center shadow-xl hover-scale transition-transform">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                <div className="bg-[#0a0a0a] p-6 sm:p-8 md:p-10 rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-between border border-white/5 shadow-2xl hover-lift hover-glow transition-all">
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] font-black text-stone-600 mb-2">Phone</p>
+                    <p className="text-white font-bold text-sm sm:text-base md:text-xl">+91 87960 28980</p>
+                  </div>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white text-black rounded-full flex items-center justify-center shadow-xl hover-scale transition-transform flex-shrink-0 ml-4">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-[0.6em] font-black text-stone-800">
-            <span>© 2024 Al-Saad. All rights reserved.</span>
+            <span>© 2025 Al-Saad. All rights reserved. Designed by Ezor.</span>
             <div className="flex space-x-12 mt-8 md:mt-0">
-              <a href="#" className="hover:text-white transition-all hover-lift">Privacy</a>
-              <a href="#" className="hover:text-white transition-all hover-lift">Terms</a>
+              <button onClick={() => setAppState(AppState.PRIVACY)} className="hover:text-white transition-all hover-lift cursor-pointer">
+                Privacy
+              </button>
+              <button onClick={() => setAppState(AppState.TERMS)} className="hover:text-white transition-all hover-lift cursor-pointer">
+                Terms
+              </button>
             </div>
           </div>
         </div>
       </footer>
 
       <AIChatAssistant />
+      <CallbackForm isOpen={isCallbackFormOpen} onClose={() => setIsCallbackFormOpen(false)} />
     </div>
   );
 };
