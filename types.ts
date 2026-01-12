@@ -17,5 +17,7 @@ export interface ChatMessage {
 
 export enum AppState {
   INTRO = 'INTRO',
-  HOME = 'HOME'
+  HOME = 'HOME',
+  PRIVACY = 'PRIVACY',
+  TERMS = 'TERMS'
 }

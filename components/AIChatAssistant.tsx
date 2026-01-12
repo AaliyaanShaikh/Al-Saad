@@ -4,7 +4,7 @@ import { ChatMessage } from '../types';
 
 const AIChatAssistant: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', content: "Hi! I'm here to answer questions about my work, process, or collaborations. How can I help?" }
+    { role: 'model', content: "Hi! I'm Al-Saad's AI assistant. I'm here to help you with real estate inquiries, property information, and any questions about our services. How can I assist you today?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -33,9 +33,9 @@ const AIChatAssistant: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-12 right-12 z-[100]">
+    <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 md:bottom-12 md:right-12 z-[100]">
       {isOpen ? (
-        <div className="w-[350px] md:w-[400px] h-[550px] bg-[#000000] border border-white/10 rounded-[2.5rem] flex flex-col overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.8)] animate-in fade-in slide-in-from-bottom-5 duration-500">
+        <div className="w-[calc(100vw-2rem)] sm:w-[350px] md:w-[400px] h-[calc(100vh-8rem)] sm:h-[550px] max-h-[600px] bg-[#000000] border border-white/10 rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] flex flex-col overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.8)] animate-in fade-in slide-in-from-bottom-5 duration-500">
           {/* Header - Solid Color, No Blinking */}
           <div className="p-8 border-b border-white/5 flex justify-between items-center bg-[#0a0a0a]">
             <div className="flex items-center space-x-4">
@@ -91,7 +91,7 @@ const AIChatAssistant: React.FC = () => {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about my work or process..."
+                placeholder="Ask about properties or real estate..."
                 className="flex-1 bg-[#1a1a1a] border border-transparent rounded-2xl px-6 py-4 text-sm text-white focus:outline-none focus:border-white/10 transition-all placeholder:text-stone-700"
               />
               <button 
@@ -109,9 +109,9 @@ const AIChatAssistant: React.FC = () => {
       ) : (
         <button 
           onClick={() => setIsOpen(true)}
-          className="bg-white text-black w-16 h-16 rounded-full flex items-center justify-center shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:scale-110 active:scale-95 transition-all duration-500"
+          className="bg-white text-black w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:scale-110 active:scale-95 transition-all duration-500"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
           </svg>
         </button>
