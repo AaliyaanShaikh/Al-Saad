@@ -130,26 +130,29 @@ const App: React.FC = () => {
         
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 px-4 sm:px-6 md:px-10 py-6 glass-dark rounded-2xl border border-white/10">
+          <div className="lg:hidden mt-4 px-4 sm:px-6 md:px-10 py-6 glass-dark rounded-2xl border border-white/10 animate-dropdown">
             <div className="flex flex-col space-y-4 text-[10px] uppercase tracking-[0.4em] font-black">
               <a 
                 href="#work" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-stone-500 hover:text-white transition-all py-2 border-b border-white/5"
+                className="text-stone-500 hover:text-white transition-all py-2 border-b border-white/5 animate-menu-item"
+                style={{ animationDelay: '0.1s' }}
               >
                 Properties
               </a>
               <a 
                 href="#about" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-stone-500 hover:text-white transition-all py-2 border-b border-white/5"
+                className="text-stone-500 hover:text-white transition-all py-2 border-b border-white/5 animate-menu-item"
+                style={{ animationDelay: '0.2s' }}
               >
                 About
               </a>
               <a 
                 href="#contact" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-stone-500 hover:text-white transition-all py-2"
+                className="text-stone-500 hover:text-white transition-all py-2 animate-menu-item"
+                style={{ animationDelay: '0.3s' }}
               >
                 Contact
               </a>
@@ -295,13 +298,13 @@ const App: React.FC = () => {
                 Let's find your perfect property together. 
                 I'm always available to discuss your real estate needs and answer any questions.
               </p>
-              <div className="flex flex-wrap gap-6 sm:gap-8 md:gap-10 lg:space-x-12">
+              <div className="flex flex-nowrap gap-6 sm:gap-8 md:gap-10 lg:gap-12">
                 {[
                   { name: 'Instagram', url: 'https://www.instagram.com/alsaad.in/' },
                   { name: 'YouTube', url: 'https://www.youtube.com/@alsaad_in' },
                   { name: 'WhatsApp', url: 'https://www.whatsapp.com/channel/0029Vb7A5K0BadmfcCLWAj2z?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnNlqOuz0dgQNmXOt453HIOTxizLmYdebXLDe9FVKYTvCoGafxQ0aFJUgxHhM_aem_CdEdI7ABSjCZiOBk48imCw' }
                 ].map((social, idx) => (
-                  <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer" className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-black text-stone-700 hover:text-white transition-all border-b border-stone-900 hover:border-white pb-2 hover-lift animate-slide-left" style={{ animationDelay: `${idx * 0.1}s` }}>
+                  <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer" className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-black text-stone-700 hover:text-white transition-all border-b border-stone-900 hover:border-white pb-2 hover-lift animate-slide-left whitespace-nowrap" style={{ animationDelay: `${idx * 0.1}s` }}>
                     {social.name}
                   </a>
                 ))}
