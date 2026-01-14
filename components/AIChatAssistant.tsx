@@ -37,11 +37,13 @@ const AIChatAssistant: React.FC = () => {
       {isOpen ? (
         <div className="w-[calc(100vw-2rem)] sm:w-[350px] md:w-[400px] h-[calc(100vh-8rem)] sm:h-[550px] max-h-[600px] bg-[#000000] border border-white/10 rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] flex flex-col overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.8)] animate-in fade-in slide-in-from-bottom-5 duration-500">
           {/* Header - Solid Color, No Blinking */}
-          <div className="p-8 border-b border-white/5 flex justify-between items-center bg-[#0a0a0a]">
+          <div className="p-8 border-b border-white/5 flex justify-between items-center bg-[#000000]">
             <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center">
-                <span className="text-black font-black text-xs">AS</span>
-              </div>
+              <img 
+                src="/ChatGPT Image Jan 13, 2026 at 02_37_17 AM.png" 
+                alt="Al-Saad Logo"
+                className="w-10 h-10 object-contain rounded-2xl"
+              />
               <div>
                 <span className="block font-bold text-sm text-white tracking-tight">Let's Chat</span>
                 <span className="block text-[9px] text-stone-500 font-black uppercase tracking-widest">Ask Me Anything</span>
