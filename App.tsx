@@ -7,7 +7,7 @@ import CallbackForm from './components/CallbackForm';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
 import { AppState } from './types';
-import { MOCK_PROJECTS } from './constants';
+import { MOCK_PROJECTS, SHOWCASE_PROJECTS } from './constants';
 
 const App: React.FC = () => {
   const [appState, setAppState] = useState<AppState>(AppState.INTRO);
@@ -233,17 +233,16 @@ const App: React.FC = () => {
           
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-12 sm:mb-16 md:mb-24 lg:mb-32 reveal">
             <div className="max-w-2xl w-full lg:w-auto">
-              <p className="text-stone-600 uppercase tracking-[0.5em] sm:tracking-[0.6em] text-[9px] sm:text-[10px] font-black mb-4 sm:mb-6 md:mb-8 animate-slide-left">Featured Properties</p>
+              <p className="text-stone-600 uppercase tracking-[0.5em] sm:tracking-[0.6em] text-[9px] sm:text-[10px] font-black mb-4 sm:mb-6 md:mb-8 animate-slide-left">Where excellence is displayed, not just celebrated.</p>
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-8xl font-serif leading-[1.1] tracking-tighter animate-scale-in">Premium <br/> Showcase.</h2>
             </div>
             <p className="mt-8 sm:mt-10 md:mt-12 lg:mt-0 lg:ml-8 text-stone-500 text-xs sm:text-sm max-w-md leading-relaxed reveal animate-slide-right">
-              A curated selection of exceptional properties showcasing luxury living, 
-              prime locations, and exceptional value.
+            A curated space honoring remarkable achievements, crafted to reflect prestige, purpose, and distinction.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12 relative z-10">
-            {MOCK_PROJECTS.slice(0, 3).map((project, i) => (
+            {SHOWCASE_PROJECTS.map((project, i) => (
               <div key={project.id} className="reveal hover-lift" style={{ transitionDelay: `${(i % 3) * 150}ms` }}>
                 <ProjectCard project={project} />
               </div>
