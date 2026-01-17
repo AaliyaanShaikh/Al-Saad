@@ -94,7 +94,7 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-stone-700 focus:outline-none focus:border-white/30 transition-all"
+                className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-6 py-4 text-base text-white placeholder:text-stone-700 focus:outline-none focus:border-white/30 transition-all"
                 placeholder="Enter your full name"
               />
             </div>
@@ -111,7 +111,7 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-stone-700 focus:outline-none focus:border-white/30 transition-all"
+                className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-6 py-4 text-base text-white placeholder:text-stone-700 focus:outline-none focus:border-white/30 transition-all"
                 placeholder="your.email@example.com"
               />
             </div>
@@ -128,7 +128,7 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
                 value={formData.phone}
                 onChange={handleChange}
                 required
-                className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-stone-700 focus:outline-none focus:border-white/30 transition-all"
+                className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-6 py-4 text-base text-white placeholder:text-stone-700 focus:outline-none focus:border-white/30 transition-all"
                 placeholder="+1 (555) 000-0000"
               />
             </div>
@@ -144,7 +144,7 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
                 value={formData.preferredTime}
                 onChange={handleChange}
                 required
-                className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-white/30 transition-all"
+                className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-6 py-4 text-base text-white focus:outline-none focus:border-white/30 transition-all"
               >
                 <option value="" className="bg-[#1a1a1a]">Select a time</option>
                 <option value="morning" className="bg-[#1a1a1a]">Morning (9 AM - 12 PM)</option>
@@ -165,7 +165,7 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
                 value={formData.message}
                 onChange={handleChange}
                 rows={4}
-                className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-stone-700 focus:outline-none focus:border-white/30 transition-all resize-none"
+                className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-6 py-4 text-base text-white placeholder:text-stone-700 focus:outline-none focus:border-white/30 transition-all resize-none"
                 placeholder="Tell us what you'd like to discuss..."
               />
             </div>

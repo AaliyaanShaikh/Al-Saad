@@ -94,7 +94,7 @@ const AIChatAssistant: React.FC = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask about properties or real estate..."
-                className="flex-1 bg-[#1a1a1a] border border-transparent rounded-2xl px-6 py-4 text-sm text-white focus:outline-none focus:border-white/10 transition-all placeholder:text-stone-700"
+                className="flex-1 bg-[#1a1a1a] border border-transparent rounded-2xl px-6 py-4 text-base text-white focus:outline-none focus:border-white/10 transition-all placeholder:text-stone-700"
               />
               <button 
                 type="submit" 
