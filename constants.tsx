@@ -7,7 +7,7 @@ import { Project } from './types';
 export const MOCK_PROJECTS: Project[] = [
   {
     id: '1',
-    title: 'Luxury Villa Estate',
+    title: 'Roswalt Zaiden',
     description: 'Stunning 5-bedroom villa with panoramic views, modern amenities, and premium finishes in an exclusive neighborhood. Perfect for families seeking luxury living with spacious interiors and elegant design.',
     category: 'exclusive',
     year: '2024',
@@ -15,8 +15,8 @@ export const MOCK_PROJECTS: Project[] = [
     // Example: image: '/IMG_4653.jpg'
     image: '/IMG_4653.jpg',
     tags: ['Luxury', 'Villa', 'Premium'],
-    link: '#',
-    location: 'Exclusive District',
+    link: 'https://www.youtube.com/watch?v=C4tyDdTRhmM',
+    location: 'Upcoming Project',
     price: '$2.5M',
     beds: '5',
     sqft: '4,500'

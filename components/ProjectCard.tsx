@@ -8,11 +8,24 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
 
+  const handleClick = () => {
+    if (project.link && project.link !== '#') {
+      window.open(project.link, '_blank');
+    } else {
+      // Scroll to contact section
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <div 
       className="group relative bg-[#0a0a0a] rounded-luxury overflow-hidden border border-white/5 transition-all duration-700 hover:shadow-[0_40px_100px_rgba(0,0,0,0.8)] hover:-translate-y-2 cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleClick}
     >
       {/* Animated Background Gradient on Hover */}
       <div className={`absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 transition-opacity duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>

@@ -84,6 +84,17 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
             >
               <div 
                 className={`parallax-container relative overflow-hidden bg-[#0a0a0a] mb-6 sm:mb-8 md:mb-10 cursor-pointer rounded-sm transition-all duration-700 ${isLarge ? 'aspect-[21/9]' : 'aspect-[4/5]'}`}
+                onClick={() => {
+                  if (property.link && property.link !== '#') {
+                    window.open(property.link, '_blank');
+                  } else {
+                    // Scroll to contact section or open callback form
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }
+                }}
               >
                 <img 
                   src={property.image} 
