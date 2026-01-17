@@ -33,7 +33,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       {/* Animated Border Glow */}
       <div className={`absolute inset-0 border-2 border-white/20 rounded-luxury transition-opacity duration-500 ${isHovered ? 'opacity-100 animate-glow' : 'opacity-0'}`}></div>
       
-      <div className="relative h-[400px] overflow-hidden">
+      <div className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] overflow-hidden">
         <img 
           src={project.image} 
           alt={project.title}
@@ -60,14 +60,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         }}></div>
       </div>
       
-      <div className="p-10 relative">
+      <div className="p-6 sm:p-8 md:p-10 relative">
         {/* Animated Title */}
-        <h3 className={`text-3xl font-serif text-white mb-3 italic transition-all duration-500 ${isHovered ? 'translate-x-2' : 'translate-x-0'}`}>
+        <h3 className={`text-xl sm:text-2xl md:text-3xl font-serif text-white mb-2 sm:mb-3 italic transition-all duration-500 ${isHovered ? 'translate-x-2' : 'translate-x-0'}`}>
           {project.title}
         </h3>
         
         {/* Animated Description */}
-        <p className={`text-stone-500 text-base mb-8 leading-relaxed font-light transition-all duration-500 ${isHovered ? 'text-stone-400 translate-x-1' : 'text-stone-500 translate-x-0'}`}>
+        <p className={`text-stone-500 text-sm sm:text-base mb-4 sm:mb-6 md:mb-8 leading-relaxed font-light transition-all duration-500 ${isHovered ? 'text-stone-400 translate-x-1' : 'text-stone-500 translate-x-0'}`}>
           {project.description}
         </p>
         
