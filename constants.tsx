@@ -134,7 +134,7 @@ export const SHOWCASE_PROJECTS: Project[] = [
     category: 'showcase',
     year: '2025',
     // Update image path here: Place your image in /public folder and use '/filename.jpg'
-    image: '/Team.png',
+    image: '/teamedit.png',
     tags: ['Teamwork', 'Leadership', 'Collaboration'],
     link: '#',
   },
@@ -145,7 +145,7 @@ export const SHOWCASE_PROJECTS: Project[] = [
     category: 'showcase',
     year: '2025',
     // Update image path here: Place your image in /public folder and use '/filename.jpg'
-    image: '/Lodha.jpeg',
+    image: '/Gemini_Generated_Image_mr7czrmr7czrmr7c.png',
     tags: ['Industry Recognition', 'Excellence', 'Lodha Group'],
     link: '#',
   }
