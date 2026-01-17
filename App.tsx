@@ -13,8 +13,8 @@ import { MOCK_PROJECTS, SHOWCASE_PROJECTS } from './constants';
 // Adjust these values to change mobile screen positioning
 const getHeroTextPositioning = () => {
   // Mobile positioning values (modify these as needed)
-  const mobileTopTextTop = 'top-36';      // Top text from top (mobile)
-  const mobileBottomTextBottom = 'bottom-32'; // Bottom text from bottom (mobile)
+  const mobileTopTextTop = 'top-40';      // Top text from top (mobile)
+  const mobileBottomTextBottom = 'bottom-36'; // Bottom text from bottom (mobile)
   
   // Default responsive breakpoint values (usually don't need to change)
   const smTopTextTop = 'sm:top-32';
@@ -215,8 +215,7 @@ const App: React.FC = () => {
 
           {/* Scroll Indicator */}
           <div 
-            className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-4 reveal active cursor-pointer hover:opacity-80 transition-opacity" 
-            style={{ transitionDelay: '1000ms' }}
+            className="absolute bottom-2 left-1/2 -translate-x-1/2 cursor-pointer hover:opacity-80 transition-opacity" 
             onClick={() => {
               const propertiesSection = document.getElementById('work');
               if (propertiesSection) {
@@ -224,9 +223,11 @@ const App: React.FC = () => {
               }
             }}
           >
-            <span className="text-[9px] uppercase tracking-[0.6em] text-stone-600 font-black">Explore</span>
-            <div className="scroll-indicator-container">
-              <div className="scroll-indicator-line"></div>
+            <div className="flex flex-col items-center space-y-4 reveal active" style={{ transitionDelay: '1000ms' }}>
+              <span className="text-[9px] uppercase tracking-[0.6em] text-stone-600 font-black text-center">Explore</span>
+              <div className="scroll-indicator-container">
+                <div className="scroll-indicator-line"></div>
+              </div>
             </div>
           </div>
         </section>
