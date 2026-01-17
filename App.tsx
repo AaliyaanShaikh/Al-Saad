@@ -189,7 +189,16 @@ const App: React.FC = () => {
           </div>
 
           {/* Scroll Indicator */}
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-4 reveal active" style={{ transitionDelay: '1000ms' }}>
+          <div 
+            className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-4 reveal active cursor-pointer hover:opacity-80 transition-opacity" 
+            style={{ transitionDelay: '1000ms' }}
+            onClick={() => {
+              const propertiesSection = document.getElementById('work');
+              if (propertiesSection) {
+                propertiesSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+          >
             <span className="text-[9px] uppercase tracking-[0.6em] text-stone-600 font-black">Explore</span>
             <div className="scroll-indicator-container">
               <div className="scroll-indicator-line"></div>
