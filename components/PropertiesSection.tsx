@@ -22,24 +22,24 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
   });
 
   return (
-    <section className="py-40 px-6 max-w-[1600px] mx-auto relative">
+    <section className="py-20 sm:py-32 md:py-40 px-4 sm:px-6 max-w-[1600px] mx-auto relative">
       {/* Background Decorative Text */}
       <div className="absolute left-0 w-full overflow-hidden pointer-events-none -z-10 opacity-[0.03] select-none">
         <div 
-          className="text-[25vw] font-black font-serif uppercase whitespace-nowrap"
+          className="text-[20vw] sm:text-[22vw] md:text-[25vw] font-black font-serif uppercase whitespace-nowrap"
           style={{ transform: `translateX(${-20 + scrollY * 0.05}%)` }}
         >
           Al-Saad Premium Properties
         </div>
       </div>
 
-      <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-12 border-b border-white/5 pb-16">
+      <div className="mb-12 sm:mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 sm:gap-12 border-b border-white/5 pb-8 sm:pb-12 md:pb-16">
         <div className="max-w-xl">
-          <span className="text-stone-600 uppercase tracking-[0.6em] text-[10px] font-black mb-8 block">Our Project</span>
-          <h2 className="text-8xl font-serif leading-[1.1] tracking-tighter mb-8">Featured <br/> Listings.</h2>
+          <span className="text-stone-600 uppercase tracking-[0.5em] sm:tracking-[0.6em] text-[9px] sm:text-[10px] font-black mb-4 sm:mb-6 md:mb-8 block">Our Project</span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-8xl font-serif leading-[1.1] tracking-tighter mb-4 sm:mb-6 md:mb-8">Featured <br/> Listings.</h2>
         </div>
         
-        <div className="flex items-center flex-wrap gap-8 xl:space-x-12 text-[10px] font-black uppercase tracking-[0.4em] text-white/40">
+        <div className="flex items-center flex-wrap gap-4 sm:gap-6 md:gap-8 lg:space-x-8 xl:space-x-12 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/40">
           <button 
             onClick={() => setActiveFilter('exclusive')}
             className={`transition-colors pb-2 ${
@@ -73,7 +73,7 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
         </div>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-y-32 gap-x-12">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-y-16 sm:gap-y-24 md:gap-y-32 gap-x-6 sm:gap-x-8 md:gap-x-12">
         {filteredProperties.map((property, idx) => {
           // Make property 7 (id: '7') regular size to fill remaining space
           const isLarge = idx % 3 === 0 && property.id !== '7';
@@ -83,7 +83,7 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
               className={`group flex flex-col ${isLarge ? 'md:col-span-8' : 'md:col-span-4'}`}
             >
               <div 
-                className={`parallax-container relative overflow-hidden bg-[#0a0a0a] mb-10 cursor-pointer rounded-sm transition-all duration-700 ${isLarge ? 'aspect-[21/9]' : 'aspect-[4/5]'}`}
+                className={`parallax-container relative overflow-hidden bg-[#0a0a0a] mb-6 sm:mb-8 md:mb-10 cursor-pointer rounded-sm transition-all duration-700 ${isLarge ? 'aspect-[21/9]' : 'aspect-[4/5]'}`}
                 onClick={() => {
                   if (property.link && property.link !== '#') {
                     window.open(property.link, '_blank');
@@ -109,23 +109,23 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700"></div>
                 
                 {/* Visual Label */}
-                <div className="absolute bottom-8 right-8 overflow-hidden">
-                  <span className="inline-block text-[10px] font-black uppercase tracking-[0.5em] text-white translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8 overflow-hidden">
+                  <span className="inline-block text-[9px] sm:text-[10px] font-black uppercase tracking-[0.4em] sm:tracking-[0.5em] text-white translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                     Explore
                   </span>
                 </div>
               </div>
 
-              <div className="flex flex-row justify-between items-start gap-6 px-2">
-                <div className="flex-1 min-w-0 flex-shrink">
-                  <h3 className="font-serif text-4xl font-light tracking-tight mb-3 italic transition-all group-hover:translate-x-2 break-words">{property.title}</h3>
-                  <p className="text-[10px] font-black text-white/20 uppercase tracking-[0.4em]">{property.location || property.category}</p>
+              <div className="flex flex-col md:flex-row justify-between items-start gap-4 sm:gap-6 px-2">
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-light tracking-tight mb-2 sm:mb-3 italic transition-all group-hover:translate-x-2">{property.title}</h3>
+                  <p className="text-[9px] sm:text-[10px] font-black text-white/20 uppercase tracking-[0.3em] sm:tracking-[0.4em]">{property.location || property.category}</p>
                 </div>
-                <div className="flex flex-col items-end flex-shrink-0 min-w-[140px]">
-                  <p className="text-2xl font-extralight tracking-tighter mb-2 whitespace-nowrap">{property.price || 'Price on Request'}</p>
-                  <div className="flex flex-col items-end text-[9px] font-black uppercase tracking-[0.3em] text-white/10 space-y-1">
-                    {property.beds && <span className="whitespace-nowrap">{property.beds} Bedrooms</span>}
-                    {property.sqft && <span className="whitespace-nowrap">{property.sqft} SQFT</span>}
+                <div className="flex flex-col items-end flex-shrink-0">
+                  <p className="text-xl sm:text-2xl font-extralight tracking-tighter mb-1 sm:mb-2">{property.price || 'Price on Request'}</p>
+                  <div className="flex flex-wrap gap-3 sm:gap-4 md:space-x-4 md:gap-0 text-[8px] sm:text-[9px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/10">
+                    {property.beds && <span>{property.beds} Bedrooms</span>}
+                    {property.sqft && <span>{property.sqft} SQFT</span>}
                   </div>
                 </div>
               </div>
