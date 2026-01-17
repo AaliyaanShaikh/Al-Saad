@@ -9,12 +9,37 @@ import TermsPage from './pages/TermsPage';
 import { AppState } from './types';
 import { MOCK_PROJECTS, SHOWCASE_PROJECTS } from './constants';
 
+// Hero Section Positioning Helper Function
+// Adjust these values to change mobile screen positioning
+const getHeroTextPositioning = () => {
+  // Mobile positioning values (modify these as needed)
+  const mobileTopTextTop = 'top-36';      // Top text from top (mobile)
+  const mobileBottomTextBottom = 'bottom-32'; // Bottom text from bottom (mobile)
+  
+  // Default responsive breakpoint values (usually don't need to change)
+  const smTopTextTop = 'sm:top-32';
+  const mdTopTextTop = 'md:top-36';
+  const lgTopTextTop = 'lg:top-[150px]';
+  
+  const smBottomTextBottom = 'sm:bottom-24';
+  const mdBottomTextBottom = 'md:bottom-28';
+  const lgBottomTextBottom = 'lg:bottom-[130px]';
+  
+  return {
+    topText: `${mobileTopTextTop} ${smTopTextTop} ${mdTopTextTop} ${lgTopTextTop}`,
+    bottomText: `${mobileBottomTextBottom} ${smBottomTextBottom} ${mdBottomTextBottom} ${lgBottomTextBottom}`
+  };
+};
+
 const App: React.FC = () => {
   const [appState, setAppState] = useState<AppState>(AppState.INTRO);
   const [isScrolled, setIsScrolled] = useState(false);
   const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
   const [isCallbackFormOpen, setIsCallbackFormOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  // Get hero text positioning classes
+  const heroPositioning = getHeroTextPositioning();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -174,14 +199,14 @@ const App: React.FC = () => {
           </div>
 
           {/* Top Fixed Text */}
-          <div className="absolute left-1/2 -translate-x-1/2 z-10 w-full px-4 sm:px-6 md:px-10 top-24 sm:top-32 md:top-36 lg:top-[150px]">
+          <div className={`absolute left-1/2 -translate-x-1/2 z-10 w-full px-4 sm:px-6 md:px-10 ${heroPositioning.topText}`}>
             <p className="text-stone-500 uppercase tracking-[0.5em] sm:tracking-[0.6em] md:tracking-[0.8em] text-[8px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-black reveal active text-center">
               Visionary • Realtor • Educator
             </p>
           </div>
 
           {/* Bottom Fixed Text */}
-          <div className="absolute left-1/2 -translate-x-1/2 z-10 w-full px-4 sm:px-6 md:px-10 bottom-20 sm:bottom-24 md:bottom-28 lg:bottom-[130px]">
+          <div className={`absolute left-1/2 -translate-x-1/2 z-10 w-full px-4 sm:px-6 md:px-10 ${heroPositioning.bottomText}`}>
             <p className="text-stone-400 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl max-w-2xl mx-auto leading-relaxed reveal active text-center" style={{ transitionDelay: '600ms' }}>
               Helping you find your dream property with expert guidance, 
               personalized service, and deep market knowledge.
