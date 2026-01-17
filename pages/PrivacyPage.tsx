@@ -10,7 +10,7 @@ const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => {
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
       {/* Navigation Bar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-10 pt-4 sm:pt-6 md:pt-10">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-10 pt-8 sm:pt-6 md:pt-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-4 sm:py-5 md:py-6 flex items-center justify-between rounded-full glass-dark shadow-2xl">
           <button
             onClick={() => onNavigate(AppState.HOME)}

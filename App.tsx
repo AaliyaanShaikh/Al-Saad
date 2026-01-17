@@ -77,7 +77,7 @@ const App: React.FC = () => {
       </div>
 
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 px-4 sm:px-6 md:px-10 pt-4 sm:pt-6 md:pt-10 ${isScrolled ? 'translate-y-[-20px]' : ''}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 px-4 sm:px-6 md:px-10 pt-8 sm:pt-6 md:pt-10 ${isScrolled ? 'translate-y-[-20px]' : ''}`}>
         <div className={`max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-4 sm:py-5 md:py-6 flex items-center justify-between rounded-full transition-all duration-700 ${isScrolled ? 'glass-dark py-3 sm:py-4 px-4 sm:px-6 md:px-8 shadow-2xl' : 'bg-transparent'}`}>
           <div className="flex items-center space-x-4 sm:space-x-8 md:space-x-16">
             <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
