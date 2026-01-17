@@ -20,7 +20,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       {/* Animated Border Glow */}
       <div className={`absolute inset-0 border-2 border-white/20 rounded-luxury transition-opacity duration-500 ${isHovered ? 'opacity-100 animate-glow' : 'opacity-0'}`}></div>
       
-      <div className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] overflow-hidden">
+      <div className="relative h-[400px] overflow-hidden">
         <img 
           src={project.image} 
           alt={project.title}
