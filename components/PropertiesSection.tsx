@@ -97,7 +97,7 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
                 }}
               >
                 <img 
-                  src={property.image} 
+                  src={property.image ? encodeURI(property.image) : property.image} 
                   alt={property.title}
                   className="parallax-img absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-110"
                   style={{ transform: `translateY(${(scrollY * (idx % 2 === 0 ? 0.05 : -0.05))}px)` }}
@@ -124,7 +124,7 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
                 <div className="flex flex-col items-end flex-shrink-0">
                   <p className="text-xl sm:text-2xl font-extralight tracking-tighter mb-1 sm:mb-2 whitespace-nowrap">{property.price || 'Price on Request'}</p>
                   <div className="flex flex-col items-end text-[8px] sm:text-[9px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/10 space-y-1">
-                    {property.beds && <span className="whitespace-nowrap">{property.beds} Bedrooms</span>}
+                    {property.beds && <span className="whitespace-nowrap">{property.beds} BHK</span>}
                     {property.sqft && <span className="whitespace-nowrap">{property.sqft} SQFT</span>}
                   </div>
                 </div>
