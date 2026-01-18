@@ -24,6 +24,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         <img 
           src={project.image} 
           alt={project.title}
+          loading="lazy"
+          decoding="async"
           className={`w-full h-full object-cover grayscale transition-all duration-[2s] ${isHovered ? 'scale-110 grayscale-0' : 'scale-100 grayscale'}`}
         />
         <div className={`absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent transition-opacity duration-500 ${isHovered ? 'opacity-60' : 'opacity-80'}`} />

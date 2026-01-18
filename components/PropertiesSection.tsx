@@ -99,6 +99,8 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
                 <img 
                   src={property.image ? encodeURI(property.image) : property.image} 
                   alt={property.title}
+                  loading="lazy"
+                  decoding="async"
                   className="parallax-img absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-110"
                   style={{ transform: `translateY(${(scrollY * (idx % 2 === 0 ? 0.05 : -0.05))}px)` }}
                   onError={(e) => {
