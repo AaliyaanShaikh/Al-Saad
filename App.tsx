@@ -214,8 +214,8 @@ const App: React.FC = () => {
             
             {/* Bottom Fixed Text */}
             <p className="text-stone-400 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl max-w-2xl mx-auto leading-relaxed reveal active text-center" style={{ transitionDelay: '600ms' }}>
-              Helping you find your dream property with expert guidance, 
-              personalized service, and deep market knowledge.
+            I help serious homebuyers and investors make clear, confident, and profitable property decisions—without pressure, misinformation, or overpricing.
+
             </p>
           </div>
 
