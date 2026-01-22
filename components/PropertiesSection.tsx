@@ -34,13 +34,13 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
       </div>
 
       <div className="mb-12 sm:mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 sm:gap-12 border-b border-white/5 pb-8 sm:pb-12 md:pb-16">
-        <div className="w-full md:flex-1">
+        <div className="max-w-xl">
           <span className="text-stone-600 uppercase tracking-[0.5em] sm:tracking-[0.6em] text-[9px] sm:text-[10px] font-black mb-4 sm:mb-6 md:mb-8 block">FEATURED PROJECTS</span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-8xl font-serif leading-[1.1] tracking-tighter mb-4 sm:mb-6 md:mb-8">
             Carefully<br /> <span className="whitespace-nowrap">Selected Projects.</span>
           </h2>
           <p className="text-stone-400 text-sm sm:text-base md:text-lg leading-relaxed mt-6 sm:mt-8">
-            Every project here is featured with purpose. I highlight only properties that are correctly priced, clearly suited to the right buyer or investor, and built for long-term value—not short-term hype. <br /> Each is something I'd confidently recommend to my own family.
+            Every project here is featured with purpose. I highlight only properties that are correctly priced, clearly suited to the right buyer or investor, and built for long-term value—not short-term hype. Each is something I'd confidently recommend to my own family.
           </p>
         </div>
         
