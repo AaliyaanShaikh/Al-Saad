@@ -6,6 +6,8 @@ import AIChatAssistant from './components/AIChatAssistant';
 import CallbackForm from './components/CallbackForm';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
+import { StrokeFill } from './components/StrokeFill';
+import TrustBuilderSection from './components/TrustBuilderSection';
 import { AppState } from './types';
 import { MOCK_PROJECTS, SHOWCASE_PROJECTS } from './constants';
 
@@ -116,12 +118,16 @@ const App: React.FC = () => {
               <h1 className="text-lg sm:text-xl md:text-2xl font-serif tracking-[0.2em] sm:tracking-[0.3em] font-medium text-white hover-lift cursor-pointer">AL-SAAD</h1>
             </div>
             <div className="hidden lg:flex space-x-12 text-[10px] uppercase tracking-[0.4em] font-black text-stone-500">
-              <a href="#work" className="hover:text-white transition-all relative group">
+              <a href="#about" className="hover:text-white transition-all relative group">
+                About
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#properties" className="hover:text-white transition-all relative group">
                 Properties
                 <span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>
               </a>
-              <a href="#about" className="hover:text-white transition-all relative group">
-                About
+              <a href="#work" className="hover:text-white transition-all relative group">
+                Work
                 <span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>
               </a>
               <a href="#contact" className="hover:text-white transition-all relative group">
@@ -158,7 +164,7 @@ const App: React.FC = () => {
           <div className="lg:hidden mt-4 px-4 sm:px-6 md:px-10 py-6 glass-dark rounded-2xl border border-white/10 animate-dropdown">
             <div className="flex flex-col space-y-4 text-[10px] uppercase tracking-[0.4em] font-black">
               <a 
-                href="#work" 
+                href="#properties" 
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-stone-500 hover:text-white transition-all py-2 border-b border-white/5 animate-menu-item"
                 style={{ animationDelay: '0.1s' }}
@@ -172,6 +178,14 @@ const App: React.FC = () => {
                 style={{ animationDelay: '0.2s' }}
               >
                 About
+              </a>
+              <a 
+                href="#work" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-stone-500 hover:text-white transition-all py-2 border-b border-white/5 animate-menu-item"
+                style={{ animationDelay: '0.3s' }}
+              >
+                Work
               </a>
               <a 
                 href="#contact" 
@@ -238,10 +252,8 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Properties Section */}
-        <section id="work" className="relative">
-          <PropertiesSection properties={MOCK_PROJECTS} />
-        </section>
+        {/* Stroke Fill Animation */}
+        {/* <StrokeFill /> */}
 
         {/* About Section */}
         <section id="about" className="py-24 sm:py-32 md:py-48 lg:py-60 relative overflow-hidden bg-black">
@@ -255,6 +267,29 @@ const App: React.FC = () => {
           
           <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 md:px-10 relative z-10">
             <h3 className="text-stone-700 uppercase tracking-[0.8em] sm:tracking-[1em] text-[9px] sm:text-[10px] font-black mb-12 sm:mb-16 md:mb-20 reveal-pop">About</h3>
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-7xl font-serif mb-6 sm:mb-8 md:mb-12 lg:mb-16 leading-[1.3] italic text-white/90 reveal-pop px-2 sm:px-4" style={{ transitionDelay: '0.1s' }}>
+              "A home is not just a place—it's <span className="text-stone-500 not-italic">where life happens</span>."
+            </p>
+          </div>
+        </section>
+
+        {/* Properties Section */}
+        <section id="properties" className="relative">
+          <PropertiesSection properties={MOCK_PROJECTS} />
+        </section>
+
+        {/* Work Section */}
+        <section id="work" className="py-24 sm:py-32 md:py-48 lg:py-60 relative overflow-hidden bg-black">
+          {/* Animated Circle Background */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vw] border border-white/5 rounded-full pointer-events-none reveal animate-rotate-slow" style={{ animationDuration: '30s' }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] border border-white/5 rounded-full pointer-events-none animate-rotate-slow" style={{ animationDuration: '20s', animationDirection: 'reverse' }} />
+          
+          {/* Floating Shapes */}
+          <div className="absolute top-10 sm:top-20 left-4 sm:left-10 md:left-20 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 border border-white/5 rounded-full animate-float"></div>
+          <div className="absolute bottom-10 sm:bottom-20 right-4 sm:right-10 md:right-20 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 border border-white/5 rounded-full animate-float-reverse"></div>
+          
+          <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 md:px-10 relative z-10">
+            <h3 className="text-stone-700 uppercase tracking-[0.8em] sm:tracking-[1em] text-[9px] sm:text-[10px] font-black mb-12 sm:mb-16 md:mb-20 reveal-pop">Work</h3>
             <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-7xl font-serif mb-6 sm:mb-8 md:mb-12 lg:mb-16 leading-[1.3] italic text-white/90 reveal-pop px-2 sm:px-4" style={{ transitionDelay: '0.1s' }}>
               "A home is not just a place—it's <span className="text-stone-500 not-italic">where life happens</span>."
             </p>
@@ -323,8 +358,11 @@ const App: React.FC = () => {
         </section>
       </main>
 
+      {/* Trust Builder Section */}
+      <TrustBuilderSection onRequestCall={() => setIsCallbackFormOpen(true)} />
+
       {/* Footer */}
-      <footer id="contact" className="bg-black pt-24 sm:pt-32 md:pt-48 lg:pt-60 pb-12 sm:pb-16 md:pb-20 border-t border-white/5 rounded-t-[2rem] sm:rounded-t-[3rem] md:rounded-t-[5rem] relative overflow-hidden">
+      <footer id="contact" className="bg-black pt-24 sm:pt-32 md:pt-40 pb-12 sm:pb-16 md:pb-20 border-t border-white/5 rounded-t-[2rem] sm:rounded-t-[3rem] md:rounded-t-[5rem] relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="absolute top-20 left-20 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-pulse-glow"></div>
@@ -354,8 +392,9 @@ const App: React.FC = () => {
             <div className="reveal animate-slide-right">
               <h5 className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-black text-stone-500 mb-6 sm:mb-8 md:mb-10">Navigation</h5>
               <ul className="space-y-4 sm:space-y-6 text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-stone-600 font-black">
-                <li><a href="#work" className="hover:text-white transition-colors hover-lift inline-block">Properties</a></li>
                 <li><a href="#about" className="hover:text-white transition-colors hover-lift inline-block">About</a></li>
+                <li><a href="#properties" className="hover:text-white transition-colors hover-lift inline-block">Properties</a></li>
+                <li><a href="#work" className="hover:text-white transition-colors hover-lift inline-block">Work</a></li>
                 <li><a href="#contact" className="hover:text-white transition-colors hover-lift inline-block">Contact</a></li>
               </ul>
             </div>
