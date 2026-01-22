@@ -205,8 +205,14 @@ const App: React.FC = () => {
             </p>
           </div>
 
-          {/* Bottom Fixed Text */}
-          <div className={`absolute left-1/2 -translate-x-1/2 z-10 w-full px-4 sm:px-6 md:px-10 ${heroPositioning.bottomText}`}>
+          {/* Bottom Text Container */}
+          <div className={`absolute left-1/2 -translate-x-1/2 z-10 w-full px-4 sm:px-6 md:px-10 ${heroPositioning.bottomText} flex flex-col items-center space-y-8 sm:space-y-10 md:space-y-12`}>
+            {/* Headline */}
+            <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold max-w-4xl mx-auto leading-tight reveal active text-center">
+              Jogeshwari Real Estate, Explained Honestly.
+            </h2>
+            
+            {/* Bottom Fixed Text */}
             <p className="text-stone-400 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl max-w-2xl mx-auto leading-relaxed reveal active text-center" style={{ transitionDelay: '600ms' }}>
               Helping you find your dream property with expert guidance, 
               personalized service, and deep market knowledge.
