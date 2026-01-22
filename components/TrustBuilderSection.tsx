@@ -78,7 +78,7 @@ const TrustBuilderSection: React.FC<TrustBuilderSectionProps> = ({ onRequestCall
           <div className="flex flex-col items-center gap-3">
             <button 
               onClick={onRequestCall}
-              className="group relative px-8 py-3 border border-white text-white font-light tracking-widest text-sm uppercase transition-all duration-500 hover:bg-white hover:text-black overflow-hidden"
+              className="group relative px-8 py-3 rounded-full border border-white text-white font-light tracking-widest text-sm uppercase transition-all duration-500 hover:bg-white hover:text-black overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-3">
                 <Phone className="w-4 h-4" />
