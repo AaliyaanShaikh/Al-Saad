@@ -8,6 +8,7 @@ import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
 import { StrokeFill } from './components/StrokeFill';
 import TrustBuilderSection from './components/TrustBuilderSection';
+import AboutSection from './components/AboutSection';
 import { AppState } from './types';
 import { MOCK_PROJECTS, SHOWCASE_PROJECTS } from './constants';
 
@@ -222,7 +223,7 @@ const App: React.FC = () => {
           {/* Bottom Text Container */}
           <div className={`absolute left-1/2 -translate-x-1/2 z-10 w-full px-4 sm:px-6 md:px-10 ${heroPositioning.bottomText} flex flex-col items-center space-y-8 sm:space-y-10 md:space-y-12`}>
             {/* Headline */}
-            <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold max-w-4xl mx-auto leading-tight reveal active text-center">
+            <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold max-w-4xl mx-auto leading-tight reveal active text-center">
               Jogeshwari Real Estate, Explained Honestly.
             </h2>
             
@@ -256,21 +257,8 @@ const App: React.FC = () => {
         {/* <StrokeFill /> */}
 
         {/* About Section */}
-        <section id="about" className="py-24 sm:py-32 md:py-48 lg:py-60 relative overflow-hidden bg-black">
-          {/* Animated Circle Background */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vw] border border-white/5 rounded-full pointer-events-none reveal animate-rotate-slow" style={{ animationDuration: '30s' }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] border border-white/5 rounded-full pointer-events-none animate-rotate-slow" style={{ animationDuration: '20s', animationDirection: 'reverse' }} />
-          
-          {/* Floating Shapes */}
-          <div className="absolute top-10 sm:top-20 left-4 sm:left-10 md:left-20 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 border border-white/5 rounded-full animate-float"></div>
-          <div className="absolute bottom-10 sm:bottom-20 right-4 sm:right-10 md:right-20 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 border border-white/5 rounded-full animate-float-reverse"></div>
-          
-          <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 md:px-10 relative z-10">
-            <h3 className="text-stone-700 uppercase tracking-[0.8em] sm:tracking-[1em] text-[9px] sm:text-[10px] font-black mb-12 sm:mb-16 md:mb-20 reveal-pop">About</h3>
-            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-7xl font-serif mb-6 sm:mb-8 md:mb-12 lg:mb-16 leading-[1.3] italic text-white/90 reveal-pop px-2 sm:px-4" style={{ transitionDelay: '0.1s' }}>
-              "A home is not just a place—it's <span className="text-stone-500 not-italic">where life happens</span>."
-            </p>
-          </div>
+        <section id="about" className="relative">
+          <AboutSection />
         </section>
 
         {/* Properties Section */}
