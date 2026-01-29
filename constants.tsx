@@ -73,7 +73,8 @@ export const MOCK_PROJECTS: Project[] = [
     category: 'archived',
     year: '2023',
     // Update image path here: '/your-image-filename.jpg'
-    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=90&w=1200',
+    // Uses local demo image placed in public folder
+    image: '/demo-investment-property.jpg',
     tags: ['Investment', 'Rental', 'ROI'],
     link: '#',
     location: 'Investment Zone',
@@ -88,7 +89,8 @@ export const MOCK_PROJECTS: Project[] = [
     category: 'archived',
     year: '2023',
     // Update image path here: '/your-image-filename.jpg'
-    image: 'https://images.unsplash.com/photo-1600607687644-c7171b42498b?auto=format&fit=crop&q=90&w=1200',
+    // Uses local demo image placed in public folder
+    image: '/demo-family-home.jpg',
     tags: ['Family', 'Spacious', 'Garden'],
     link: '#',
     location: 'Suburban',
@@ -103,7 +105,8 @@ export const MOCK_PROJECTS: Project[] = [
     category: 'archived',
     year: '2023',
     // Update image path here: '/your-image-filename.jpg'
-    image: 'https://images.unsplash.com/photo-1600607687644-c7171b42498b?auto=format&fit=crop&q=90&w=1200',
+    // Uses local demo image placed in public folder
+    image: '/demo-modern-apartment.jpg',
     tags: ['Modern', 'Urban', 'Smart'],
     link: '#',
     location: 'Urban Core',
