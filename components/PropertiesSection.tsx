@@ -101,19 +101,31 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
                   }
                 }}
               >
-                {/* Clipping wrapper: no transform, forced rounded via global CSS */}
-                <div className="property-card-image-clip absolute inset-0">
+                {/* Rounded wrapper clips; inner div has parallax + hover zoom so image stays rounded */}
+                <div
+                  className="property-card-inner absolute inset-0 overflow-hidden"
+                  style={{ borderRadius: '1rem' }}
+                >
                   <div
-                    className="property-card-image-clip absolute inset-0 bg-cover bg-center transition-transform duration-[2.5s] ease-out group-hover:scale-110"
+                    className="absolute inset-0 w-full h-full transition-transform duration-[2.5s] ease-out group-hover:scale-110"
                     style={{
-                      backgroundImage: `url(${property.image ? encodeURI(property.image) : property.image || ''})`,
-                      transform: `scale(1.1) translateY(${(scrollY * (idx % 2 === 0 ? 0.012 : -0.012))}px)`,
+                      transform: `translateY(${scrollY * (idx % 2 === 0 ? 0.012 : -0.012)}px)`,
                     }}
-                    role="img"
-                    aria-label={property.title}
-                  />
+                  >
+                    <img
+                      src={property.image ? encodeURI(property.image) : property.image}
+                      alt={property.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 w-full h-full object-cover object-center"
+                      style={{ borderRadius: '1rem' }}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/fallback-property.png';
+                      }}
+                    />
+                  </div>
                 </div>
-                <div className="property-card-image-clip absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" style={{ borderRadius: '1rem' }} />
                 
                 {/* Visual Label */}
                 <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8 overflow-hidden">
