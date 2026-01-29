@@ -1,11 +1,21 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { XCircle, TrendingUp, Shield, Target, Lightbulb, ArrowDownLeft } from 'lucide-react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import SocialLinks from './SocialLinks';
 
 const AboutSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.05 });
+  const [hasBeenVisible, setHasBeenVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+
+  useEffect(() => {
+    if (isInView) setHasBeenVisible(true);
+  }, [isInView]);
+  useEffect(() => {
+    const t = setTimeout(() => setHasBeenVisible(true), 800);
+    return () => clearTimeout(t);
+  }, []);
 
   const differences = [
     {
@@ -40,7 +50,7 @@ const AboutSection: React.FC = () => {
       <motion.section
         className="relative flex flex-col py-24 sm:py-32 md:py-40 max-w-7xl mx-auto px-4 sm:px-6 md:px-10"
         initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        animate={isInView || hasBeenVisible ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
         {/* Section eyebrow + heading — first on all screens */}
@@ -333,6 +343,9 @@ const AboutSection: React.FC = () => {
             )}
           </AnimatePresence>
         </div>
+
+        {/* Social — under About, before Properties */}
+        <SocialLinks />
       </motion.section>
     </div>
   );
