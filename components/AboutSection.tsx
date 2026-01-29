@@ -116,12 +116,31 @@ const AboutSection: React.FC = () => {
 
               <div className="flex items-center gap-4 mt-4">
                 <div className="flex -space-x-3">
-                  {[1, 2, 3].map((i) => (
-                    <div 
-                      key={i} 
-                      className="h-10 w-10 rounded-full border-2 border-black bg-stone-800" 
+                  {/* Real people avatars – copyright-free Unsplash portraits */}
+                  <div className="h-10 w-10 rounded-full border-2 border-black overflow-hidden bg-stone-900">
+                    <img
+                      src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=200&h=200&q=80"
+                      alt="Client portrait 1"
+                      className="h-full w-full object-cover"
+                      loading="lazy"
                     />
-                  ))}
+                  </div>
+                  <div className="h-10 w-10 rounded-full border-2 border-black overflow-hidden bg-stone-900">
+                    <img
+                      src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?auto=format&fit=crop&w=200&h=200&q=80"
+                      alt="Client portrait 2"
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="h-10 w-10 rounded-full border-2 border-black overflow-hidden bg-stone-900">
+                    <img
+                      src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=200&h=200&q=80"
+                      alt="Client portrait 3"
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
                 <span className="text-xs sm:text-sm font-black uppercase tracking-widest text-stone-400">
                   Trusted Advisor
@@ -226,25 +245,37 @@ const AboutSection: React.FC = () => {
           </button>
         </div>
 
-        {/* Sliding content below founder details */}
+        {/* How We Work – hidden when "Why Choose Me" is open */}
+        <AnimatePresence initial={false} mode="wait">
+          {!showDetails && (
+            <motion.section
+              key="how-we-work"
+              className="mt-16 sm:mt-20 md:mt-24 w-full border border-white/10 rounded-3xl overflow-hidden bg-[#050505]/80 backdrop-blur"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -24 }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+            >
+              <div className="px-8 sm:px-12 md:px-16 lg:px-20 py-12 sm:py-14 md:py-16 lg:py-20">
+                <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] text-stone-500 font-black mb-6 sm:mb-8">
+                  How We Work
+                </p>
+                <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif text-white leading-[1.2] sm:leading-[1.25]">
+                  Every conversation starts with understanding your{' '}
+                  <span className="font-bold text-white">real situation</span> —{' '}
+                  <span className="font-bold text-white">budget</span>,{' '}
+                  <span className="font-bold text-white">timing</span>,{' '}
+                  <span className="font-bold text-white">family needs</span>, and{' '}
+                  <span className="font-bold text-white">long-term plans</span> — before talking about any project or price.
+                </p>
+              </div>
+            </motion.section>
+          )}
+        </AnimatePresence>
+
+        {/* Sliding content: Why Choose Me */}
         <div className="mt-10 sm:mt-14 md:mt-16">
           <AnimatePresence initial={false} mode="wait">
-            {!showDetails && (
-              <motion.div
-                key="about-note"
-                initial={{ opacity: 0, x: -40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 40 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="max-w-3xl text-stone-400 text-sm sm:text-base leading-relaxed border border-white/10 rounded-3xl px-6 sm:px-8 py-6 sm:py-7 bg-[#050505]/60 backdrop-blur"
-              >
-                <p>
-                  Every conversation starts with understanding your real situation — budget, timing, family needs,
-                  and long-term plans — before talking about any project or price.
-                </p>
-              </motion.div>
-            )}
-
             {showDetails && (
               <motion.div
                 key="why-choose-me"
