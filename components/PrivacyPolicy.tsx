@@ -23,21 +23,21 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ isOpen, onClose }) => {
 
         {/* Header */}
         <div className="mb-8 sm:mb-10">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-white mb-4 tracking-tight">Privacy Policy</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-light text-white mb-4 tracking-tight">Privacy Policy</h1>
           <p className="text-stone-500 text-sm">Last updated: January 2025</p>
         </div>
 
         {/* Content */}
         <div className="space-y-6 sm:space-y-8 text-stone-400 text-sm sm:text-base leading-relaxed">
           <section>
-            <h2 className="text-xl sm:text-2xl font-serif text-white mb-4">1. Introduction</h2>
+            <h2 className="text-xl sm:text-2xl font-light text-white mb-4">1. Introduction</h2>
             <p>
               Al-Saad ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-serif text-white mb-4">2. Information We Collect</h2>
+            <h2 className="text-xl sm:text-2xl font-light text-white mb-4">2. Information We Collect</h2>
             <div className="space-y-3">
               <p><strong className="text-white">Personal Information:</strong> We may collect personal information that you voluntarily provide to us when you:</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
@@ -51,7 +51,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ isOpen, onClose }) => {
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-serif text-white mb-4">3. How We Use Your Information</h2>
+            <h2 className="text-xl sm:text-2xl font-light text-white mb-4">3. How We Use Your Information</h2>
             <p>We use the information we collect to:</p>
             <ul className="list-disc list-inside space-y-2 ml-4 mt-3">
               <li>Respond to your inquiries and provide customer service</li>
@@ -63,7 +63,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ isOpen, onClose }) => {
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-serif text-white mb-4">4. Information Sharing</h2>
+            <h2 className="text-xl sm:text-2xl font-light text-white mb-4">4. Information Sharing</h2>
             <p>
               We do not sell, trade, or rent your personal information to third parties. We may share your information only in the following circumstances:
             </p>
@@ -76,14 +76,14 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ isOpen, onClose }) => {
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-serif text-white mb-4">5. Data Security</h2>
+            <h2 className="text-xl sm:text-2xl font-light text-white mb-4">5. Data Security</h2>
             <p>
               We implement appropriate technical and organizational security measures to protect your personal information. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-serif text-white mb-4">6. Your Rights</h2>
+            <h2 className="text-xl sm:text-2xl font-light text-white mb-4">6. Your Rights</h2>
             <p>You have the right to:</p>
             <ul className="list-disc list-inside space-y-2 ml-4 mt-3">
               <li>Access your personal information</li>
@@ -95,35 +95,35 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ isOpen, onClose }) => {
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-serif text-white mb-4">7. Cookies and Tracking</h2>
+            <h2 className="text-xl sm:text-2xl font-light text-white mb-4">7. Cookies and Tracking</h2>
             <p>
               Our website may use cookies and similar tracking technologies to enhance your experience. You can control cookie preferences through your browser settings.
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-serif text-white mb-4">8. Third-Party Services</h2>
+            <h2 className="text-xl sm:text-2xl font-light text-white mb-4">8. Third-Party Services</h2>
             <p>
               Our website may contain links to third-party websites or services. We are not responsible for the privacy practices of these third parties. We encourage you to review their privacy policies.
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-serif text-white mb-4">9. Children's Privacy</h2>
+            <h2 className="text-xl sm:text-2xl font-light text-white mb-4">9. Children's Privacy</h2>
             <p>
               Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children.
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-serif text-white mb-4">10. Changes to This Policy</h2>
+            <h2 className="text-xl sm:text-2xl font-light text-white mb-4">10. Changes to This Policy</h2>
             <p>
               We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-serif text-white mb-4">11. Contact Us</h2>
+            <h2 className="text-xl sm:text-2xl font-light text-white mb-4">11. Contact Us</h2>
             <p>
               If you have any questions about this Privacy Policy, please contact us:
             </p>
@@ -138,7 +138,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ isOpen, onClose }) => {
         <div className="mt-10 sm:mt-12 pt-6 border-t border-white/5">
           <button
             onClick={onClose}
-            className="w-full bg-white text-black px-8 py-4 rounded-full text-[10px] uppercase tracking-[0.4em] font-black hover:bg-stone-200 transition-all shadow-xl"
+            className="w-full bg-white text-black px-8 py-4 rounded-full text-[10px] uppercase tracking-[0.4em] font-medium hover:bg-stone-200 transition-all shadow-xl"
           >
             Close
           </button>

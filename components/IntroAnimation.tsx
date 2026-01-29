@@ -29,7 +29,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
           />
         </div>
         <div className={`h-[1px] bg-white/30 mx-auto mt-8 transition-all duration-[2s] ease-in-out relative z-10 ${stage >= 1 ? 'w-64' : 'w-0'}`} />
-        <p className={`text-[11px] uppercase tracking-[0.6em] text-stone-500 mt-8 transition-all duration-[1.5s] delay-500 ${stage >= 1 ? 'opacity-100' : 'opacity-0'}`}>
+        <p className={`text-[10px] uppercase tracking-[0.6em] text-stone-500 font-medium mt-8 transition-all duration-[1.5s] delay-500 ${stage >= 1 ? 'opacity-100' : 'opacity-0'}`}>
           Al-Saad
         </p>
       </div>

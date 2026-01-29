@@ -32,12 +32,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         
         {/* Animated Badges */}
         <div className={`absolute top-8 left-8 transform transition-all duration-500 ${isHovered ? 'scale-110 rotate-3' : 'scale-100 rotate-0'}`}>
-          <span className="bg-black/80 backdrop-blur px-5 py-2 rounded-full text-[10px] tracking-[0.3em] uppercase font-black text-white border border-white/10 hover-glow">
+          <span className="bg-black/80 backdrop-blur px-5 py-2 rounded-full text-[10px] tracking-[0.3em] uppercase font-medium text-white border border-white/10 hover-glow">
             {project.category}
           </span>
         </div>
         <div className={`absolute top-8 right-8 transform transition-all duration-500 ${isHovered ? 'scale-110 -rotate-3' : 'scale-100 rotate-0'}`}>
-          <span className="bg-black/80 backdrop-blur px-5 py-2 rounded-full text-[10px] tracking-[0.3em] uppercase font-black text-white border border-white/10 hover-glow">
+          <span className="bg-black/80 backdrop-blur px-5 py-2 rounded-full text-[10px] tracking-[0.3em] uppercase font-medium text-white border border-white/10 hover-glow">
             {project.year}
           </span>
         </div>
@@ -51,12 +51,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       
       <div className="p-6 sm:p-8 md:p-10 relative">
         {/* Animated Title */}
-        <h3 className={`text-xl sm:text-2xl md:text-3xl font-serif text-white mb-2 sm:mb-3 italic transition-all duration-500 ${isHovered ? 'translate-x-2' : 'translate-x-0'}`}>
+        <h3 className={`font-serif text-2xl sm:text-3xl md:text-4xl font-light text-white mb-2 sm:mb-3 transition-all duration-500 ${isHovered ? 'translate-x-2' : 'translate-x-0'}`}>
           {project.title}
         </h3>
         
         {/* Animated Description */}
-        <p className={`text-stone-500 text-sm sm:text-base mb-4 sm:mb-6 md:mb-8 leading-relaxed font-light transition-all duration-500 ${isHovered ? 'text-stone-400 translate-x-1' : 'text-stone-500 translate-x-0'}`}>
+        <p className={`text-stone-500 text-sm mb-4 sm:mb-6 md:mb-8 leading-relaxed font-light transition-all duration-500 ${isHovered ? 'text-stone-400 translate-x-1' : 'text-stone-500 translate-x-0'}`}>
           {project.description}
         </p>
         
@@ -65,7 +65,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           {project.tags.map((tag, idx) => (
             <span 
               key={idx} 
-              className={`px-4 py-2 bg-black border border-white/10 rounded-full text-[10px] uppercase tracking-[0.2em] font-black text-stone-500 transition-all duration-300 hover:bg-white hover:text-black hover:scale-110 hover-glow`}
+              className={`px-4 py-2 bg-black border border-white/10 rounded-full text-[10px] uppercase tracking-[0.2em] font-medium text-stone-500 transition-all duration-300 hover:bg-white hover:text-black hover:scale-110 hover-glow`}
               style={{ 
                 transitionDelay: `${idx * 50}ms`,
                 transform: isHovered ? 'translateY(-2px)' : 'translateY(0)'
@@ -78,7 +78,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         
         {/* Animated CTA */}
         <div className={`flex items-center text-stone-400 text-sm transition-all duration-500 ${isHovered ? 'text-white translate-x-2' : 'text-stone-400 translate-x-0'}`}>
-          <span className="text-[10px] uppercase tracking-[0.4em] font-black mr-3">View Project</span>
+          <span className="text-[10px] uppercase tracking-[0.4em] font-medium mr-3">View Project</span>
           <svg 
             className={`w-4 h-4 transform transition-all duration-500 ${isHovered ? 'translate-x-2 scale-110' : 'translate-x-0 scale-100'}`} 
             fill="none" 

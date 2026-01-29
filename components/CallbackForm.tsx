@@ -64,7 +64,7 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
 
         {/* Form Header */}
         <div className="mb-10">
-          <h2 className="text-4xl font-serif text-white mb-4 tracking-tight">Request a Call</h2>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-white mb-4 tracking-tight">Request a Call</h2>
           <p className="text-stone-500 text-sm leading-relaxed">
             Fill in your details and we'll get back to you at your preferred time.
           </p>
@@ -77,14 +77,14 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 className="text-2xl font-serif text-white mb-4">Thank You!</h3>
+            <h3 className="font-serif text-3xl font-light text-white mb-4">Thank You!</h3>
             <p className="text-stone-400">We'll contact you soon.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name */}
             <div>
-              <label htmlFor="name" className="block text-[10px] uppercase tracking-[0.4em] font-black text-stone-500 mb-3">
+              <label htmlFor="name" className="block text-[10px] uppercase tracking-[0.4em] font-medium text-stone-500 mb-3">
                 Full Name
               </label>
               <input
@@ -101,7 +101,7 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-[10px] uppercase tracking-[0.4em] font-black text-stone-500 mb-3">
+              <label htmlFor="email" className="block text-[10px] uppercase tracking-[0.4em] font-medium text-stone-500 mb-3">
                 Email Address
               </label>
               <input
@@ -118,7 +118,7 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
 
             {/* Phone */}
             <div>
-              <label htmlFor="phone" className="block text-[10px] uppercase tracking-[0.4em] font-black text-stone-500 mb-3">
+              <label htmlFor="phone" className="block text-[10px] uppercase tracking-[0.4em] font-medium text-stone-500 mb-3">
                 Phone Number
               </label>
               <input
@@ -135,7 +135,7 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
 
             {/* Preferred Time */}
             <div>
-              <label htmlFor="preferredTime" className="block text-[10px] uppercase tracking-[0.4em] font-black text-stone-500 mb-3">
+              <label htmlFor="preferredTime" className="block text-[10px] uppercase tracking-[0.4em] font-medium text-stone-500 mb-3">
                 Preferred Call Time
               </label>
               <select
@@ -156,7 +156,7 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
 
             {/* Message */}
             <div>
-              <label htmlFor="message" className="block text-[10px] uppercase tracking-[0.4em] font-black text-stone-500 mb-3">
+              <label htmlFor="message" className="block text-[10px] uppercase tracking-[0.4em] font-medium text-stone-500 mb-3">
                 Message (Optional)
               </label>
               <textarea
@@ -175,14 +175,14 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 bg-[#1a1a1a] border border-white/10 text-white px-8 py-4 rounded-full text-[10px] uppercase tracking-[0.4em] font-black hover:bg-white/5 transition-all"
+                className="flex-1 bg-[#1a1a1a] border border-white/10 text-white px-8 py-4 rounded-full text-[10px] uppercase tracking-[0.4em] font-medium hover:bg-white/5 transition-all"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 bg-white text-black px-8 py-4 rounded-full text-[10px] uppercase tracking-[0.4em] font-black hover:bg-stone-200 transition-all shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 bg-white text-black px-8 py-4 rounded-full text-[10px] uppercase tracking-[0.4em] font-medium hover:bg-stone-200 transition-all shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Submitting...' : 'Request Call'}
               </button>

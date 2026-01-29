@@ -61,14 +61,14 @@ const TrustBuilderSection: React.FC<TrustBuilderSectionProps> = ({ onRequestCall
 
           {/* Main message */}
           <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-white mb-3 tracking-tight leading-tight">
-              One honest conversation can save you
-              <span className="bold"> "years of regret"</span>
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-3 tracking-tight leading-tight">
+              <span className="text-stone-400">One honest conversation can save you</span>
+              <span className="text-white font-medium"> "years of regret"</span>
             </h2>
             
             <div className="w-12 h-px bg-white mx-auto my-4 opacity-40"></div>
             
-            <p className="text-gray-400 text-sm md:text-base font-light max-w-2xl mx-auto leading-relaxed">
+            <p className="text-stone-400 text-sm font-light max-w-2xl mx-auto leading-relaxed">
               Whether you're <span className="text-white font-normal inline-block hover:scale-105 transition-transform duration-300 cursor-default">buying now</span>, <span className="text-white font-normal inline-block hover:scale-105 transition-transform duration-300 cursor-default">later</span>, or just <span className="text-white font-normal inline-block hover:scale-105 transition-transform duration-300 cursor-default">exploring</span>—I'm here.<br />
               Even if you don't buy through me, <span className="text-white font-medium border-b border-white/0 hover:border-white/100 transition-all duration-500 cursor-default">I'll ensure you make the right decision.</span>
             </p>
@@ -87,7 +87,7 @@ const TrustBuilderSection: React.FC<TrustBuilderSectionProps> = ({ onRequestCall
               <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
             </button>
             
-            <p className="text-gray-600 text-xs uppercase tracking-widest">
+            <p className="text-stone-600 text-xs uppercase tracking-widest font-medium">
               No spam · No pressure · Just clarity
             </p>
           </div>

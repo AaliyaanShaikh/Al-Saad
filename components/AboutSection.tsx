@@ -45,10 +45,10 @@ const AboutSection: React.FC = () => {
       >
         {/* Section eyebrow + heading */}
         <div className="mb-12 sm:mb-16 md:mb-20 text-left">
-          <p className="text-stone-700 uppercase tracking-[0.8em] text-[9px] sm:text-[10px] font-black mb-4">
+          <p className="text-stone-700 uppercase tracking-[0.8em] text-[9px] sm:text-[10px] font-medium mb-4">
             About
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif leading-[1.1] tracking-tight text-white">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-tight text-white">
             Not just a broker — <span className="text-stone-400 italic">a long-term advisor.</span>
           </h2>
         </div>
@@ -63,7 +63,7 @@ const AboutSection: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
               transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
             >
-              <p className="text-stone-600 uppercase tracking-[0.7em] text-[9px] sm:text-[10px] font-black mb-4">
+              <p className="text-stone-600 uppercase tracking-[0.7em] text-[9px] sm:text-[10px] font-medium mb-4">
                 Personal Introduction
               </p>
               <div className="w-20 h-px bg-white/20" />
@@ -71,7 +71,7 @@ const AboutSection: React.FC = () => {
 
             {/* Massive Title */}
             <div className="mt-2 sm:mt-4 overflow-hidden">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light uppercase leading-[0.9] tracking-tighter">
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light uppercase leading-[0.9] tracking-tight">
                 <div className="overflow-hidden">
                   <motion.span
                     className="block"
@@ -103,12 +103,12 @@ const AboutSection: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
               transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
             >
-              <p className="text-stone-300 text-base sm:text-lg md:text-xl leading-relaxed">
+              <p className="text-stone-300 text-sm sm:text-base leading-relaxed">
                 My name is <span className="text-white font-medium">Muhd Saad Patel</span>, founder of{' '}
                 <span className="text-white font-medium">Al-Saad</span>.
               </p>
 
-              <p className="text-stone-400 text-sm sm:text-base md:text-lg leading-relaxed">
+              <p className="text-stone-400 text-sm sm:text-base leading-relaxed">
                 I work closely with buyers and investors across <span className="text-white">Jogeshwari</span>,{' '}
                 <span className="text-white">Andheri</span>, and nearby micro-markets, helping them avoid the most common
                 (and expensive) mistakes people make while buying property in Mumbai.
@@ -142,7 +142,7 @@ const AboutSection: React.FC = () => {
                     />
                   </div>
                 </div>
-                <span className="text-xs sm:text-sm font-black uppercase tracking-widest text-stone-400">
+                <span className="text-xs sm:text-sm font-medium uppercase tracking-widest text-stone-400">
                   Trusted Advisor
                 </span>
               </div>
@@ -162,10 +162,10 @@ const AboutSection: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.4em] text-stone-500 font-black">
+                  <p className="text-[10px] uppercase tracking-[0.4em] text-stone-500 font-medium">
                     Founder Insight
                   </p>
-                  <p className="text-stone-200 text-xs sm:text-sm">
+                  <p className="text-stone-200 text-sm">
                     My job is not to sell you a flat—<span className="text-white">it is to help you make the right decision.</span>
                   </p>
                 </div>
@@ -202,10 +202,10 @@ const AboutSection: React.FC = () => {
                 <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                   <div className="flex items-end justify-between gap-4">
                     <div>
-                      <p className="text-xs uppercase tracking-[0.35em] text-stone-400 font-black mb-2">
+                      <p className="text-xs uppercase tracking-[0.35em] text-stone-400 font-medium mb-2">
                         Founder
                       </p>
-                      <p className="text-white text-xl sm:text-2xl font-medium mb-1">
+                      <p className="text-white text-lg sm:text-xl font-medium mb-1">
                         Muhd Saad Patel
                       </p>
                       <p className="text-stone-400 text-xs">
@@ -213,7 +213,7 @@ const AboutSection: React.FC = () => {
                       </p>
                     </div>
                     <div className="hidden sm:flex flex-col items-end text-right">
-                      <span className="text-[10px] uppercase tracking-[0.35em] text-stone-500 font-black mb-1">
+                      <span className="text-[10px] uppercase tracking-[0.35em] text-stone-500 font-medium mb-1">
                         Markets
                       </span>
                       <span className="text-stone-200 text-xs">
@@ -229,14 +229,14 @@ const AboutSection: React.FC = () => {
 
         {/* Slider control row */}
         <div className="mt-12 sm:mt-16 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3 text-[9px] sm:text-[10px] uppercase tracking-[0.4em] text-stone-600 font-black">
+          <div className="flex items-center gap-3 text-[9px] sm:text-[10px] uppercase tracking-[0.4em] text-stone-600 font-medium">
             <span className="w-2 h-2 rounded-full bg-emerald-400/70 animate-pulse" />
             <span>{showDetails ? 'Why Choose Me' : 'About Al-Saad'}</span>
           </div>
           <button
             type="button"
             onClick={() => setShowDetails((prev) => !prev)}
-            className="inline-flex items-center gap-3 bg-stone-100 text-black px-5 sm:px-7 py-2.5 rounded-full text-[9px] sm:text-[10px] uppercase tracking-[0.45em] font-black hover:bg-white hover-lift transition-all"
+            className="inline-flex items-center gap-3 bg-stone-100 text-black px-5 sm:px-7 py-2.5 rounded-full text-[9px] sm:text-[10px] uppercase tracking-[0.45em] font-medium hover:bg-white hover-lift transition-all"
           >
             {showDetails ? 'Back to About' : 'Why Choose Me'}
             <span className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center text-[10px]">
@@ -257,16 +257,17 @@ const AboutSection: React.FC = () => {
               transition={{ duration: 0.4, ease: 'easeOut' }}
             >
               <div className="px-8 sm:px-12 md:px-16 lg:px-20 py-12 sm:py-14 md:py-16 lg:py-20">
-                <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] text-stone-500 font-black mb-6 sm:mb-8">
+                <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] text-stone-500 font-medium mb-6 sm:mb-8">
                   How We Work
                 </p>
-                <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif text-white leading-[1.2] sm:leading-[1.25]">
+                <p className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-stone-400 leading-[1.2] sm:leading-[1.25]">
                   Every conversation starts with understanding your{' '}
-                  <span className="font-bold text-white">real situation</span> —{' '}
-                  <span className="font-bold text-white">budget</span>,{' '}
-                  <span className="font-bold text-white">timing</span>,{' '}
-                  <span className="font-bold text-white">family needs</span>, and{' '}
-                  <span className="font-bold text-white">long-term plans</span> — before talking about any project or price.
+                  <span className="font-medium text-white">real situation</span>{' '}
+                  — <span className="font-medium text-white">budget</span>,{' '}
+                  <span className="font-medium text-white">timing</span>,{' '}
+                  <span className="font-medium text-white">family needs</span>, and{' '}
+                  <span className="font-medium text-white">long-term plans</span>{' '}
+                  — before talking about any project or price.
                 </p>
               </div>
             </motion.section>
@@ -286,10 +287,10 @@ const AboutSection: React.FC = () => {
                 className="border border-white/10 rounded-3xl px-6 sm:px-8 md:px-10 py-8 sm:py-10 md:py-12 bg-[#050505]/80 backdrop-blur space-y-8 sm:space-y-10"
               >
                 <div className="space-y-3">
-                  <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] text-stone-600 font-black">
+                  <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] text-stone-600 font-medium">
                     Why Clients Trust Me
                   </p>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-serif text-white leading-snug">
+                  <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-white leading-snug">
                     Clear advice. No pressure. Long-term thinking.
                   </h3>
                 </div>
@@ -310,7 +311,7 @@ const AboutSection: React.FC = () => {
                             <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-black transition-colors" />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h4 className="text-sm sm:text-base text-white mb-1.5 tracking-tight font-light">
+                            <h4 className="text-base sm:text-lg text-white mb-1.5 tracking-tight font-light">
                               {item.title}
                             </h4>
                             <p className="text-stone-400 text-xs sm:text-sm leading-relaxed">
@@ -324,11 +325,11 @@ const AboutSection: React.FC = () => {
                 </div>
 
                 <div className="border border-white/10 rounded-2xl px-5 sm:px-7 py-6 sm:py-7 bg-black/60">
-                  <p className="text-stone-300 text-sm sm:text-base leading-relaxed mb-2">
+                  <p className="text-stone-300 text-sm leading-relaxed mb-2">
                     If you are looking for <span className="text-white">pressure tactics</span> or{' '}
                     <span className="text-white">manufactured urgency</span>, I am not the right person.
                   </p>
-                  <p className="text-white text-sm sm:text-base leading-relaxed font-light">
+                  <p className="text-white text-sm leading-relaxed font-light">
                     If you want <span className="font-medium">truth</span>, <span className="font-medium">strategy</span>, and{' '}
                     <span className="font-medium">clarity before commitment</span>, you are in the right place.
                   </p>

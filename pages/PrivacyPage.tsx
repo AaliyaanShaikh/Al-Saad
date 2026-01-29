@@ -19,7 +19,7 @@ const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => {
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-            <span className="text-lg sm:text-xl md:text-2xl font-serif tracking-[0.2em] sm:tracking-[0.3em] font-medium">AL-SAAD</span>
+            <span className="font-serif text-lg sm:text-xl md:text-2xl tracking-[0.2em] sm:tracking-[0.3em] font-medium">AL-SAAD</span>
           </button>
         </div>
       </nav>
@@ -28,21 +28,21 @@ const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-12 pt-32 sm:pt-40 md:pt-48 pb-20">
         {/* Header */}
         <div className="mb-12 sm:mb-16">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-white mb-4 tracking-tight">Privacy Policy</h1>
-          <p className="text-stone-500 text-sm sm:text-base">Last updated: January 2025</p>
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 tracking-tight">Privacy Policy</h1>
+          <p className="text-stone-500 text-sm">Last updated: January 2025</p>
         </div>
 
         {/* Content */}
-        <div className="space-y-8 sm:space-y-10 text-stone-400 text-sm sm:text-base leading-relaxed">
+        <div className="space-y-8 sm:space-y-10 text-stone-400 text-sm leading-relaxed">
           <section>
-            <h2 className="text-2xl sm:text-3xl font-serif text-white mb-4">1. Introduction</h2>
+            <h2 className="text-2xl sm:text-3xl font-light text-white mb-4">1. Introduction</h2>
             <p>
               Al-Saad ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl sm:text-3xl font-serif text-white mb-4">2. Information We Collect</h2>
+            <h2 className="text-2xl sm:text-3xl font-light text-white mb-4">2. Information We Collect</h2>
             <div className="space-y-3">
               <p><strong className="text-white">Personal Information:</strong> We may collect personal information that you voluntarily provide to us when you:</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
@@ -56,7 +56,7 @@ const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => {
           </section>
 
           <section>
-            <h2 className="text-2xl sm:text-3xl font-serif text-white mb-4">3. How We Use Your Information</h2>
+            <h2 className="text-2xl sm:text-3xl font-light text-white mb-4">3. How We Use Your Information</h2>
             <p>We use the information we collect to:</p>
             <ul className="list-disc list-inside space-y-2 ml-4 mt-3">
               <li>Respond to your inquiries and provide customer service</li>
@@ -68,7 +68,7 @@ const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => {
           </section>
 
           <section>
-            <h2 className="text-2xl sm:text-3xl font-serif text-white mb-4">4. Information Sharing</h2>
+            <h2 className="text-2xl sm:text-3xl font-light text-white mb-4">4. Information Sharing</h2>
             <p>
               We do not sell, trade, or rent your personal information to third parties. We may share your information only in the following circumstances:
             </p>
@@ -81,14 +81,14 @@ const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => {
           </section>
 
           <section>
-            <h2 className="text-2xl sm:text-3xl font-serif text-white mb-4">5. Data Security</h2>
+            <h2 className="text-2xl sm:text-3xl font-light text-white mb-4">5. Data Security</h2>
             <p>
               We implement appropriate technical and organizational security measures to protect your personal information. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl sm:text-3xl font-serif text-white mb-4">6. Your Rights</h2>
+            <h2 className="text-2xl sm:text-3xl font-light text-white mb-4">6. Your Rights</h2>
             <p>You have the right to:</p>
             <ul className="list-disc list-inside space-y-2 ml-4 mt-3">
               <li>Access your personal information</li>
@@ -100,35 +100,35 @@ const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => {
           </section>
 
           <section>
-            <h2 className="text-2xl sm:text-3xl font-serif text-white mb-4">7. Cookies and Tracking</h2>
+            <h2 className="text-2xl sm:text-3xl font-light text-white mb-4">7. Cookies and Tracking</h2>
             <p>
               Our website may use cookies and similar tracking technologies to enhance your experience. You can control cookie preferences through your browser settings.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl sm:text-3xl font-serif text-white mb-4">8. Third-Party Services</h2>
+            <h2 className="text-2xl sm:text-3xl font-light text-white mb-4">8. Third-Party Services</h2>
             <p>
               Our website may contain links to third-party websites or services. We are not responsible for the privacy practices of these third parties. We encourage you to review their privacy policies.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl sm:text-3xl font-serif text-white mb-4">9. Children's Privacy</h2>
+            <h2 className="text-2xl sm:text-3xl font-light text-white mb-4">9. Children's Privacy</h2>
             <p>
               Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl sm:text-3xl font-serif text-white mb-4">10. Changes to This Policy</h2>
+            <h2 className="text-2xl sm:text-3xl font-light text-white mb-4">10. Changes to This Policy</h2>
             <p>
               We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl sm:text-3xl font-serif text-white mb-4">11. Contact Us</h2>
+            <h2 className="text-2xl sm:text-3xl font-light text-white mb-4">11. Contact Us</h2>
             <p>
               If you have any questions about this Privacy Policy, please contact us:
             </p>
@@ -143,7 +143,7 @@ const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => {
         <div className="mt-12 sm:mt-16 pt-8 border-t border-white/5">
           <button
             onClick={() => onNavigate(AppState.HOME)}
-            className="w-full sm:w-auto bg-white text-black px-8 py-4 rounded-full text-[10px] uppercase tracking-[0.4em] font-black hover:bg-stone-200 transition-all shadow-xl"
+            className="w-full sm:w-auto bg-white text-black px-8 py-4 rounded-full text-[10px] uppercase tracking-[0.4em] font-medium hover:bg-stone-200 transition-all shadow-xl"
           >
             Back to Home
           </button>

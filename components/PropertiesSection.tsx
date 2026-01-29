@@ -24,9 +24,9 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
   return (
     <section className="py-20 sm:py-32 md:py-40 px-4 sm:px-6 max-w-[1600px] mx-auto relative">
       {/* Background Decorative Text */}
-      <div className="absolute left-0 w-full overflow-hidden pointer-events-none -z-10 opacity-[0.03] select-none">
+          <div className="absolute left-0 w-full overflow-hidden pointer-events-none -z-10 opacity-[0.03] select-none">
         <div 
-          className="text-[20vw] sm:text-[22vw] md:text-[25vw] font-black font-serif uppercase whitespace-nowrap"
+          className="font-serif text-[20vw] sm:text-[22vw] md:text-[25vw] font-medium uppercase whitespace-nowrap"
           style={{ transform: `translateX(${-20 + scrollY * 0.05}%)` }}
         >
           Al-Saad Premium Properties
@@ -35,16 +35,16 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
 
       <div className="mb-12 sm:mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 sm:gap-12 border-b border-white/5 pb-8 sm:pb-12 md:pb-16">
         <div className="w-full md:flex-1">
-          <span className="text-stone-600 uppercase tracking-[0.5em] sm:tracking-[0.6em] text-[9px] sm:text-[10px] font-black mb-4 sm:mb-6 md:mb-8 block">FEATURED PROJECTS</span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-8xl font-serif leading-[1.1] tracking-tighter mb-4 sm:mb-6 md:mb-8">
+          <span className="text-stone-600 uppercase tracking-[0.5em] sm:tracking-[0.6em] text-[9px] sm:text-[10px] font-medium mb-4 sm:mb-6 md:mb-8 block">FEATURED PROJECTS</span>
+          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] tracking-tight mb-4 sm:mb-6 md:mb-8">
             Carefully<br /> <span className="whitespace-nowrap">Selected Projects.</span>
           </h2>
-          <p className="text-stone-400 text-sm sm:text-base md:text-lg leading-relaxed mt-6 sm:mt-8">
+          <p className="text-stone-400 text-sm sm:text-base leading-relaxed mt-6 sm:mt-8">
             Every project here is featured with purpose. I highlight only properties that are correctly priced, clearly suited to the right buyer or investor, and built for long-term value—not short-term hype. Each is something I'd confidently recommend to my own family.
           </p>
         </div>
         
-        <div className="flex items-center flex-wrap gap-4 sm:gap-6 md:gap-8 lg:space-x-8 xl:space-x-12 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/40">
+        <div className="flex items-center flex-wrap gap-4 sm:gap-6 md:gap-8 lg:space-x-8 xl:space-x-12 text-[9px] sm:text-[10px] font-medium uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/40">
           <button 
             onClick={() => setActiveFilter('exclusive')}
             className={`transition-colors pb-2 ${
@@ -117,7 +117,7 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
                 
                 {/* Visual Label */}
                 <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8 overflow-hidden">
-                  <span className="inline-block text-[9px] sm:text-[10px] font-black uppercase tracking-[0.4em] sm:tracking-[0.5em] text-white translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                  <span className="inline-block text-[9px] sm:text-[10px] font-medium uppercase tracking-[0.4em] sm:tracking-[0.5em] text-white translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                     Explore
                   </span>
                 </div>
@@ -125,12 +125,12 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
 
               <div className="flex flex-row justify-between items-start gap-4 sm:gap-6 px-2">
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-light tracking-tight mb-2 sm:mb-3 italic transition-all group-hover:translate-x-2">{property.title}</h3>
-                  <p className="text-[9px] sm:text-[10px] font-black text-white/20 uppercase tracking-[0.3em] sm:tracking-[0.4em]">{property.location || property.category}</p>
+                  <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-light tracking-tight mb-2 sm:mb-3 transition-all group-hover:translate-x-2">{property.title}</h3>
+                  <p className="text-[9px] sm:text-[10px] font-medium text-white/20 uppercase tracking-[0.3em] sm:tracking-[0.4em]">{property.location || property.category}</p>
                 </div>
                 <div className="flex flex-col items-end flex-shrink-0">
-                  <p className="text-xl sm:text-2xl font-extralight tracking-tighter mb-1 sm:mb-2 whitespace-nowrap">{property.price || 'Price on Request'}</p>
-                  <div className="flex flex-col items-end text-[8px] sm:text-[9px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/10 space-y-1">
+                  <p className="text-base sm:text-lg font-light tracking-tight mb-1 sm:mb-2 whitespace-nowrap">{property.price || 'Price on Request'}</p>
+                  <div className="flex flex-col items-end text-[8px] sm:text-[9px] font-medium uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/10 space-y-1">
                     {property.beds && <span className="whitespace-nowrap">{property.beds} BHK</span>}
                     {property.sqft && <span className="whitespace-nowrap">{property.sqft} SQFT</span>}
                   </div>

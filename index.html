@@ -13,18 +13,22 @@
             --primary: #000000;
             --secondary: #ffffff;
             --accent: #1a1a1a;
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Playfair Display', Georgia, serif;
         }
         html {
             scroll-behavior: smooth;
         }
+        body, input, select, textarea, button {
+            font-family: var(--font-sans);
+        }
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: var(--font-serif);
+        }
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--primary);
             color: var(--secondary);
             overflow-x: hidden;
-        }
-        h1, h2, h3, .font-serif {
-            font-family: 'Plus Jakarta Sans', sans-serif;
         }
         .reveal {
             opacity: 0;
