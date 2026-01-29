@@ -18,7 +18,7 @@ export const CLAY_GRID_FEATURES: ClayGridFeature[] = [
     source: 'instagram',
     type: 'text',
     title: 'RAW DATA',
-    text: 'Visualizing the unseen currents.',
+    text: 'Instagram Content.',
     span: 'col-span-1 row-span-1',
   },
   {
@@ -32,7 +32,7 @@ export const CLAY_GRID_FEATURES: ClayGridFeature[] = [
     id: '4',
     source: 'youtube',
     type: 'img',
-    src: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop',
+    src: 'WhatsApp Image 2026-01-25 at 13.07.14.jpeg',
     span: 'col-span-2 row-span-1',
   },
   {
@@ -40,7 +40,7 @@ export const CLAY_GRID_FEATURES: ClayGridFeature[] = [
     source: 'youtube',
     type: 'text',
     title: 'SYSTEM',
-    text: 'Architecture of the mind.',
+    text: 'Youtube Content.',
     span: 'col-span-1 row-span-1',
   },
   {
@@ -75,7 +75,7 @@ export const CLAY_GRID_FEATURES: ClayGridFeature[] = [
     id: '9',
     source: 'instagram',
     type: 'img',
-    src: 'https://images.unsplash.com/photo-1614850523060-8da1d56ae167?q=80&w=1000&auto=format&fit=crop',
-    span: 'col-span-1 row-span-1',
+    src: 'https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=1000&auto=format&fit=crop',
+    span: 'col-span-1 row-span-2',
   },
 ];

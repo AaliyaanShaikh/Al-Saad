@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import ClayGrid from './ClayGrid';
-import { CLAY_GRID_FEATURES } from '../clayGridConstants';
-import type { ContentSource } from '../types';
+import ClayGrid from '@/components/ClayGrid';
+import { CLAY_GRID_FEATURES } from '@/clayGridConstants';
+import type { ContentSource } from '@/types';
 
 export type SocialItem = { name: string; url: string };
 
@@ -22,7 +22,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ links = defaultLinks }) => {
   const filteredContent = useMemo(() => {
     const features =
       filter === 'all'
-        ? CLAY_GRID_FEATURES
+        ? CLAY_GRID_FEATURES.slice(0, 8)
         : CLAY_GRID_FEATURES.filter((f) => f.source === filter);
     return features.map(({ id, source, ...item }) => ({ ...item, id }));
   }, [filter]);

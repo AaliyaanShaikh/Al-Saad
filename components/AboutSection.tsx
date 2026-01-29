@@ -58,7 +58,7 @@ const AboutSection: React.FC = () => {
           <p className="text-stone-700 uppercase tracking-[0.8em] text-[9px] sm:text-[10px] font-medium mb-4">
             About
           </p>
-          <h2 className="font-serif text-base sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-[1.1] tracking-tight text-white whitespace-nowrap md:whitespace-normal overflow-x-auto md:overflow-visible pb-1 -mx-1 px-1 md:mx-0 md:px-0">
+          <h2 className="font-serif text-base sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-[1.1] tracking-tight text-white whitespace-nowrap overflow-x-auto pb-1 -mx-1 px-1 md:mx-0 md:px-0">
             Not just a broker — <span className="text-stone-400 italic">a long-term advisor.</span>
           </h2>
         </div>
@@ -122,12 +122,12 @@ const AboutSection: React.FC = () => {
               <div className="w-20 h-px bg-white/20" />
             </motion.div>
 
-            {/* Massive Title — one line on mobile, two lines on desktop */}
+            {/* Massive Title — one line across all devices */}
             <div className="mt-2 sm:mt-4 overflow-hidden">
-              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light uppercase leading-[0.9] tracking-tight flex flex-row flex-nowrap items-baseline gap-2 md:flex-col md:gap-0">
-                <div className="overflow-hidden shrink-0 md:shrink-auto">
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light uppercase leading-[0.9] tracking-tight flex flex-row flex-nowrap items-baseline gap-2 whitespace-nowrap">
+                <div className="overflow-hidden shrink-0">
                   <motion.span
-                    className="inline md:block"
+                    className="inline"
                     initial={{ y: '100%', opacity: 0 }}
                     animate={isInView ? { y: '0%', opacity: 1 } : { y: '100%', opacity: 0 }}
                     transition={{ duration: 0.9, delay: 0.2, ease: 'easeOut' }}
@@ -135,9 +135,9 @@ const AboutSection: React.FC = () => {
                     Not Just
                   </motion.span>
                 </div>
-                <div className="overflow-hidden shrink-0 md:shrink-auto md:ml-8 lg:ml-12">
+                <div className="overflow-hidden shrink-0">
                   <motion.span
-                    className="inline md:block text-transparent"
+                    className="inline text-transparent"
                     style={{ WebkitTextStroke: '2px white' }}
                     initial={{ y: '100%', opacity: 0 }}
                     animate={isInView ? { y: '0%', opacity: 1 } : { y: '100%', opacity: 0 }}
