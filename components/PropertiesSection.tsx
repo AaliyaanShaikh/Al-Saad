@@ -88,7 +88,7 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
               className={`group flex flex-col ${isLarge ? 'md:col-span-8' : 'md:col-span-4'}`}
             >
               <div 
-                className={`parallax-container relative overflow-hidden bg-[#0a0a0a] mb-6 sm:mb-8 md:mb-10 cursor-pointer rounded-sm transition-all duration-700 ${isLarge ? 'aspect-[21/9]' : 'aspect-[4/5]'}`}
+                className={`property-card-image-clip parallax-container relative overflow-hidden bg-[#0a0a0a] mb-6 sm:mb-8 md:mb-10 cursor-pointer transition-all duration-700 ${isLarge ? 'aspect-[21/9]' : 'aspect-[4/5]'}`}
                 onClick={() => {
                   if (property.link && property.link !== '#') {
                     window.open(property.link, '_blank');
@@ -101,19 +101,19 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
                   }
                 }}
               >
-                <img 
-                  src={property.image ? encodeURI(property.image) : property.image} 
-                  alt={property.title}
-                  loading="lazy"
-                  decoding="async"
-                  className="parallax-img absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-110"
-                  style={{ transform: `translateY(${(scrollY * (idx % 2 === 0 ? 0.05 : -0.05))}px)` }}
-                  onError={(e) => {
-                    // Fallback to a local default image if the URL fails
-                    (e.target as HTMLImageElement).src = '/fallback-property.png';
-                  }}
-                />
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700"></div>
+                {/* Clipping wrapper: no transform, forced rounded via global CSS */}
+                <div className="property-card-image-clip absolute inset-0">
+                  <div
+                    className="property-card-image-clip absolute inset-0 bg-cover bg-center transition-transform duration-[2.5s] ease-out group-hover:scale-110"
+                    style={{
+                      backgroundImage: `url(${property.image ? encodeURI(property.image) : property.image || ''})`,
+                      transform: `scale(1.1) translateY(${(scrollY * (idx % 2 === 0 ? 0.012 : -0.012))}px)`,
+                    }}
+                    role="img"
+                    aria-label={property.title}
+                  />
+                </div>
+                <div className="property-card-image-clip absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />
                 
                 {/* Visual Label */}
                 <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8 overflow-hidden">
