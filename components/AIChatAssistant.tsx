@@ -45,8 +45,8 @@ const AIChatAssistant: React.FC = () => {
                 className="w-10 h-10 object-contain rounded-2xl"
               />
               <div>
-                <span className="block font-bold text-sm text-white tracking-tight">Let's Chat</span>
-                <span className="block text-[9px] text-stone-500 font-black uppercase tracking-widest">Ask Me Anything</span>
+                <span className="block font-medium text-sm text-white tracking-tight">Let's Chat</span>
+                <span className="block text-[9px] text-stone-500 font-medium uppercase tracking-widest">Ask Me Anything</span>
               </div>
             </div>
             <button 
@@ -63,9 +63,9 @@ const AIChatAssistant: React.FC = () => {
           <div className="flex-1 overflow-y-auto p-8 space-y-6 scrollbar-hide">
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[85%] px-5 py-4 rounded-[1.5rem] text-[13px] leading-relaxed ${
+                <div className={`max-w-[85%] px-5 py-4 rounded-[1.5rem] text-sm leading-relaxed ${
                   m.role === 'user' 
-                    ? 'bg-white text-black font-bold' 
+                    ? 'bg-white text-black font-medium' 
                     : 'bg-[#111111] text-stone-300 border border-white/5'
                 }`}>
                   {m.content}

@@ -17,20 +17,25 @@ import { MOCK_PROJECTS, SHOWCASE_PROJECTS } from './constants';
 const getHeroTextPositioning = () => {
   // Mobile positioning values (modify these as needed)
   const mobileTopTextTop = 'top-40';      // Top text from top (mobile)
-  const mobileBottomTextBottom = 'bottom-36'; // Bottom text from bottom (mobile)
+  const mobileBottomTextBottom = 'bottom-36'; // Bottom block: higher = move text up
   
   // Default responsive breakpoint values (usually don't need to change)
   const smTopTextTop = 'sm:top-32';
   const mdTopTextTop = 'md:top-36';
   const lgTopTextTop = 'lg:top-[150px]';
   
-  const smBottomTextBottom = 'sm:bottom-24';
-  const mdBottomTextBottom = 'md:bottom-28';
-  const lgBottomTextBottom = 'lg:bottom-[130px]';
+  const smBottomTextBottom = 'sm:bottom-32';
+  const mdBottomTextBottom = 'md:bottom-32';
+  const lgBottomTextBottom = 'lg:bottom-[150px]';
+  
+  // Spacing between headline and subtext ("Jogeshwari Real Estate..." ↔ "I help serious homebuyers...")
+  // Options: space-y-4 (16px) | space-y-6 (24px) | space-y-8 (32px) | space-y-10 (40px) | space-y-12 (48px)
+  const heroTextGap = 'space-y-8 sm:space-y-10 md:space-y-12';
   
   return {
     topText: `${mobileTopTextTop} ${smTopTextTop} ${mdTopTextTop} ${lgTopTextTop}`,
-    bottomText: `${mobileBottomTextBottom} ${smBottomTextBottom} ${mdBottomTextBottom} ${lgBottomTextBottom}`
+    bottomText: `${mobileBottomTextBottom} ${smBottomTextBottom} ${mdBottomTextBottom} ${lgBottomTextBottom}`,
+    heroTextGap
   };
 };
 
@@ -118,7 +123,7 @@ const App: React.FC = () => {
               )}
               <h1 className="text-lg sm:text-xl md:text-2xl font-serif tracking-[0.2em] sm:tracking-[0.3em] font-medium text-white hover-lift cursor-pointer">AL-SAAD</h1>
             </div>
-            <div className="hidden lg:flex space-x-12 text-[10px] uppercase tracking-[0.4em] font-black text-stone-500">
+            <div className="hidden lg:flex space-x-12 text-[10px] uppercase tracking-[0.4em] font-medium text-stone-500">
               <a href="#about" className="hover:text-white transition-all relative group">
                 About
                 <span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>
@@ -140,7 +145,7 @@ const App: React.FC = () => {
           <div className="flex items-center space-x-3 sm:space-x-4">
             <button 
               onClick={() => setIsCallbackFormOpen(true)}
-              className="bg-stone-100 text-black px-4 sm:px-6 md:px-8 lg:px-12 py-2 sm:py-3 md:py-4 rounded-full text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] font-black hover:bg-stone-200 transition-all shadow-xl hover-lift"
+              className="bg-stone-100 text-black px-4 sm:px-6 md:px-8 lg:px-12 py-2 sm:py-3 md:py-4 rounded-full text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] font-medium hover:bg-stone-200 transition-all shadow-xl hover-lift"
             >
               <span className="hidden sm:inline">Request Call</span>
               <span className="sm:hidden">Call</span>
@@ -163,7 +168,7 @@ const App: React.FC = () => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden mt-4 px-4 sm:px-6 md:px-10 py-6 glass-dark rounded-2xl border border-white/10 animate-dropdown">
-            <div className="flex flex-col space-y-4 text-[10px] uppercase tracking-[0.4em] font-black">
+            <div className="flex flex-col space-y-4 text-[10px] uppercase tracking-[0.4em] font-medium">
               <a 
                 href="#properties" 
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -215,22 +220,21 @@ const App: React.FC = () => {
 
           {/* Top Fixed Text */}
           <div className={`absolute left-1/2 -translate-x-1/2 z-10 w-full px-4 sm:px-6 md:px-10 ${heroPositioning.topText}`}>
-            <p className="text-stone-500 uppercase tracking-[0.5em] sm:tracking-[0.6em] md:tracking-[0.8em] text-[8px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-black reveal active text-center">
+            <p className="text-stone-500 uppercase tracking-[0.5em] sm:tracking-[0.6em] md:tracking-[0.8em] text-[9px] sm:text-[10px] font-medium reveal active text-center">
               Visionary • Realtor • Educator
             </p>
           </div>
 
           {/* Bottom Text Container */}
-          <div className={`absolute left-1/2 -translate-x-1/2 z-10 w-full px-4 sm:px-6 md:px-10 ${heroPositioning.bottomText} flex flex-col items-center space-y-8 sm:space-y-10 md:space-y-12`}>
-            {/* Headline */}
-            <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold max-w-4xl mx-auto leading-tight reveal active text-center">
+          <div className={`absolute left-1/2 -translate-x-1/2 z-10 w-full px-4 sm:px-6 md:px-10 ${heroPositioning.bottomText} flex flex-col items-center ${heroPositioning.heroTextGap}`}>
+            {/* Headline — refined, minimal, not loud */}
+            <h2 className="text-white font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light max-w-4xl mx-auto leading-snug tracking-tight reveal active text-center">
               Jogeshwari Real Estate, Explained Honestly.
             </h2>
             
             {/* Bottom Fixed Text */}
-            <p className="text-stone-400 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl max-w-2xl mx-auto leading-relaxed reveal active text-center" style={{ transitionDelay: '600ms' }}>
+            <p className="text-stone-500 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed reveal active text-center" style={{ transitionDelay: '600ms' }}>
               I help serious homebuyers and investors make clear, confident, and profitable property decisions—without pressure, misinformation, or overpricing.
-
             </p>
           </div>
 
@@ -245,7 +249,7 @@ const App: React.FC = () => {
             }}
           >
             <div className="flex flex-col items-center space-y-4 reveal active" style={{ transitionDelay: '1000ms' }}>
-              <span className="text-[9px] uppercase tracking-[0.6em] text-stone-600 font-black text-center">Explore</span>
+              <span className="text-[9px] uppercase tracking-[0.6em] text-stone-600 font-medium text-center">Explore</span>
               <div className="scroll-indicator-container">
                 <div className="scroll-indicator-line"></div>
               </div>
@@ -277,12 +281,14 @@ const App: React.FC = () => {
           <div className="absolute bottom-10 sm:bottom-20 right-4 sm:right-10 md:right-20 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 border border-white/5 rounded-full animate-float-reverse"></div>
           
           <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 md:px-10 relative z-10">
-            <h3 className="text-stone-700 uppercase tracking-[0.8em] sm:tracking-[1em] text-[9px] sm:text-[10px] font-black mb-12 sm:mb-16 md:mb-20 reveal-pop">Work</h3>
-            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-7xl font-serif mb-6 sm:mb-8 md:mb-12 lg:mb-16 leading-[1.3] italic text-white/90 reveal-pop px-2 sm:px-4" style={{ transitionDelay: '0.1s' }}>
-              "A home is not just a place—it's <span className="text-stone-500 not-italic">where life happens</span>."
+            <h3 className="text-stone-700 uppercase tracking-[0.8em] sm:tracking-[1em] text-[9px] sm:text-[10px] font-medium mb-12 sm:mb-16 md:mb-20 reveal-pop">Work</h3>
+            <p className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light mb-6 sm:mb-8 md:mb-12 lg:mb-16 leading-[1.3] italic reveal-pop px-2 sm:px-4" style={{ transitionDelay: '0.1s' }}>
+              <span className="text-stone-400">"A home is not just a place—it's</span>{' '}
+              <span className="text-white not-italic">where life happens</span>
+              <span className="text-stone-400">."</span>
             </p>
             <div className="w-32 sm:w-40 h-[1px] bg-stone-900 mx-auto mb-10 sm:mb-12 md:mb-16 reveal-pop" style={{ transitionDelay: '0.2s' }}></div>
-            <p className="text-stone-400 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-3xl mx-auto px-2 sm:px-4 reveal-pop" style={{ transitionDelay: '0.3s' }}>
+            <p className="text-stone-400 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto px-2 sm:px-4 reveal-pop" style={{ transitionDelay: '0.3s' }}>
               With years of experience in real estate, I specialize in helping clients find their perfect property. 
               Whether you're buying, selling, or investing, I provide expert guidance, market insights, 
               and personalized service to make your real estate journey seamless and successful.
@@ -297,11 +303,11 @@ const App: React.FC = () => {
           
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-12 sm:mb-16 md:mb-24 lg:mb-32 reveal">
             <div className="max-w-2xl w-full lg:w-auto">
-              <p className="text-stone-600 uppercase tracking-[0.5em] sm:tracking-[0.6em] text-[9px] sm:text-[10px] font-black mb-4 sm:mb-6 md:mb-8 animate-slide-left">Highlighting Achievements</p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-8xl font-serif leading-[1.1] tracking-tighter animate-scale-in">Work That<br/>Speaks for Itself
+              <p className="text-stone-600 uppercase tracking-[0.5em] sm:tracking-[0.6em] text-[9px] sm:text-[10px] font-medium mb-4 sm:mb-6 md:mb-8 animate-slide-left">Highlighting Achievements</p>
+              <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] tracking-tight animate-scale-in">Work That<br/>Speaks for Itself
               </h2>
             </div>
-            <p className="mt-8 sm:mt-10 md:mt-12 lg:mt-0 lg:ml-8 text-stone-500 text-xs sm:text-sm max-w-md leading-relaxed reveal animate-slide-right">
+            <p className="mt-8 sm:mt-10 md:mt-12 lg:mt-0 lg:ml-8 text-stone-500 text-sm max-w-md leading-relaxed reveal animate-slide-right">
             A curated space honoring remarkable achievements, crafted to reflect prestige, purpose, and distinction.
             </p>
           </div>
@@ -322,8 +328,8 @@ const App: React.FC = () => {
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
             <div className="text-center mb-12 sm:mb-16 md:mb-20 reveal">
-              <p className="text-stone-600 uppercase tracking-[0.5em] sm:tracking-[0.6em] text-[9px] sm:text-[10px] font-black mb-4 sm:mb-6 md:mb-8 animate-slide-left">Services</p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-serif leading-[1.1] tracking-tighter animate-scale-in">How I Help You</h2>
+              <p className="text-stone-600 uppercase tracking-[0.5em] sm:tracking-[0.6em] text-[9px] sm:text-[10px] font-medium mb-4 sm:mb-6 md:mb-8 animate-slide-left">Services</p>
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-tight animate-scale-in">How I Help You</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 md:gap-16 lg:gap-24 xl:gap-32 reveal">
               {[
@@ -333,10 +339,10 @@ const App: React.FC = () => {
               ].map((skill, idx) => (
                 <div key={idx} className="group cursor-pointer hover-lift animate-scale-in" style={{ animationDelay: `${idx * 0.2}s` }}>
                   <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-black border border-white/10 rounded-2xl flex items-center justify-center mb-6 sm:mb-8 md:mb-10 group-hover:bg-white group-hover:scale-110 transition-all duration-500 animate-glow">
-                    <span className="text-white group-hover:text-black font-serif text-lg sm:text-xl italic">0{idx + 1}</span>
+                    <span className="font-serif text-white group-hover:text-black text-xl sm:text-2xl italic">0{idx + 1}</span>
                   </div>
-                  <h4 className="text-xl sm:text-2xl md:text-3xl font-serif text-white mb-4 sm:mb-6 tracking-tight group-hover:text-white/80 transition-colors">{skill.title}</h4>
-                  <p className="text-stone-600 text-sm sm:text-base md:text-lg leading-relaxed font-light italic group-hover:text-stone-400 transition-colors">
+                  <h4 className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-white mb-4 sm:mb-6 tracking-tight group-hover:text-white/80 transition-colors">{skill.title}</h4>
+                  <p className="text-stone-600 text-sm sm:text-base leading-relaxed font-light group-hover:text-stone-400 transition-colors">
                     {skill.desc}
                   </p>
                 </div>
@@ -360,8 +366,8 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 sm:gap-16 md:gap-24 lg:gap-32 mb-20 sm:mb-32 md:mb-40">
             <div className="lg:col-span-2 reveal animate-slide-left">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif text-white mb-4 sm:mb-6 md:mb-8 lg:mb-10 tracking-[0.2em] hover-lift">AL-SAAD</h1>
-              <p className="text-stone-600 max-w-sm mb-8 sm:mb-12 md:mb-16 leading-loose text-base sm:text-lg font-light italic">
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-medium text-white mb-4 sm:mb-6 md:mb-8 lg:mb-10 tracking-[0.2em] hover-lift">AL-SAAD</h1>
+              <p className="text-stone-600 max-w-sm mb-8 sm:mb-12 md:mb-16 leading-relaxed text-base font-light">
                 Let's find your perfect property together. 
                 I'm always available to discuss your real estate needs and answer any questions.
               </p>
@@ -371,15 +377,15 @@ const App: React.FC = () => {
                   { name: 'YouTube', url: 'https://www.youtube.com/@alsaad_in' },
                   { name: 'WhatsApp', url: 'https://www.whatsapp.com/channel/0029Vb7A5K0BadmfcCLWAj2z?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnNlqOuz0dgQNmXOt453HIOTxizLmYdebXLDe9FVKYTvCoGafxQ0aFJUgxHhM_aem_CdEdI7ABSjCZiOBk48imCw' }
                 ].map((social, idx) => (
-                  <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer" className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-black text-stone-700 hover:text-white transition-all border-b border-stone-900 hover:border-white pb-2 hover-lift animate-slide-left whitespace-nowrap" style={{ animationDelay: `${idx * 0.1}s` }}>
+                  <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer" className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-medium text-stone-700 hover:text-white transition-all border-b border-stone-900 hover:border-white pb-2 hover-lift animate-slide-left whitespace-nowrap" style={{ animationDelay: `${idx * 0.1}s` }}>
                     {social.name}
                   </a>
                 ))}
               </div>
             </div>
             <div className="reveal animate-slide-right">
-              <h5 className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-black text-stone-500 mb-6 sm:mb-8 md:mb-10">Navigation</h5>
-              <ul className="space-y-4 sm:space-y-6 text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-stone-600 font-black">
+              <h5 className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-medium text-stone-500 mb-6 sm:mb-8 md:mb-10">Navigation</h5>
+              <ul className="space-y-4 sm:space-y-6 text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-stone-600 font-medium">
                 <li><a href="#about" className="hover:text-white transition-colors hover-lift inline-block">About</a></li>
                 <li><a href="#properties" className="hover:text-white transition-colors hover-lift inline-block">Properties</a></li>
                 <li><a href="#work" className="hover:text-white transition-colors hover-lift inline-block">Work</a></li>
@@ -387,12 +393,12 @@ const App: React.FC = () => {
               </ul>
             </div>
             <div className="lg:col-span-2 reveal animate-scale-in">
-              <h5 className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-black text-stone-500 mb-6 sm:mb-8 md:mb-10">Get In Touch</h5>
+              <h5 className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-medium text-stone-500 mb-6 sm:mb-8 md:mb-10">Get In Touch</h5>
               <div className="space-y-4 sm:space-y-6">
                 <div className="bg-[#0a0a0a] p-6 sm:p-8 md:p-10 rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-between border border-white/5 shadow-2xl hover-lift hover-glow transition-all">
                   <div className="flex-1 min-w-0">
-                    <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] font-black text-stone-600 mb-2">Email</p>
-                    <p className="text-white font-bold text-sm sm:text-base md:text-xl truncate">alsaad.in@gmail.com</p>
+                    <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] font-medium text-stone-600 mb-2">Email</p>
+                    <p className="text-white font-medium text-sm sm:text-base truncate">alsaad.in@gmail.com</p>
                   </div>
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white text-black rounded-full flex items-center justify-center shadow-xl hover-scale transition-transform flex-shrink-0 ml-4">
                     <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
@@ -400,8 +406,8 @@ const App: React.FC = () => {
                 </div>
                 <div className="bg-[#0a0a0a] p-6 sm:p-8 md:p-10 rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-between border border-white/5 shadow-2xl hover-lift hover-glow transition-all">
                   <div className="flex-1 min-w-0">
-                    <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] font-black text-stone-600 mb-2">Phone</p>
-                    <p className="text-white font-bold text-sm sm:text-base md:text-xl">+91 87960 28980</p>
+                    <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] font-medium text-stone-600 mb-2">Phone</p>
+                    <p className="text-white font-medium text-sm sm:text-base">+91 87960 28980</p>
                   </div>
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white text-black rounded-full flex items-center justify-center shadow-xl hover-scale transition-transform flex-shrink-0 ml-4">
                     <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
@@ -410,7 +416,7 @@ const App: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="pt-12 sm:pt-14 md:pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-black text-stone-800">
+          <div className="pt-12 sm:pt-14 md:pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-medium text-stone-800">
             <span className="text-center md:text-left mb-4 md:mb-0">© 2025 Al-Saad. All rights reserved. Designed by Ezor.</span>
             <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 lg:space-x-12 mt-4 md:mt-0">
               <button onClick={() => setAppState(AppState.PRIVACY)} className="hover:text-white transition-all hover-lift cursor-pointer">
