@@ -43,19 +43,62 @@ const AboutSection: React.FC = () => {
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        {/* Section eyebrow + heading */}
-        <div className="mb-12 sm:mb-16 md:mb-20 text-left">
+        {/* Section eyebrow + heading — first on all screens */}
+        <div className="mb-8 sm:mb-12 md:mb-20 text-left">
           <p className="text-stone-700 uppercase tracking-[0.8em] text-[9px] sm:text-[10px] font-medium mb-4">
             About
           </p>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-tight text-white">
+          <h2 className="font-serif text-base sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-[1.1] tracking-tight text-white whitespace-nowrap md:whitespace-normal overflow-x-auto md:overflow-visible pb-1 -mx-1 px-1 md:mx-0 md:px-0">
             Not just a broker — <span className="text-stone-400 italic">a long-term advisor.</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 lg:gap-16">
-          {/* Left Column: Founder Story */}
-          <div className="relative col-span-1 md:col-span-7 flex flex-col justify-between border border-white/10 rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 bg-[#050505]/60 backdrop-blur">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 lg:gap-16">
+          {/* Founder Portrait — second on mobile, right column on desktop */}
+          <motion.div
+            className="relative md:order-2 col-span-1 md:col-span-5 min-h-[280px] sm:min-h-[340px] md:min-h-[420px] overflow-hidden bg-[#050505] border border-white/10 rounded-3xl"
+            initial={{ opacity: 0, x: 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
+            transition={{ duration: 0.9, delay: 0.3, ease: 'easeOut' }}
+          >
+            <div className="absolute inset-0 h-full w-full">
+              <div className="relative h-full w-full">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop&crop=faces&auto=format&q=80"
+                  alt="Muhd Saad Patel, Founder of Al-Saad"
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black via-black/80 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                  <div className="flex items-end justify-between gap-4">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.35em] text-stone-400 font-medium mb-2">
+                        Founder
+                      </p>
+                      <p className="text-white text-lg sm:text-xl font-medium mb-1">
+                        Muhd Saad Patel
+                      </p>
+                      <p className="text-stone-400 text-xs">
+                        Al-Saad · Mumbai Real Estate
+                      </p>
+                    </div>
+                    <div className="hidden sm:flex flex-col items-end text-right">
+                      <span className="text-[10px] uppercase tracking-[0.35em] text-stone-500 font-medium mb-1">
+                        Markets
+                      </span>
+                      <span className="text-stone-200 text-xs">
+                        Jogeshwari · Andheri
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Founder Story — third on mobile, left column on desktop */}
+          <div className="relative md:order-1 col-span-1 md:col-span-7 flex flex-col justify-between border border-white/10 rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 bg-[#050505]/60 backdrop-blur">
             {/* Section Label */}
             <motion.div
               className="mb-8"
@@ -69,12 +112,12 @@ const AboutSection: React.FC = () => {
               <div className="w-20 h-px bg-white/20" />
             </motion.div>
 
-            {/* Massive Title */}
+            {/* Massive Title — one line on mobile, two lines on desktop */}
             <div className="mt-2 sm:mt-4 overflow-hidden">
-              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light uppercase leading-[0.9] tracking-tight">
-                <div className="overflow-hidden">
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light uppercase leading-[0.9] tracking-tight flex flex-row flex-nowrap items-baseline gap-2 md:flex-col md:gap-0">
+                <div className="overflow-hidden shrink-0 md:shrink-auto">
                   <motion.span
-                    className="block"
+                    className="inline md:block"
                     initial={{ y: '100%', opacity: 0 }}
                     animate={isInView ? { y: '0%', opacity: 1 } : { y: '100%', opacity: 0 }}
                     transition={{ duration: 0.9, delay: 0.2, ease: 'easeOut' }}
@@ -82,9 +125,9 @@ const AboutSection: React.FC = () => {
                     Not Just
                   </motion.span>
                 </div>
-                <div className="overflow-hidden">
+                <div className="overflow-hidden shrink-0 md:shrink-auto md:ml-8 lg:ml-12">
                   <motion.span
-                    className="ml-8 sm:ml-12 block text-transparent"
+                    className="inline md:block text-transparent"
                     style={{ WebkitTextStroke: '2px white' }}
                     initial={{ y: '100%', opacity: 0 }}
                     animate={isInView ? { y: '0%', opacity: 1 } : { y: '100%', opacity: 0 }}
@@ -177,54 +220,6 @@ const AboutSection: React.FC = () => {
               <ArrowDownLeft className="h-7 w-7 sm:h-9 sm:w-9 stroke-1 text-white/20" />
             </div>
           </div>
-
-          {/* Right Column: Founder Portrait */}
-          <motion.div
-            className="relative col-span-1 md:col-span-5 min-h-[340px] md:min-h-[420px] overflow-hidden bg-[#050505] border border-white/10 rounded-3xl"
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
-            transition={{ duration: 0.9, delay: 0.6, ease: 'easeOut' }}
-          >
-            {/* Portrait Image */}
-            <div className="absolute inset-0 h-full w-full">
-              <div className="relative h-full w-full">
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop&crop=faces&auto=format&q=80"
-                  alt="Muhd Saad Patel, Founder of Al-Saad"
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
-                
-                {/* Gradient Overlay */}
-                <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black via-black/80 to-transparent" />
-
-                {/* Info Overlay */}
-                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-                  <div className="flex items-end justify-between gap-4">
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.35em] text-stone-400 font-medium mb-2">
-                        Founder
-                      </p>
-                      <p className="text-white text-lg sm:text-xl font-medium mb-1">
-                        Muhd Saad Patel
-                      </p>
-                      <p className="text-stone-400 text-xs">
-                        Al-Saad · Mumbai Real Estate
-                      </p>
-                    </div>
-                    <div className="hidden sm:flex flex-col items-end text-right">
-                      <span className="text-[10px] uppercase tracking-[0.35em] text-stone-500 font-medium mb-1">
-                        Markets
-                      </span>
-                      <span className="text-stone-200 text-xs">
-                        Jogeshwari · Andheri
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </div>
 
         {/* Slider control row */}
