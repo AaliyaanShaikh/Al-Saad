@@ -45,11 +45,14 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
         if (!res.ok) {
           let msg = `Could not save (${res.status}). Please try again.`;
           try {
-            const data = await res.json();
+            const text = await res.text();
+            const data = text.startsWith('{') ? JSON.parse(text) : null;
             if (data?.hint) msg = data.hint;
             else if (data?.error) msg = data.error;
+            else if (data?.detail) msg = data.detail;
+            else if (res.status === 404) msg = 'Endpoint not found. Set GOOGLE_SCRIPT_URL in Vercel → Settings → Environment Variables.';
           } catch {
-            if (res.status === 404) msg = 'Endpoint not found. Check .env has VITE_GOOGLE_SCRIPT_URL and restart dev server.';
+            if (res.status === 404) msg = 'Endpoint not found. Set GOOGLE_SCRIPT_URL in Vercel → Settings → Environment Variables.';
           }
           throw new Error(msg);
         }
