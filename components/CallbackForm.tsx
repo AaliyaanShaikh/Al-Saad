@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+/** POST to same-origin /api/callback (proxied to Google Sheets in dev; use serverless in prod) */
+const CALLBACK_API = '/api/callback';
+
 interface CallbackFormProps {
   isOpen: boolean;
   onClose: () => void;
@@ -15,22 +18,51 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setSubmitError(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', email: '', phone: '', message: '', preferredTime: '' });
-      onClose();
-    }, 2000);
+    setSubmitError(null);
+
+    try {
+        const res = await fetch(CALLBACK_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            preferredTime: formData.preferredTime,
+            message: formData.message
+          })
+        });
+        if (!res.ok) {
+          const msg = res.status === 404
+            ? 'Endpoint not found. Check .env has VITE_GOOGLE_SCRIPT_URL and restart dev server.'
+            : `Could not save (${res.status}). Please try again.`;
+          throw new Error(msg);
+        }
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({ name: '', email: '', phone: '', message: '', preferredTime: '' });
+        onClose();
+      }, 2000);
+    } catch (err) {
+      setIsSubmitting(false);
+      const isNetworkError = err instanceof TypeError && (err.message === 'Failed to fetch' || err.message?.includes('Load failed'));
+      const message = isNetworkError
+        ? 'Network error. Run the site with npm run dev, set VITE_GOOGLE_SCRIPT_URL in .env, and restart the dev server.'
+        : (err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+      setSubmitError(message);
+    }
   };
 
   if (!isOpen) return null;
@@ -150,6 +182,10 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
                 placeholder="Tell us what you'd like to discuss..."
               />
             </div>
+
+            {submitError && (
+              <p className="text-red-400 text-sm" role="alert">{submitError}</p>
+            )}
 
             <div className="flex flex-col-reverse sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-4">
               <button
