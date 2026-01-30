@@ -10,6 +10,8 @@ export interface ClayGridFeature {
   title?: string;
   text?: string;
   span?: string;
+  /** Optional URL — card becomes a link when set */
+  link?: string;
 }
 
 export interface Project {
