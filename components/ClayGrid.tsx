@@ -3,51 +3,23 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Fingerprint } from "lucide-react";
+import type { ClayGridFeature } from "@/types";
 
-interface ContentItem {
-  id?: string;
-  type: "img" | "text";
-  src?: string;
-  title?: string;
-  text?: string;
-  span?: string;
-}
-
+/**
+ * ClayGrid — display only. All cards are defined in clayGridConstants.tsx.
+ * To add, remove, or edit grid items, edit only clayGridConstants.tsx.
+ */
 interface ClayGridProps {
-  images?: string[];
-  content?: ContentItem[];
+  content: Omit<ClayGridFeature, "source">[];
   backgroundColor?: string;
   mergeWithBackground?: boolean;
 }
 
-const DEFAULT_IMAGES = [
-  "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1605106702734-205df224ecce?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1614850523060-8da1d56ae167?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop",
-];
-
 const ClayGrid: React.FC<ClayGridProps> = ({
-  images = DEFAULT_IMAGES,
   content,
   backgroundColor = "#0a0a0a",
   mergeWithBackground = true,
 }) => {
-  const defaultContent: ContentItem[] = content || [
-    { type: "img", src: images[0], span: "col-span-1 row-span-1" },
-    { type: "text", title: "RAW DATA", text: "Visualizing the unseen currents.", span: "col-span-1 row-span-1" },
-    { type: "img", src: images[1], span: "col-span-1 row-span-2" },
-    { type: "img", src: images[2], span: "col-span-2 row-span-1" },
-    { type: "text", title: "SYSTEM", text: "Architecture of the mind.", span: "col-span-1 row-span-1" },
-    { type: "img", src: images[3], span: "col-span-1 row-span-1" },
-    { type: "img", src: images[4], span: "col-span-1 row-span-1" },
-    { type: "img", src: images[5], span: "col-span-1 row-span-2" },
-    { type: "img", src: images[6], span: "col-span-2 row-span-2" },
-  ];
 
   const cardBg = mergeWithBackground ? "#0a0a0a" : backgroundColor;
   const isDark = cardBg === "#0a0a0a" || cardBg === "#000000";
@@ -59,18 +31,29 @@ const ClayGrid: React.FC<ClayGridProps> = ({
       className={mergeWithBackground ? "py-12 md:py-16" : "min-h-screen p-8 md:p-16"}
       style={mergeWithBackground ? undefined : { backgroundColor }}
     >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
-        {defaultContent.slice(0, 9).map((item, i) => (
+      {/* Mobile: horizontal scroll — fixed height, swipe through cards. Desktop: 3-col grid. */}
+      <div
+        className="flex md:grid overflow-x-auto md:overflow-visible snap-x md:snap-none snap-mandatory gap-4 md:gap-12 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto md:grid-cols-3 md:grid-auto-rows-[minmax(260px,1fr)] [&::-webkit-scrollbar]:hidden"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {content.slice(0, 9).map((item, i) => {
+          const isLarge = item.span?.includes("col-span-2");
+          return (
           <motion.div
             key={item.id ?? i}
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             whileHover={{ y: -10 }}
             transition={{ type: "spring", bounce: 0.4 }}
-            className={`rounded-[3rem] p-3 ${item.span?.includes("col-span-2") ? "md:col-span-2" : ""}`}
+            className={`flex-shrink-0 snap-center rounded-[3rem] p-3
+              ${isLarge ? "md:col-span-2" : ""}
+              md:min-h-0 md:w-auto md:h-full
+              ${isLarge
+                ? "w-[calc(100vw-2rem)] max-w-[calc(100vw-2rem)] aspect-video h-auto min-h-[180px] md:aspect-auto md:min-h-0 md:max-w-none"
+                : "h-[75vh] w-[42vh] min-h-[320px] min-w-[180px] md:min-h-0 md:min-w-0"}`}
             style={{ backgroundColor: cardBg, boxShadow: cardShadow }}
           >
-            <div className="w-full h-full rounded-[2.5rem] overflow-hidden relative group cursor-pointer">
+            <div className="w-full h-full min-h-0 rounded-[2.5rem] overflow-hidden relative group cursor-pointer">
               {item.type === "img" ? (
                 <>
                   <motion.img
@@ -95,7 +78,8 @@ const ClayGrid: React.FC<ClayGridProps> = ({
               </motion.div>
             </div>
           </motion.div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

@@ -1,9 +1,11 @@
 import { ClayGridFeature } from './types';
 
 /**
- * ClayGrid featured content — one entry per card.
- * Change each item below to edit that card. Use source: 'instagram' or 'youtube'
- * to show it when that filter is selected.
+ * Single source of truth for the Social / ClayGrid section.
+ * Edit only this file to add, remove, or change grid cards.
+ * - type: 'img' or 'text'
+ * - span: 'col-span-1 row-span-1' (small) or 'col-span-2 row-span-1' / 'col-span-2 row-span-2' (large)
+ * - source: 'instagram' | 'youtube' — which filter shows this card
  */
 export const CLAY_GRID_FEATURES: ClayGridFeature[] = [
   {
@@ -51,31 +53,31 @@ export const CLAY_GRID_FEATURES: ClayGridFeature[] = [
     span: 'col-span-1 row-span-1',
   },
   {
-    id: '10',
+    id: '7',
     source: 'instagram',
     type: 'img',
-    src: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop',
-    span: 'col-span-1 row-span-1',
-  },
+    src: 'https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=1000&auto=format&fit=crop',
+    span: 'col-span-1 row-span-2',
+  }, 
   {
-    id: '7',
+    id: '8',
     source: 'instagram',
     type: 'img',
     src: 'https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=1000&auto=format&fit=crop',
     span: 'col-span-1 row-span-2',
   },
   {
-    id: '8',
+    id: '9',
     source: 'youtube',
     type: 'img',
     src: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop',
     span: 'col-span-2 row-span-2',
   },
   {
-    id: '9',
+    id: '10',
     source: 'instagram',
     type: 'img',
-    src: 'https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=1000&auto=format&fit=crop',
-    span: 'col-span-1 row-span-2',
+    src: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop',
+    span: 'col-span-1 row-span-1',
   },
 ];
