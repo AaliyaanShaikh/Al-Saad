@@ -22,7 +22,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ links = defaultLinks }) => {
   const filteredContent = useMemo(() => {
     const features =
       filter === 'all'
-        ? CLAY_GRID_FEATURES.slice(0, 8)
+        ? CLAY_GRID_FEATURES
         : CLAY_GRID_FEATURES.filter((f) => f.source === filter);
     return features.map(({ id, source, ...item }) => ({ ...item, id }));
   }, [filter]);
