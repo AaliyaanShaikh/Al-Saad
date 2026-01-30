@@ -43,9 +43,14 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
           })
         });
         if (!res.ok) {
-          const msg = res.status === 404
-            ? 'Endpoint not found. Check .env has VITE_GOOGLE_SCRIPT_URL and restart dev server.'
-            : `Could not save (${res.status}). Please try again.`;
+          let msg = `Could not save (${res.status}). Please try again.`;
+          try {
+            const data = await res.json();
+            if (data?.hint) msg = data.hint;
+            else if (data?.error) msg = data.error;
+          } catch {
+            if (res.status === 404) msg = 'Endpoint not found. Check .env has VITE_GOOGLE_SCRIPT_URL and restart dev server.';
+          }
           throw new Error(msg);
         }
       setIsSubmitting(false);
