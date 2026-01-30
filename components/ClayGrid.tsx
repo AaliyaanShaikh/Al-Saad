@@ -36,7 +36,7 @@ const ClayGrid: React.FC<ClayGridProps> = ({
         className="flex md:grid overflow-x-auto md:overflow-visible snap-x md:snap-none snap-mandatory gap-4 md:gap-12 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto md:grid-cols-3 md:grid-auto-rows-[minmax(260px,1fr)] [&::-webkit-scrollbar]:hidden bg-transparent"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {content.slice(0, 9).map((item, i) => {
+        {content.slice(0, 8).map((item, i) => {
           const isLarge = item.span?.includes("col-span-2");
           const href = item.link;
           const cardClass = `flex-shrink-0 snap-center rounded-[3rem] p-3
