@@ -66,6 +66,24 @@ Environment variables are only applied on **new** deployments, so this step is r
 
 ---
 
+## Where the data is stored (form works but you don’t see rows)
+
+Data is written **only** to the **same Google Sheet that contains the Apps Script** (the one you opened when you went to **Extensions → Apps Script**).
+
+1. Open **that** spreadsheet (the one where you pasted the script).
+2. At the bottom, open the tab named **"Callback Form"** (the script creates this tab if it doesn’t exist).
+3. Columns: **Timestamp**, **Name**, **Email**, **Phone**, **Preferred Time**, **Message**.
+
+**Check that the script can write:**
+
+1. In the spreadsheet: **Extensions → Apps Script**.
+2. In the script editor, open the **Run** dropdown and choose **runTestWrite**.
+3. Click **Run** (and allow permissions if asked).
+4. Go back to the sheet and open the **Callback Form** tab — you should see a new test row.  
+   If that works, the script is fine; new form submissions will appear in the same tab after you redeploy the Web App if you changed the script.
+
+---
+
 ## If it still fails
 
 - **500 error when submitting:**  
