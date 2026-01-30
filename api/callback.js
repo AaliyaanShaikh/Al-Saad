@@ -24,7 +24,7 @@ function sendJson(res, status, data) {
   res.status(status).setHeader('Content-Type', 'application/json').end(JSON.stringify(data));
 }
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   try {
     res.setHeader('Content-Type', 'application/json');
 
