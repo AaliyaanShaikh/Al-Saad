@@ -364,8 +364,8 @@ const App: React.FC = () => {
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 sm:gap-16 md:gap-24 lg:gap-32 mb-20 sm:mb-32 md:mb-40">
-            <div className="lg:col-span-2 reveal animate-slide-left">
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_2.15fr] gap-12 sm:gap-16 md:gap-24 lg:gap-32 mb-20 sm:mb-32 md:mb-40">
+            <div className="reveal animate-slide-left">
               <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-medium text-white mb-4 sm:mb-6 md:mb-8 lg:mb-10 tracking-[0.2em] hover-lift">AL-SAAD</h1>
               <p className="text-stone-600 max-w-sm mb-8 sm:mb-12 md:mb-16 leading-relaxed text-base font-light">
                 Let's find your perfect property together. 
@@ -392,13 +392,13 @@ const App: React.FC = () => {
                 <li><a href="#contact" className="hover:text-white transition-colors hover-lift inline-block">Contact</a></li>
               </ul>
             </div>
-            <div className="lg:col-span-2 reveal animate-scale-in">
+            <div className="reveal animate-scale-in">
               <h5 className="text-[9px] sm:text-[10px] uppercase tracking-[0.5em] sm:tracking-[0.6em] font-medium text-stone-500 mb-6 sm:mb-8 md:mb-10">Get In Touch</h5>
               <div className="space-y-4 sm:space-y-6">
                 <div className="bg-[#0a0a0a] p-6 sm:p-8 md:p-10 rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-between border border-white/5 shadow-2xl hover-lift hover-glow transition-all">
                   <div className="flex-1 min-w-0">
                     <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] font-medium text-stone-600 mb-2">Email</p>
-                    <p className="text-white font-medium text-sm sm:text-base truncate">alsaad.in@gmail.com</p>
+                    <p className="text-white font-medium text-sm sm:text-base">muhdsaadpatel786@gmail.com</p>
                   </div>
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white text-black rounded-full flex items-center justify-center shadow-xl hover-scale transition-transform flex-shrink-0 ml-4">
                     <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>

@@ -135,7 +135,7 @@ const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
               If you have any questions about these Terms of Service, please contact us:
             </p>
             <div className="mt-4 space-y-2">
-              <p><strong className="text-white">Email:</strong> alsaad.in@gmail.com</p>
+              <p><strong className="text-white">Email:</strong> muhdsaadpatel786@gmail.com</p>
               <p><strong className="text-white">Phone:</strong> +91 87960 28980</p>
             </div>
           </section>
