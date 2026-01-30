@@ -4,18 +4,12 @@
  * GET /api/callback returns { ok, hasGoogleScriptUrl } for debugging.
  */
 
-function readBody(req) {
+/** Read raw request body as string (when req.body not set or stream not consumed). */
+function readRawBody(req) {
   return new Promise((resolve, reject) => {
     const chunks = [];
     req.on('data', (chunk) => chunks.push(chunk));
-    req.on('end', () => {
-      try {
-        const raw = Buffer.concat(chunks).toString('utf8');
-        resolve(raw ? JSON.parse(raw) : {});
-      } catch {
-        resolve({});
-      }
-    });
+    req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
     req.on('error', reject);
   });
 }
@@ -48,24 +42,25 @@ export default async function handler(req, res) {
       return;
     }
 
-    let body = req.body;
-    if (body == null || typeof body !== 'object') {
-      if (req && typeof req.on === 'function') {
-        try {
-          body = await readBody(req);
-        } catch {
-          body = {};
-        }
-      } else {
-        body = {};
+    // Build body string to forward: Vercel may give req.body as object or we read raw stream
+    let bodyStr = null;
+    if (req.body != null) {
+      if (typeof req.body === 'string') bodyStr = req.body;
+      else if (typeof req.body === 'object') bodyStr = JSON.stringify(req.body);
+    }
+    if (!bodyStr && typeof req.on === 'function') {
+      try {
+        bodyStr = await readRawBody(req);
+      } catch {
+        bodyStr = '{}';
       }
     }
-    if (body == null || typeof body !== 'object') body = {};
+    if (!bodyStr) bodyStr = '{}';
 
     const forward = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
+      body: bodyStr,
     });
     const text = await forward.text();
 
