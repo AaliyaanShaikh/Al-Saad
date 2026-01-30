@@ -48,11 +48,15 @@ const CallbackForm: React.FC<CallbackFormProps> = ({ isOpen, onClose }) => {
             const text = await res.text();
             const data = text.startsWith('{') ? JSON.parse(text) : null;
             if (data?.hint) msg = data.hint;
+            else if (data?.error && data?.detail) msg = `${data.error}: ${String(data.detail).slice(0, 300)}`;
             else if (data?.error) msg = data.error;
-            else if (data?.detail) msg = data.detail;
+            else if (data?.detail) msg = String(data.detail).slice(0, 300);
             else if (res.status === 404) msg = 'Endpoint not found. Set GOOGLE_SCRIPT_URL in Vercel → Settings → Environment Variables.';
-          } catch {
-            if (res.status === 404) msg = 'Endpoint not found. Set GOOGLE_SCRIPT_URL in Vercel → Settings → Environment Variables.';
+            else if (res.status === 500) msg = 'Server error (500). Open your-site.vercel.app/api/callback in a browser — if hasGoogleScriptUrl is false, add GOOGLE_SCRIPT_URL in Vercel → Settings → Environment Variables and redeploy.';
+            else if (text.length > 0) msg = `Server: ${text.slice(0, 200).replace(/\s+/g, ' ')}`;
+          } catch (_e) {
+            if (res.status === 500) msg = 'Server error (500). Check Vercel → Project → Settings → Environment Variables and add GOOGLE_SCRIPT_URL, then redeploy.';
+            else if (res.status === 404) msg = 'Endpoint not found. Set GOOGLE_SCRIPT_URL in Vercel.';
           }
           throw new Error(msg);
         }
