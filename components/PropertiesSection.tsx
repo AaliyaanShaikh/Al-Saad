@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Project } from '../types';
-import BrochureModal from './BrochureModal';
 
 interface PropertiesSectionProps {
   properties: Project[];
@@ -9,7 +8,6 @@ interface PropertiesSectionProps {
 const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => {
   const [scrollY, setScrollY] = useState(0);
   const [activeFilter, setActiveFilter] = useState<'all' | 'exclusive' | 'archived'>('exclusive');
-  const [brochureOpen, setBrochureOpen] = useState<{ pdfUrl: string; title: string } | null>(null);
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
 
   useEffect(() => {
@@ -90,16 +88,6 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
           if (!id) return;
           const p = properties.find(pr => pr.id === id);
           if (!p) return;
-          if (p.brochure) {
-            const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-            const brochureUrl = encodeURI(p.brochure);
-            if (isMobile) {
-              window.open(brochureUrl, '_blank', 'noopener,noreferrer');
-              return;
-            }
-            setBrochureOpen({ pdfUrl: p.brochure, title: p.title });
-            return;
-          }
           if (p.link && p.link !== '#') {
             window.open(p.link, '_blank');
           } else {
@@ -174,16 +162,6 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
           )
         })}
       </div>
-
-      {brochureOpen && (
-        <BrochureModal
-          key={`${brochureOpen.pdfUrl}|${brochureOpen.title}`}
-          isOpen={!!brochureOpen}
-          onClose={() => setBrochureOpen(null)}
-          pdfUrl={brochureOpen.pdfUrl}
-          title={brochureOpen.title}
-        />
-      )}
     </section>
   );
 };
