@@ -29,24 +29,26 @@ const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, pdfUrl, 
 
   return (
     <div
-      className="fixed inset-0 z-[300] flex items-center justify-center p-2 sm:p-4 bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-[300] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/80 backdrop-blur-sm"
+      style={{ height: '100dvh' }}
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label={title ? `Brochure: ${title}` : 'Brochure'}
     >
       <div
-        className="relative w-full max-w-6xl max-h-[95vh] flex flex-col bg-[#0a0a0a] border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+        className="relative w-full h-full sm:h-auto sm:max-h-[95vh] sm:max-w-6xl flex flex-col bg-[#0a0a0a] border-0 sm:border border-white/10 rounded-none sm:rounded-2xl shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
+        style={{ minHeight: 0 }}
       >
         <div className="flex items-center justify-between flex-shrink-0 px-4 py-3 border-b border-white/10">
-          <span className="text-sm font-medium text-white truncate">
+          <span className="text-sm font-medium text-white truncate pr-2">
             {title ? `${title} – Brochure` : 'Brochure'}
           </span>
           <button
             type="button"
             onClick={onClose}
-            className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white transition-colors"
+            className="flex-shrink-0 p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white transition-colors touch-manipulation"
             aria-label="Close"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -54,7 +56,7 @@ const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, pdfUrl, 
             </svg>
           </button>
         </div>
-        <div className="flex-1 min-h-0 flex flex-col relative min-h-[80vh]">
+        <div className="flex-1 min-h-0 flex flex-col relative overflow-hidden">
           {!pdfLoaded && (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-[#0a0a0a]">
               <div className="w-10 h-10 border-2 border-white/20 border-t-white rounded-full animate-spin" />
@@ -64,7 +66,8 @@ const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, pdfUrl, 
           <iframe
             src={encodeURI(pdfUrl)}
             title={title ? `Brochure for ${title}` : 'Brochure'}
-            className={`w-full flex-1 min-h-[80vh] border-0 transition-opacity duration-300 ${pdfLoaded ? 'opacity-100' : 'opacity-0'}`}
+            className={`w-full flex-1 min-h-0 border-0 transition-opacity duration-300 ${pdfLoaded ? 'opacity-100' : 'opacity-0'}`}
+            style={{ minHeight: '50vh' }}
             onLoad={() => setPdfLoaded(true)}
           />
         </div>
