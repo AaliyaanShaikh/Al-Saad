@@ -81,7 +81,7 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
         </div>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-y-16 sm:gap-y-24 md:gap-y-32 gap-x-6 sm:gap-x-8 md:gap-x-12 relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-y-16 sm:gap-y-24 md:gap-y-32 gap-x-6 sm:gap-x-8 md:gap-x-12">
         {filteredProperties.map((property, idx) => {
           // Make property 7 (id: '7') regular size to fill remaining space
           const isLarge = idx % 3 === 0 && property.id !== '7';
@@ -92,27 +92,31 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
             >
               <div 
                 className={`property-card-image-clip parallax-container relative overflow-hidden bg-[#0a0a0a] mb-6 sm:mb-8 md:mb-10 cursor-pointer transition-all duration-700 ${isLarge ? 'aspect-[21/9]' : 'aspect-[4/5]'}`}
-                data-property-id={property.id}
+                data-brochure={property.brochure ?? ''}
+                data-title={property.title ?? ''}
+                data-link={property.link ?? ''}
                 onClick={(e) => {
-                  const id = (e.currentTarget as HTMLElement).dataset.propertyId;
-                  if (!id) return;
-                  const p = properties.find(pr => pr.id === id);
-                  if (!p) return;
-                  if (p.brochure) {
+                  const el = e.currentTarget;
+                  const brochure = el.dataset.brochure;
+                  const title = el.dataset.title ?? '';
+                  const link = el.dataset.link;
+                  if (brochure) {
                     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-                    const brochureUrl = encodeURI(p.brochure);
+                    const brochureUrl = encodeURI(brochure);
                     if (isMobile) {
                       window.open(brochureUrl, '_blank', 'noopener,noreferrer');
                       return;
                     }
-                    setBrochureOpen({ pdfUrl: p.brochure, title: p.title });
+                    setBrochureOpen({ pdfUrl: brochure, title });
                     return;
                   }
-                  if (p.link && p.link !== '#') {
-                    window.open(p.link, '_blank');
+                  if (link && link !== '#') {
+                    window.open(link, '_blank');
                   } else {
                     const contactSection = document.getElementById('contact');
-                    if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                   }
                 }}
               >
@@ -173,7 +177,6 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
 
       {brochureOpen && (
         <BrochureModal
-          key={`${brochureOpen.pdfUrl}|${brochureOpen.title}`}
           isOpen={!!brochureOpen}
           onClose={() => setBrochureOpen(null)}
           pdfUrl={brochureOpen.pdfUrl}

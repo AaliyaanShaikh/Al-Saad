@@ -56,7 +56,11 @@ const App: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    if (appState !== AppState.HOME) {
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 50px 0px 50px' };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -65,15 +69,13 @@ const App: React.FC = () => {
       });
     }, observerOptions);
 
-    if (appState === AppState.HOME) {
-      // Observe all reveal elements
-      setTimeout(() => {
-        document.querySelectorAll('.reveal, .reveal-pop').forEach(el => observer.observe(el));
-      }, 100);
-    }
-    
+    const timeoutId = setTimeout(() => {
+      document.querySelectorAll('.reveal, .reveal-pop').forEach((el) => observer.observe(el));
+    }, 150);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
       observer.disconnect();
     };
   }, [appState]);
@@ -276,9 +278,9 @@ const App: React.FC = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vw] border border-white/5 rounded-full pointer-events-none reveal animate-rotate-slow" style={{ animationDuration: '30s' }} />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] border border-white/5 rounded-full pointer-events-none animate-rotate-slow" style={{ animationDuration: '20s', animationDirection: 'reverse' }} />
           
-          {/* Floating Shapes */}
-          <div className="absolute top-10 sm:top-20 left-4 sm:left-10 md:left-20 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 border border-white/5 rounded-full animate-float"></div>
-          <div className="absolute bottom-10 sm:bottom-20 right-4 sm:right-10 md:right-20 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 border border-white/5 rounded-full animate-float-reverse"></div>
+          {/* Floating Shapes - pointer-events-none so they never block clicks on sections above (e.g. property cards) */}
+          <div className="absolute top-10 sm:top-20 left-4 sm:left-10 md:left-20 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 border border-white/5 rounded-full animate-float pointer-events-none"></div>
+          <div className="absolute bottom-10 sm:bottom-20 right-4 sm:right-10 md:right-20 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 border border-white/5 rounded-full animate-float-reverse pointer-events-none"></div>
           
           <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 md:px-10 relative z-10">
             <h3 className="text-stone-700 uppercase tracking-[0.8em] sm:tracking-[1em] text-[9px] sm:text-[10px] font-medium mb-12 sm:mb-16 md:mb-20 reveal-pop">Work</h3>
