@@ -22,7 +22,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       
       <div className="relative h-[400px] overflow-hidden">
         <img 
-          src={project.image} 
+          src={project.image ? encodeURI(project.image) : project.image} 
           alt={project.title}
           loading="lazy"
           decoding="async"

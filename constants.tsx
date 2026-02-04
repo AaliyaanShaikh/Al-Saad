@@ -7,34 +7,34 @@ import { Project } from './types';
 export const MOCK_PROJECTS: Project[] = [
   {
     id: '1',
-    title: 'Roswalt Zaiden',
-    description: 'INDIA\'S BIGGEST RESIDENTIAL PROJECT by LAUNCH, Spacious 1, 2 & 3BHK houses for you to "LIVE A CELEB LIFE"',
+    title: 'Vision Heights',
+    description: 'Freehold Land | Nearing Possession | Jogeshwari West Prime | Western Suburbs By Fiona Realty',
     category: 'exclusive',
     year: '2026',
     // To use a local image: Place image in /public folder and use '/filename.jpg'
     // Example: image: '/IMG_4653.jpg'
-    image: '/screenshot-roswalt.png',
+    image: '/screenshot-2026-02-04-vision.png',
     tags: ['Luxury', 'Villa', 'Premium'],
-    link: 'https://www.youtube.com/watch?v=C4tyDdTRhmM',
+    link: '#',
     location: 'Upcoming Project',
-    price: '1.80 - 3.90 Cr',
-    beds: '1, 2 & 3',
-    sqft: '400-1200'
+    price: '1.57 - 2 Cr',
+    beds: '2 & Grand 2',
+    sqft: '500-900'
   },
   {
     id: '2',
-    title: 'SAYBA NOOR 2.0',
+    title: 'Aksa',
     description: 'Sophisticated House with city skyline views, high-end finishes, and premium location in the heart of the city. Ideal for professionals who appreciate urban luxury and convenience.',
     category: 'exclusive',
     year: '2026',
     // Update image path here: '/your-image-filename.jpg'
-    image: '/Screenshot-sayba.png',
-    tags: ['Sayba Noor 2.0', 'Jogeshwari', 'Modern'],
+    image: '/screenshot-2026-02-04-sayba.png',
+    tags: ['Aksa', 'Jogeshwari', 'Modern'],
     link: '#',
-    location: 'Sahankar Road',
-    price: '1.28 - 2.41 Cr',
-    beds: '1, 2 & 3',
-    sqft: '460-1000'
+    location: 'Aqsa Masjid Road',
+    price: 'Starting 1.75cr',
+    beds: '2 & 3',
+    sqft: '621-1200'
   },
   {
     id: '3',
@@ -68,35 +68,34 @@ export const MOCK_PROJECTS: Project[] = [
   },
   {
     id: '5',
-    title: 'Investment Property',
-    description: 'High-yield investment opportunity with excellent rental potential and strong appreciation prospects. A smart choice for investors seeking long-term returns in a growing market.',
+    title: 'Roswalt Zaiden',
+    description: 'INDIA\'S BIGGEST RESIDENTIAL PROJECT by LAUNCH, Spacious 1, 2 & 3BHK houses for you to "LIVE A CELEB LIFE"',
     category: 'archived',
-    year: '2023',
-    // Update image path here: '/your-image-filename.jpg'
-    // Uses local demo image placed in public folder
-    image: '/demo-investment-property.jpg',
-    tags: ['Investment', 'Rental', 'ROI'],
-    link: '#',
-    location: 'Investment Zone',
-    price: '$650K',
-    beds: '4',
-    sqft: '3,500'
+    year: '2026',
+    // To use a local image: Place image in /public folder and use '/filename.jpg'
+    // Example: image: '/IMG_4653.jpg'
+    image: '/screenshot-roswalt.png',
+    tags: ['Luxury', 'Villa', 'Premium'],
+    link: 'https://www.youtube.com/watch?v=C4tyDdTRhmM',
+    location: 'Upcoming Project',
+    price: '1.80 - 3.90 Cr',
+    beds: '1, 2 & 3',
+    sqft: '400-1200'
   },
   {
     id: '6',
-    title: 'Family Home',
-    description: 'Spacious family home with multiple bedrooms, large garden, and family-friendly neighborhood. Perfect for growing families who value space, comfort, and community living.',
+    title: 'SAYBA NOOR 2.0',
+    description: 'Sophisticated House with city skyline views, high-end finishes, and premium location in the heart of the city. Ideal for professionals who appreciate urban luxury and convenience.',
     category: 'archived',
-    year: '2023',
+    year: '2026',
     // Update image path here: '/your-image-filename.jpg'
-    // Uses local demo image placed in public folder
-    image: '/demo-family-home.jpg',
-    tags: ['Family', 'Spacious', 'Garden'],
+    image: '/Screenshot-sayba.png',
+    tags: ['Sayba Noor 2.0', 'Jogeshwari', 'Modern'],
     link: '#',
-    location: 'Suburban',
-    price: '$950K',
-    beds: '4',
-    sqft: '3,800'
+    location: 'Sahankar Road',
+    price: '1.28 - 2.41 Cr',
+    beds: '1, 2 & 3',
+    sqft: '460-1000'
   },
   {
     id: '7',
