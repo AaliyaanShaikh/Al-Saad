@@ -44,7 +44,7 @@ const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, pdfUrl, 
       aria-label={title ? `Brochure: ${title}` : 'Brochure'}
     >
       <div
-        className="relative w-full h-full sm:h-auto sm:max-h-[95vh] sm:max-w-6xl flex flex-col bg-[#0a0a0a] border-0 sm:border border-white/10 rounded-none sm:rounded-2xl shadow-2xl overflow-hidden"
+        className="relative w-full h-full sm:h-auto sm:max-h-[98vh] sm:max-w-6xl flex flex-col bg-[#0a0a0a] border-0 sm:border border-white/10 rounded-none sm:rounded-2xl shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
         style={{ minHeight: 0 }}
       >
