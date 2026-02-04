@@ -23,6 +23,8 @@ export interface Project {
   image: string;
   tags: string[];
   link?: string;
+  /** Optional PDF path (in /public). When set, clicking the property opens the brochure in a popup instead of navigating. */
+  brochure?: string;
   location?: string;
   price?: string;
   beds?: string;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Project } from '../types';
+import BrochureModal from './BrochureModal';
 
 interface PropertiesSectionProps {
   properties: Project[];
@@ -8,6 +9,7 @@ interface PropertiesSectionProps {
 const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => {
   const [scrollY, setScrollY] = useState(0);
   const [activeFilter, setActiveFilter] = useState<'all' | 'exclusive' | 'archived'>('exclusive');
+  const [brochureOpen, setBrochureOpen] = useState<{ pdfUrl: string; title: string } | null>(null);
 
   useEffect(() => {
     const handleScroll = () => requestAnimationFrame(() => setScrollY(window.scrollY));
@@ -90,10 +92,13 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
               <div 
                 className={`property-card-image-clip parallax-container relative overflow-hidden bg-[#0a0a0a] mb-6 sm:mb-8 md:mb-10 cursor-pointer transition-all duration-700 ${isLarge ? 'aspect-[21/9]' : 'aspect-[4/5]'}`}
                 onClick={() => {
+                  if (property.brochure) {
+                    setBrochureOpen({ pdfUrl: property.brochure, title: property.title });
+                    return;
+                  }
                   if (property.link && property.link !== '#') {
                     window.open(property.link, '_blank');
                   } else {
-                    // Scroll to contact section or open callback form
                     const contactSection = document.getElementById('contact');
                     if (contactSection) {
                       contactSection.scrollIntoView({ behavior: 'smooth' });
@@ -152,6 +157,15 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
           )
         })}
       </div>
+
+      {brochureOpen && (
+        <BrochureModal
+          isOpen={!!brochureOpen}
+          onClose={() => setBrochureOpen(null)}
+          pdfUrl={brochureOpen.pdfUrl}
+          title={brochureOpen.title}
+        />
+      )}
     </section>
   );
 };

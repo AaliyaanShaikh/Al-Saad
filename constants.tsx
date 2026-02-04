@@ -16,6 +16,7 @@ export const MOCK_PROJECTS: Project[] = [
     image: '/screenshot-2026-02-04-vision.png',
     tags: ['Luxury', 'Villa', 'Premium'],
     link: '#',
+    brochure: '/brochures/A WING - Vision Heights by Fiona Realty .pdf', // Opens in popup on click
     location: 'Upcoming Project',
     price: '1.57 - 2 Cr',
     beds: '2 & Grand 2',
