@@ -7,8 +7,15 @@ interface BrochureModalProps {
   title?: string;
 }
 
+/** Build PDF URL with "original size" (100% zoom) so it isn’t zoomed in on mobile. */
+function pdfUrlOriginalSize(pdfUrl: string): string {
+  const base = pdfUrl.split('#')[0];
+  return `${encodeURI(base)}#zoom=100`;
+}
+
 const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, pdfUrl, title }) => {
   const [pdfLoaded, setPdfLoaded] = useState(false);
+  const iframeSrc = pdfUrlOriginalSize(pdfUrl);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -64,7 +71,7 @@ const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, pdfUrl, 
             </div>
           )}
           <iframe
-            src={encodeURI(pdfUrl)}
+            src={iframeSrc}
             title={title ? `Brochure for ${title}` : 'Brochure'}
             className={`w-full flex-1 min-h-0 border-0 transition-opacity duration-300 ${pdfLoaded ? 'opacity-100' : 'opacity-0'}`}
             style={{ minHeight: '50vh' }}
