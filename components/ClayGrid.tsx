@@ -51,6 +51,8 @@ const ClayGrid: React.FC<ClayGridProps> = ({
                   <>
                     <motion.img
                       src={item.src.startsWith("/") ? encodeURI(item.src) : item.src}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-700 ease-in-out"
                       alt=""
                     />

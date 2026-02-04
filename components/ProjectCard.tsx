@@ -7,6 +7,7 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <div 
@@ -20,13 +21,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       {/* Animated Border Glow */}
       <div className={`absolute inset-0 border-2 border-white/20 rounded-luxury transition-opacity duration-500 ${isHovered ? 'opacity-100 animate-glow' : 'opacity-0'}`}></div>
       
-      <div className="relative h-[400px] overflow-hidden">
+      <div className="relative h-[400px] overflow-hidden bg-[#0a0a0a]">
         <img 
           src={project.image ? encodeURI(project.image) : project.image} 
           alt={project.title}
           loading="lazy"
           decoding="async"
-          className={`w-full h-full object-cover grayscale transition-all duration-[2s] ${isHovered ? 'scale-110 grayscale-0' : 'scale-100 grayscale'}`}
+          className={`w-full h-full object-cover grayscale transition-all duration-[2s] ${isHovered ? 'scale-110 grayscale-0' : 'scale-100 grayscale'} ${imageLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}
+          onLoad={() => setImageLoaded(true)}
         />
         <div className={`absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent transition-opacity duration-500 ${isHovered ? 'opacity-60' : 'opacity-80'}`} />
         

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface BrochureModalProps {
   isOpen: boolean;
@@ -8,11 +8,14 @@ interface BrochureModalProps {
 }
 
 const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, pdfUrl, title }) => {
+  const [pdfLoaded, setPdfLoaded] = useState(false);
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
     if (isOpen) {
+      setPdfLoaded(false);
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
     }
@@ -20,7 +23,7 @@ const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, pdfUrl, 
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = '';
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, pdfUrl]);
 
   if (!isOpen) return null;
 
@@ -51,11 +54,18 @@ const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, pdfUrl, 
             </svg>
           </button>
         </div>
-        <div className="flex-1 min-h-0 flex flex-col">
+        <div className="flex-1 min-h-0 flex flex-col relative min-h-[80vh]">
+          {!pdfLoaded && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-[#0a0a0a]">
+              <div className="w-10 h-10 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+              <p className="text-sm text-stone-500">Loading brochure…</p>
+            </div>
+          )}
           <iframe
             src={encodeURI(pdfUrl)}
             title={title ? `Brochure for ${title}` : 'Brochure'}
-            className="w-full flex-1 min-h-[80vh] border-0"
+            className={`w-full flex-1 min-h-[80vh] border-0 transition-opacity duration-300 ${pdfLoaded ? 'opacity-100' : 'opacity-0'}`}
+            onLoad={() => setPdfLoaded(true)}
           />
         </div>
       </div>

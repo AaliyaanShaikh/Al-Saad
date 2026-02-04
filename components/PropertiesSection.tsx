@@ -10,6 +10,7 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
   const [scrollY, setScrollY] = useState(0);
   const [activeFilter, setActiveFilter] = useState<'all' | 'exclusive' | 'archived'>('exclusive');
   const [brochureOpen, setBrochureOpen] = useState<{ pdfUrl: string; title: string } | null>(null);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const handleScroll = () => requestAnimationFrame(() => setScrollY(window.scrollY));
@@ -120,12 +121,15 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
                     <img
                       src={property.image ? encodeURI(property.image) : property.image}
                       alt={property.title}
-                      loading="lazy"
+                      loading={idx < 2 ? 'eager' : 'lazy'}
                       decoding="async"
-                      className="absolute inset-0 w-full h-full object-cover object-center"
+                      fetchPriority={idx < 2 ? 'high' : undefined}
+                      className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ${loadedImages.has(property.id) ? 'opacity-100' : 'opacity-0'}`}
                       style={{ borderRadius: '1rem' }}
+                      onLoad={() => setLoadedImages(prev => new Set(prev).add(property.id))}
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = '/fallback-property.png';
+                        setLoadedImages(prev => new Set(prev).add(property.id));
                       }}
                     />
                   </div>
