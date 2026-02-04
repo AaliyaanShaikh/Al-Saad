@@ -94,6 +94,11 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
                 className={`property-card-image-clip parallax-container relative overflow-hidden bg-[#0a0a0a] mb-6 sm:mb-8 md:mb-10 cursor-pointer transition-all duration-700 ${isLarge ? 'aspect-[21/9]' : 'aspect-[4/5]'}`}
                 onClick={() => {
                   if (property.brochure) {
+                    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+                    if (isMobile) {
+                      window.open(property.brochure, '_blank', 'noopener,noreferrer');
+                      return;
+                    }
                     setBrochureOpen({ pdfUrl: property.brochure, title: property.title });
                     return;
                   }
