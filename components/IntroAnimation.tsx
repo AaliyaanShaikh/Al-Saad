@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface IntroAnimationProps {
   onComplete: () => void;
@@ -7,15 +7,19 @@ interface IntroAnimationProps {
 
 const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
   const [stage, setStage] = useState(0);
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete;
 
   useEffect(() => {
-    const timers = [
-      setTimeout(() => setStage(1), 600),  // Logo reveal
-      setTimeout(() => setStage(2), 2600), // Fade out
-      setTimeout(() => onComplete(), 3800) // Complete
-    ];
-    return () => timers.forEach(t => clearTimeout(t));
-  }, [onComplete]);
+    const t1 = setTimeout(() => setStage(1), 600);   // Logo reveal
+    const t2 = setTimeout(() => setStage(2), 2600); // Fade out
+    const t3 = setTimeout(() => onCompleteRef.current(), 3800); // Complete
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, []); // Run once so timers are never cleared by re-run (e.g. Strict Mode)
 
   return (
     <div className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black transition-opacity duration-[1.2s] ease-in-out ${stage === 2 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>

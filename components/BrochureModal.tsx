@@ -7,15 +7,17 @@ interface BrochureModalProps {
   title?: string;
 }
 
-/** Build PDF URL with "original size" (100% zoom) so it isn’t zoomed in on mobile. */
-function pdfUrlOriginalSize(pdfUrl: string): string {
+/** Encoded PDF URL for iframe (spaces etc.). No #zoom=100 - it can stop some viewers from loading. */
+function encodedPdfUrl(pdfUrl: string): string {
   const base = pdfUrl.split('#')[0];
-  return `${encodeURI(base)}#zoom=100`;
+  return encodeURI(base);
 }
+
+const LOADING_HIDE_DELAY_MS = 2000;
 
 const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, pdfUrl, title }) => {
   const [pdfLoaded, setPdfLoaded] = useState(false);
-  const iframeSrc = pdfUrlOriginalSize(pdfUrl);
+  const iframeSrc = encodedPdfUrl(pdfUrl);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -25,6 +27,12 @@ const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, pdfUrl, 
       setPdfLoaded(false);
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
+      const fallback = setTimeout(() => setPdfLoaded(true), LOADING_HIDE_DELAY_MS);
+      return () => {
+        clearTimeout(fallback);
+        document.removeEventListener('keydown', handleEscape);
+        document.body.style.overflow = '';
+      };
     }
     return () => {
       document.removeEventListener('keydown', handleEscape);
@@ -71,11 +79,13 @@ const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, pdfUrl, 
             </div>
           )}
           <iframe
+            key={pdfUrl}
             src={iframeSrc}
             title={title ? `Brochure for ${title}` : 'Brochure'}
             className={`w-full flex-1 min-h-0 border-0 transition-opacity duration-300 ${pdfLoaded ? 'opacity-100' : 'opacity-0'}`}
             style={{ minHeight: '50vh' }}
             onLoad={() => setPdfLoaded(true)}
+            referrerPolicy="no-referrer"
           />
         </div>
       </div>
