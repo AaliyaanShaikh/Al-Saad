@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { Parallax } from '@/components/motion/Parallax';
 import { Magnetic } from '@/components/motion/Magnetic';
 import { Reveal } from '@/components/motion/Reveal';
 import { useCallModal } from '@/components/chrome/Providers';
@@ -11,45 +10,50 @@ export function FinalCTA() {
   const { openCall } = useCallModal();
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-paper-3">
-      <div className="absolute inset-0">
-        <Parallax amount={8} className="h-full w-full">
-          <div className="relative h-[120%] w-full -translate-y-[10%]">
-            <Image
-              src={publicSrc('/IMG_4653.jpg')}
-              alt=""
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-          </div>
-        </Parallax>
+    <section id="contact" className="relative isolate min-h-[85svh] overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src={publicSrc('/teamedit.png')}
+          alt=""
+          fill
+          priority={false}
+          className="object-cover object-center"
+          sizes="100vw"
+        />
         <div className="absolute inset-0 bg-void/65" />
+        <div className="absolute inset-0 bg-gradient-to-t from-void/85 via-void/45 to-void/55" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[70vh] max-w-4xl flex-col items-center justify-center px-5 py-28 text-center md:px-10">
+      <div className="relative mx-auto flex min-h-[85svh] max-w-3xl flex-col items-center justify-center px-5 py-28 text-center md:px-10">
         <Reveal>
-          <p className="kicker mb-5 text-gold-bright">Begin</p>
-          <h2 className="display mb-6 text-4xl text-ivory md:text-6xl">
-            Ready when you are.
+          <p className="display mb-6 text-5xl tracking-[0.16em] text-ivory md:text-6xl">
+            {site.wordmark}
+          </p>
+          <h2 className="display mb-6 text-3xl text-ivory md:text-5xl">
+            One honest conversation.
           </h2>
-          <p className="mx-auto mb-10 max-w-lg text-base leading-relaxed text-ivory/70">
-            Whether you’re buying now, later, or simply reading the market — one clear conversation
-            is enough to start.
+          <p className="mx-auto mb-10 max-w-md text-base leading-relaxed text-ivory/75">
+            Buying now, later, or simply reading the market — start with clarity.
           </p>
           <Magnetic onClick={openCall} className="btn">
             Request a call
             <span className="btn-arrow">→</span>
           </Magnetic>
-          <p className="mt-8 text-sm text-ivory/55">
-            <a href={`tel:${site.phone.replace(/\s/g, '')}`} className="hover:text-ivory">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-sm text-ivory/55">
+            <a
+              href={`tel:${site.phone.replace(/\s/g, '')}`}
+              className="tracking-wide hover:text-ivory"
+            >
               {site.phone}
             </a>
-            {' · '}
-            <a href={`mailto:${site.email}`} className="hover:text-ivory">
+            <span className="opacity-40">/</span>
+            <a
+              href={`mailto:${site.email}`}
+              className="normal-case tracking-normal hover:text-ivory"
+            >
               {site.email}
             </a>
-          </p>
+          </div>
         </Reveal>
       </div>
     </section>

@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${fraunces.variable} ${instrument.variable}`}>
-      <body className="bg-paper text-ink antialiased">
+      <body className="bg-void text-ink antialiased">
         <Providers>
           <SmoothScroll>
             <AppShell>

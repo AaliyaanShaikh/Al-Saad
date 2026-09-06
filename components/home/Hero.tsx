@@ -28,20 +28,15 @@ export function Hero() {
 
       gsap.fromTo(
         media,
-        { borderRadius: 32, scale: 0.92, y: 40 },
+        { scale: 1.08 },
         {
-          borderRadius: 0,
           scale: 1,
-          y: 0,
-          width: '100vw',
-          height: '100vh',
           ease: 'none',
           scrollTrigger: {
             trigger: section,
             start: 'top top',
-            end: '+=90%',
+            end: 'bottom top',
             scrub: true,
-            pin: true,
           },
         }
       );
@@ -49,11 +44,12 @@ export function Hero() {
       if (hintRef.current) {
         gsap.to(hintRef.current, {
           opacity: 0,
+          y: 12,
           ease: 'none',
           scrollTrigger: {
             trigger: section,
             start: 'top top',
-            end: '+=40%',
+            end: '+=35%',
             scrub: true,
           },
         });
@@ -63,48 +59,54 @@ export function Hero() {
   );
 
   return (
-    <section ref={sectionRef} className="relative bg-paper pt-28 md:pt-36">
-      <div className="mx-auto flex max-w-7xl flex-col gap-10 px-5 md:px-10">
-        <div className={`transition-opacity duration-700 ${heroReady ? 'opacity-100' : 'opacity-0'}`}>
-          <p className="kicker mb-6">Mumbai western suburbs</p>
-          <Words
-            text="Property decisions,//explained *honestly*."
-            className="display max-w-4xl text-5xl text-ink sm:text-6xl md:text-7xl lg:text-8xl"
-          />
-          <p className="lede mt-8 max-w-xl">
-            {site.tagline} From Bandra and Khar to Santacruz, Andheri, Versova, and Jogeshwari.
+    <section
+      ref={sectionRef}
+      className="relative flex min-h-[100svh] items-end overflow-hidden bg-void"
+    >
+      <div ref={mediaRef} className="absolute inset-0 will-change-transform" data-cursor="view">
+        <Image
+          src={publicSrc('/Lodha.jpeg')}
+          alt="Background"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-void via-void/55 to-void/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-void/50 via-transparent to-transparent" />
+      </div>
+
+      <div
+        className={`relative z-10 w-full px-5 pb-16 pt-32 md:px-10 md:pb-20 md:pt-40 transition-opacity duration-700 ${
+          heroReady ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        <div className="mx-auto max-w-7xl">
+          <p className="display mb-8 text-4xl tracking-[0.18em] text-ivory sm:text-5xl md:mb-10 md:text-6xl lg:text-7xl">
+            {site.wordmark}
           </p>
-          <div className="mt-10 flex flex-wrap gap-4">
+          <Words
+            text="Western suburbs,//explained *honestly*."
+            className="display max-w-4xl text-3xl text-ivory sm:text-4xl md:text-5xl lg:text-6xl"
+          />
+          <p className="mt-6 max-w-md text-base leading-relaxed text-ivory/70 md:mt-8 md:text-lg">
+            Clear counsel for buyers and investors from Bandra to Jogeshwari.
+          </p>
+          <div className="mt-8 md:mt-10">
             <Magnetic onClick={openCall} className="btn">
               Request a call
               <span className="btn-arrow">→</span>
             </Magnetic>
-            <a href="#markets" className="btn btn-ghost">
-              Explore markets
-            </a>
           </div>
         </div>
-
-        <div
-          ref={mediaRef}
-          data-cursor="view"
-          className="relative mx-auto aspect-[4/5] w-full max-w-xl overflow-hidden rounded-[32px] md:aspect-[16/10] md:max-w-4xl"
-        >
-          <Image
-            src={publicSrc('/Lodha.jpeg')}
-            alt="Western suburbs residence"
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 80vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-void/35 via-transparent to-transparent" />
-        </div>
-
-        <p ref={hintRef} className="kicker pb-10 text-center text-muted">
-          Scroll
-        </p>
       </div>
+
+      <p
+        ref={hintRef}
+        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase tracking-[0.28em] text-ivory/45"
+      >
+        Scroll
+      </p>
     </section>
   );
 }

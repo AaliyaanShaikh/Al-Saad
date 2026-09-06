@@ -39,15 +39,15 @@ export function AIChat() {
     <div className="fixed right-4 bottom-4 z-[80] sm:right-6 sm:bottom-6">
       {open && (
         <div className="card mb-3 flex h-[420px] w-[min(92vw,360px)] flex-col overflow-hidden shadow-2xl">
-          <div className="flex items-center justify-between border-b border-ink/10 px-4 py-3">
+          <div className="flex items-center justify-between border-b border-ivory/10 px-4 py-3">
             <div>
               <p className="kicker">Assistant</p>
-              <p className="text-sm text-ink">Al-Saad</p>
+              <p className="text-sm text-ivory">Al-Saad</p>
             </div>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/10"
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-ivory/15 text-ivory"
               aria-label="Close chat"
             >
               ×
@@ -59,8 +59,8 @@ export function AIChat() {
                 key={i}
                 className={`max-w-[85%] rounded-[18px] px-3 py-2 text-sm leading-relaxed ${
                   m.role === 'user'
-                    ? 'ml-auto bg-ink text-ivory'
-                    : 'bg-paper-2 text-ink-2'
+                    ? 'ml-auto bg-ivory text-void'
+                    : 'bg-paper-3 text-ink-2'
                 }`}
               >
                 {m.content}
@@ -69,7 +69,7 @@ export function AIChat() {
             {loading && <p className="text-xs text-muted">Thinking…</p>}
             <div ref={endRef} />
           </div>
-          <form onSubmit={submit} className="border-t border-ink/10 p-3">
+          <form onSubmit={submit} className="border-t border-ivory/10 p-3">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -82,10 +82,10 @@ export function AIChat() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="btn shadow-lg"
+        className="rounded-full border border-ivory/20 bg-void/90 px-4 py-3 text-[10px] font-medium uppercase tracking-[0.18em] text-ivory shadow-lg backdrop-blur-md transition-colors hover:border-silver hover:text-silver"
         aria-label="Open chat"
       >
-        Chat
+        Ask
       </button>
     </div>
   );

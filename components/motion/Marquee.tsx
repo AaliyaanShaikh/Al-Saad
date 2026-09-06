@@ -21,10 +21,10 @@ export function Marquee({ text, className = '' }: MarqueeProps) {
             : { animation: 'marquee 28s linear infinite' }
         }
       >
-        <span className="display pr-8 text-[12vw] text-ink/10 md:text-[7vw]">
+        <span className="display pr-8 text-[12vw] text-ivory/10 md:text-[7vw]">
           {content}
         </span>
-        <span className="display pr-8 text-[12vw] text-ink/10 md:text-[7vw]">
+        <span className="display pr-8 text-[12vw] text-ivory/10 md:text-[7vw]">
           {content}
         </span>
       </div>

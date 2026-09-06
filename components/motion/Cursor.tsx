@@ -61,17 +61,17 @@ export function Cursor() {
     <>
       <div
         ref={dotRef}
-        className="pointer-events-none fixed top-0 left-0 z-[300] h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink"
+        className="pointer-events-none fixed top-0 left-0 z-[300] h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ivory"
       />
       <div
         ref={ringRef}
-        className="pointer-events-none fixed top-0 left-0 z-[299] h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full border border-ink/30"
+        className="pointer-events-none fixed top-0 left-0 z-[299] h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full border border-ivory/35"
       />
       <div
         ref={labelRef}
         className="pointer-events-none fixed top-0 left-0 z-[301] -translate-x-1/2 -translate-y-1/2 opacity-0"
       >
-        <span className="kicker text-[10px] text-ink">View</span>
+        <span className="kicker text-[10px] text-ivory">View</span>
       </div>
     </>
   );

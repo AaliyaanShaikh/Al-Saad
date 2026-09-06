@@ -13,7 +13,7 @@ export function Nav() {
   const { openCall } = useCallModal();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 48);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -38,25 +38,28 @@ export function Nav() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-          scrolled ? 'bg-paper/90 backdrop-blur-md' : 'bg-transparent'
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+          scrolled ? 'bg-void/90 backdrop-blur-md' : 'bg-transparent'
         }`}
       >
         <div
-          className={`mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-10 ${
-            scrolled ? 'border-b border-ink/10' : 'border-b border-transparent'
+          className={`mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-10 md:py-5 ${
+            scrolled ? 'border-b border-ivory/10' : 'border-b border-transparent'
           }`}
         >
-          <Link href="/" className="display text-lg tracking-[0.14em] text-ink md:text-xl">
+          <Link
+            href="/"
+            className="display text-base tracking-[0.16em] text-ivory md:text-lg"
+          >
             {site.wordmark}
           </Link>
 
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-7 lg:flex">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-[11px] font-medium uppercase tracking-[0.18em] text-ink-2 transition-colors hover:text-clay"
+                className="text-[10px] font-medium uppercase tracking-[0.2em] text-ivory/65 transition-colors hover:text-ivory"
               >
                 {item.label}
               </Link>
@@ -70,7 +73,7 @@ export function Nav() {
             </Magnetic>
             <button
               type="button"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 text-ink md:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-ivory/20 text-sm text-ivory md:hidden"
               aria-label="Menu"
               onClick={() => setOpen(true)}
             >
@@ -81,25 +84,25 @@ export function Nav() {
       </header>
 
       {open && (
-        <div className="mobile-menu-panel fixed inset-0 z-[60] flex flex-col bg-paper px-6 py-8">
-          <div className="mb-12 flex items-center justify-between">
-            <span className="display tracking-[0.14em] text-ink">{site.wordmark}</span>
+        <div className="mobile-menu-panel fixed inset-0 z-[60] flex flex-col bg-void px-6 py-8">
+          <div className="mb-14 flex items-center justify-between">
+            <span className="display tracking-[0.14em] text-ivory">{site.wordmark}</span>
             <button
               type="button"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/15"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-ivory/20 text-ivory"
               onClick={() => setOpen(false)}
               aria-label="Close menu"
             >
               ×
             </button>
           </div>
-          <div className="flex flex-1 flex-col gap-6">
+          <div className="flex flex-1 flex-col gap-5">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="display text-4xl text-ink"
+                className="display text-4xl text-ivory"
               >
                 {item.label}
               </Link>

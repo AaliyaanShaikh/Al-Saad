@@ -29,8 +29,8 @@ export function Process() {
           transformOrigin: 'top center',
           scrollTrigger: {
             trigger: section,
-            start: 'top 60%',
-            end: 'bottom 70%',
+            start: 'top 55%',
+            end: 'bottom 65%',
             scrub: true,
           },
         }
@@ -40,27 +40,32 @@ export function Process() {
   );
 
   return (
-    <section id="process" ref={sectionRef} className="bg-ivory px-5 py-24 md:px-10 md:py-36">
-      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="lg:sticky lg:top-32 lg:self-start">
+    <section id="process" ref={sectionRef} className="bg-paper-2 px-5 py-28 md:px-10 md:py-40">
+      <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+        <div className="lg:sticky lg:top-28 lg:self-start">
           <Reveal>
-            <p className="kicker mb-4">Process</p>
-            <h2 className="display max-w-md text-4xl text-ink md:text-5xl">
-              How we work — without hurry.
+            <p className="kicker mb-5">Process</p>
+            <h2 className="display max-w-sm text-4xl text-ivory md:text-5xl lg:text-6xl">
+              Without hurry.
             </h2>
+            <p className="lede mt-6">
+              Every conversation starts with your real situation — before any project or price.
+            </p>
           </Reveal>
         </div>
 
-        <div className="relative pl-8 md:pl-12">
-          <div className="absolute top-2 left-0 h-[calc(100%-1rem)] w-px bg-ink/10 md:left-2">
-            <div ref={lineRef} className="h-full w-full origin-top bg-clay" />
+        <div className="relative pl-6 md:pl-10">
+          <div className="absolute top-1 left-0 h-[calc(100%-8px)] w-px bg-ivory/10">
+            <div ref={lineRef} className="h-full w-full origin-top bg-silver" />
           </div>
-          <ol className="space-y-12 md:space-y-16">
+          <ol className="space-y-14 md:space-y-20">
             {processSteps.map((step) => (
               <Reveal key={step.id} as="li">
-                <p className="kicker mb-3 text-gold">{step.number}</p>
-                <h3 className="display text-2xl text-ink md:text-3xl">{step.title}</h3>
-                <p className="body mt-3 max-w-md text-sm">{step.body}</p>
+                <div className="flex items-baseline gap-4">
+                  <span className="kicker text-silver">{step.number}</span>
+                  <h3 className="display text-2xl text-ivory md:text-4xl">{step.title}</h3>
+                </div>
+                <p className="body mt-4 max-w-md pl-[3.25rem] text-sm md:text-base">{step.body}</p>
               </Reveal>
             ))}
           </ol>

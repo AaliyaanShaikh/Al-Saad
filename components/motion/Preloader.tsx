@@ -13,94 +13,162 @@ type PreloaderProps = {
 
 export function Preloader({ onReady }: PreloaderProps) {
   const rootRef = useRef<HTMLDivElement>(null);
+  const markRef = useRef<HTMLDivElement>(null);
+  const wordRef = useRef<HTMLHeadingElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
-  const lettersRef = useRef<HTMLSpanElement[]>([]);
+  const tagRef = useRef<HTMLParagraphElement>(null);
+  const hintRef = useRef<HTMLParagraphElement>(null);
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
   const reduced = useReducedMotion();
   const [done, setDone] = useState(false);
 
   useEffect(() => {
     if (done) return;
+
+    const finish = () => {
+      sessionStorage.setItem(STORAGE_KEY, '1');
+      setDone(true);
+    };
+
     const seen = sessionStorage.getItem(STORAGE_KEY) === '1';
-    const hold = reduced ? 400 : seen ? 1700 : 3400;
 
     if (reduced) {
       const t = setTimeout(() => {
-        sessionStorage.setItem(STORAGE_KEY, '1');
-        setDone(true);
         onReady?.();
-      }, hold);
+        finish();
+      }, seen ? 220 : 420);
       return () => clearTimeout(t);
     }
 
     const ctx = gsap.context(() => {
-      const letters = lettersRef.current.filter(Boolean);
-      gsap.set(letters, { yPercent: 110 });
-      gsap.to(letters, {
-        yPercent: 0,
-        duration: 1.1,
-        stagger: 0.04,
-        ease: 'power3.out',
-        delay: 0.15,
+      gsap.set(wordRef.current, {
+        opacity: 0,
+        letterSpacing: '0.55em',
+        y: 12,
       });
-      gsap.fromTo(
-        lineRef.current,
-        { scaleX: 0 },
-        { scaleX: 1, duration: hold / 1000 - 0.6, ease: 'power1.inOut', transformOrigin: 'left center' }
-      );
+      gsap.set(lineRef.current, { scaleX: 0 });
+      gsap.set(tagRef.current, { opacity: 0, y: 8 });
+      gsap.set(hintRef.current, { opacity: 0 });
 
-      const exitDelay = hold / 1000 - 0.35;
-      gsap.delayedCall(exitDelay, () => onReady?.());
-      gsap.to('.preloader-sheet-top', {
-        yPercent: -100,
-        duration: 1.2,
-        ease: 'power4.inOut',
-        delay: exitDelay + 0.15,
-      });
-      gsap.to('.preloader-sheet-bottom', {
-        yPercent: 100,
-        duration: 1.2,
-        ease: 'power4.inOut',
-        delay: exitDelay + 0.15,
-        onComplete: () => {
-          sessionStorage.setItem(STORAGE_KEY, '1');
-          setDone(true);
-        },
-      });
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      tlRef.current = tl;
+
+      tl.to({}, { duration: seen ? 0.12 : 0.28 })
+        .to(wordRef.current, {
+          opacity: 1,
+          y: 0,
+          letterSpacing: '0.28em',
+          duration: 1.15,
+          ease: 'power3.out',
+        })
+        .to(
+          lineRef.current,
+          {
+            scaleX: 1,
+            duration: 0.7,
+            ease: 'power3.inOut',
+            transformOrigin: 'center center',
+          },
+          '-=0.45'
+        )
+        .to(
+          tagRef.current,
+          { opacity: 0.5, y: 0, duration: 0.45 },
+          '-=0.35'
+        )
+        .to(
+          hintRef.current,
+          { opacity: 0.28, duration: 0.4 },
+          '-=0.2'
+        )
+        .to({}, { duration: seen ? 0.2 : 0.45 })
+        .add(() => onReady?.())
+        .to(hintRef.current, { opacity: 0, duration: 0.2 }, '<')
+        .to(markRef.current, {
+          opacity: 0,
+          y: -8,
+          duration: 0.45,
+          ease: 'power2.in',
+        })
+        .to(
+          '.preloader-sheet-top',
+          { yPercent: -101, duration: 1.1, ease: 'power4.inOut' },
+          '-=0.15'
+        )
+        .to(
+          '.preloader-sheet-bottom',
+          {
+            yPercent: 101,
+            duration: 1.1,
+            ease: 'power4.inOut',
+            onComplete: finish,
+          },
+          '<'
+        );
     }, rootRef);
 
-    return () => ctx.revert();
+    return () => {
+      tlRef.current = null;
+      ctx.revert();
+    };
   }, [done, onReady, reduced]);
+
+  const skip = () => {
+    if (done) return;
+    if (tlRef.current) tlRef.current.progress(1);
+    else {
+      onReady?.();
+      sessionStorage.setItem(STORAGE_KEY, '1');
+      setDone(true);
+    }
+  };
 
   if (done) return null;
 
-  const chars = site.wordmark.split('');
-
   return (
-    <div ref={rootRef} className="fixed inset-0 z-[250] pointer-events-none">
-      <div className="preloader-sheet-top absolute inset-x-0 top-0 h-1/2 bg-paper" />
-      <div className="preloader-sheet-bottom absolute inset-x-0 bottom-0 h-1/2 bg-paper" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-8">
-        <div
-          className="display text-2xl tracking-[0.12em] text-ink md:text-3xl"
-          style={{ paddingLeft: '0.12em' }}
+    <div
+      ref={rootRef}
+      className="fixed inset-0 z-[250] cursor-pointer select-none"
+      onClick={skip}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') skip();
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label="Skip intro"
+    >
+      <div className="preloader-sheet-top absolute inset-x-0 top-0 h-1/2 bg-void" />
+      <div className="preloader-sheet-bottom absolute inset-x-0 bottom-0 h-1/2 bg-void" />
+
+      <div
+        ref={markRef}
+        className="absolute inset-0 flex flex-col items-center justify-center px-6"
+      >
+        <h1
+          ref={wordRef}
+          className="display m-0 text-[clamp(2.4rem,9vw,5.25rem)] font-light tracking-[0.28em] text-ivory"
         >
-          {chars.map((ch, i) => (
-            <span key={i} className="inline-block overflow-hidden align-bottom">
-              <span
-                ref={(el) => {
-                  if (el) lettersRef.current[i] = el;
-                }}
-                className="inline-block"
-              >
-                {ch === ' ' ? '\u00A0' : ch}
-              </span>
-            </span>
-          ))}
+          {site.wordmark}
+        </h1>
+
+        <div className="mt-8 h-px w-[min(48vw,220px)] overflow-hidden bg-ivory/10">
+          <div ref={lineRef} className="h-full w-full origin-center bg-silver" />
         </div>
-        <div className="h-px w-40 overflow-hidden bg-ink/10 md:w-56">
-          <div ref={lineRef} className="h-full w-full origin-left bg-gold" />
-        </div>
+
+        <p
+          ref={tagRef}
+          className="mt-5 text-[10px] font-medium uppercase tracking-[0.48em] text-silver"
+        >
+          {site.wordmark}
+        </p>
       </div>
+
+      <p
+        ref={hintRef}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[9px] uppercase tracking-[0.32em] text-ivory"
+      >
+        Tap to enter
+      </p>
     </div>
   );
 }

@@ -1,17 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-paper: #f3efe7;
-  --color-paper-2: #eae5da;
-  --color-paper-3: #ddd6c7;
-  --color-ivory: #faf8f3;
-  --color-ink: #191714;
-  --color-ink-2: #45413a;
-  --color-muted: #7f786c;
-  --color-void: #141311;
-  --color-clay: #c2673f;
-  --color-gold: #b08d57;
-  --color-gold-bright: #dcc59a;
+  --color-paper: #050505;
+  --color-paper-2: #0a0a0a;
+  --color-paper-3: #111111;
+  --color-ivory: #f3efe7;
+  --color-ink: #f3efe7;
+  --color-ink-2: #a8a29a;
+  --color-muted: #6f6a62;
+  --color-void: #000000;
+  --color-clay: #c8c8c8;
+  --color-gold: #b0b0b0;
+  --color-gold-bright: #e0e0e0;
+  --color-silver: #b0b0b0;
+  --color-silver-bright: #e0e0e0;
 
   --font-display: var(--font-fraunces), Georgia, serif;
   --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
@@ -31,7 +33,7 @@
   }
 
   body {
-    background-color: var(--color-paper);
+    background-color: var(--color-void);
     color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -39,8 +41,8 @@
   }
 
   ::selection {
-    background: color-mix(in srgb, var(--color-clay) 35%, transparent);
-    color: var(--color-ink);
+    background: color-mix(in srgb, var(--color-silver) 35%, transparent);
+    color: var(--color-ivory);
   }
 }
 
@@ -65,7 +67,7 @@
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.22em;
-    color: var(--color-clay);
+    color: var(--color-silver);
   }
 
   .body {
@@ -85,8 +87,8 @@
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    background: var(--color-ink);
-    color: var(--color-ivory);
+    background: var(--color-ivory);
+    color: #050505;
     transition: background-color 0.35s ease, color 0.35s ease, transform 0.35s ease;
   }
 
@@ -95,7 +97,8 @@
   }
 
   .btn:hover {
-    background: var(--color-clay);
+    background: var(--color-silver);
+    color: #050505;
   }
 
   .btn:hover .btn-arrow {
@@ -109,50 +112,57 @@
   }
 
   .btn-outline:hover {
-    background: var(--color-clay);
-    border-color: var(--color-clay);
-    color: var(--color-ivory);
+    background: var(--color-silver);
+    border-color: var(--color-silver);
+    color: #050505;
   }
 
   .btn-ghost {
     background: transparent;
-    color: var(--color-ink);
-    border: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent);
+    color: var(--color-ivory);
+    border: 1px solid color-mix(in srgb, var(--color-ivory) 18%, transparent);
   }
 
   .btn-ghost:hover {
-    background: var(--color-clay);
-    border-color: var(--color-clay);
-    color: var(--color-ivory);
+    background: var(--color-silver);
+    border-color: var(--color-silver);
+    color: #050505;
   }
 
   .card {
     border-radius: var(--radius-card);
-    background: var(--color-ivory);
-    border: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+    background: #0c0c0c;
+    border: 1px solid color-mix(in srgb, var(--color-ivory) 10%, transparent);
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
   .panel {
     border-radius: var(--radius-panel);
-    background: var(--color-paper-2);
-    border: 1px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
+    background: #0a0a0a;
+    border: 1px solid color-mix(in srgb, var(--color-ivory) 12%, transparent);
   }
 
   .field {
     width: 100%;
     border-radius: 9999px;
-    border: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent);
-    background: var(--color-ivory);
+    border: 1px solid color-mix(in srgb, var(--color-ivory) 15%, transparent);
+    background: #111111;
     padding: 0.9rem 1.25rem;
     font-size: 0.95rem;
-    color: var(--color-ink);
+    color: var(--color-ivory);
     outline: none;
     transition: border-color 0.25s ease;
   }
 
   .field:focus {
-    border-color: var(--color-clay);
+    border-color: var(--color-silver);
   }
 
   .field-textarea {
@@ -164,7 +174,7 @@
   .hairline {
     height: 1px;
     width: 100%;
-    background: color-mix(in srgb, var(--color-ink) 14%, transparent);
+    background: color-mix(in srgb, var(--color-ivory) 12%, transparent);
   }
 
   .scrollbar-hide {
