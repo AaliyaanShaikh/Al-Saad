@@ -82,7 +82,7 @@ export function Markets() {
 
         <div className="mt-12 mb-6 overflow-hidden rounded-2xl border border-ivory/10 shadow-xl md:mt-20 md:mb-10">
           <div
-            className="relative flex min-h-[240px] items-center justify-center bg-cover bg-center px-6 py-14 sm:min-h-[260px] md:min-h-[360px] md:px-16 md:py-20 lg:min-h-[420px] lg:px-20 lg:py-28"
+            className="relative flex min-h-[240px] items-center justify-center bg-cover bg-[center_28%] px-6 py-14 sm:min-h-[260px] md:min-h-[360px] md:px-16 md:py-20 lg:min-h-[420px] lg:px-20 lg:py-28"
             style={{ backgroundImage: `url("${publicSrc('/IMG_4653.jpg')}")` }}
           >
             <div className="absolute inset-0 bg-void/70" />

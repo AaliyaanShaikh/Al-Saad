@@ -6,6 +6,7 @@ import { site } from '@/lib/data';
 import { useReducedMotion } from '@/lib/useReducedMotion';
 
 const STORAGE_KEY = 'alsaad-preloader-seen';
+const LOGO_SRC = '/ChatGPT Image Jan 13, 2026 at 02_37_17 AM.png';
 
 type PreloaderProps = {
   onReady?: () => void;
@@ -14,6 +15,7 @@ type PreloaderProps = {
 export function Preloader({ onReady }: PreloaderProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const markRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
   const wordRef = useRef<HTMLHeadingElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
   const tagRef = useRef<HTMLParagraphElement>(null);
@@ -41,6 +43,7 @@ export function Preloader({ onReady }: PreloaderProps) {
     }
 
     const ctx = gsap.context(() => {
+      gsap.set(logoRef.current, { opacity: 0, scale: 0.88, y: 10 });
       gsap.set(wordRef.current, {
         opacity: 0,
         letterSpacing: '0.55em',
@@ -54,13 +57,24 @@ export function Preloader({ onReady }: PreloaderProps) {
       tlRef.current = tl;
 
       tl.to({}, { duration: seen ? 0.12 : 0.28 })
-        .to(wordRef.current, {
+        .to(logoRef.current, {
           opacity: 1,
+          scale: 1,
           y: 0,
-          letterSpacing: '0.28em',
-          duration: 1.15,
+          duration: 0.85,
           ease: 'power3.out',
         })
+        .to(
+          wordRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            letterSpacing: '0.28em',
+            duration: 1.1,
+            ease: 'power3.out',
+          },
+          '-=0.35'
+        )
         .to(
           lineRef.current,
           {
@@ -144,6 +158,19 @@ export function Preloader({ onReady }: PreloaderProps) {
         ref={markRef}
         className="absolute inset-0 flex flex-col items-center justify-center px-6"
       >
+        <div
+          ref={logoRef}
+          className="mb-8 flex h-28 w-28 items-center justify-center sm:mb-10 sm:h-36 sm:w-36 md:h-40 md:w-40"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={LOGO_SRC}
+            alt=""
+            className="h-full w-full object-contain"
+            draggable={false}
+          />
+        </div>
+
         <h1
           ref={wordRef}
           className="display m-0 text-[clamp(2.4rem,9vw,5.25rem)] font-light tracking-[0.28em] text-ivory"

@@ -185,6 +185,24 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  .typing-dot {
+    width: 4px;
+    height: 4px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 4px;
+    opacity: 0.4;
+  }
+
+  .typing-dot:nth-child(2) {
+    opacity: 0.6;
+  }
+
+  .typing-dot:nth-child(3) {
+    opacity: 0.8;
+  }
 }
 
 @keyframes marquee {
