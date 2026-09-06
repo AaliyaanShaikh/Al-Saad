@@ -23,6 +23,22 @@ export type Project = {
   link?: string;
 };
 
+export type ShowcaseItem = {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  year: string;
+  image: string;
+  tags: string[];
+  link?: string;
+};
+
+export type ServiceItem = {
+  title: string;
+  desc: string;
+};
+
 export type ProcessStep = {
   id: string;
   number: string;
@@ -195,6 +211,54 @@ export const projects: Project[] = [
     price: '1.28 – 2.41 Cr',
     beds: '1, 2 & 3',
     sqft: '460–1000',
+  },
+];
+
+export const showcaseProjects: ShowcaseItem[] = [
+  {
+    id: 'showcase-1',
+    title: 'Awarded Excellence',
+    description:
+      'Honored to receive an award from Paradigm Realty in recognition of professional excellence. A milestone that reflects dedication, consistency, and growth.',
+    category: 'showcase',
+    year: '2024',
+    image: '/IMG_4653.jpg',
+    tags: ['Recognition', 'Award Moment', 'Paradigm Realty'],
+  },
+  {
+    id: 'showcase-2',
+    title: 'Team Achievement',
+    description:
+      'A proud moment of collective success—recognizing teamwork, leadership, and the shared commitment that drives meaningful results.',
+    category: 'showcase',
+    year: '2025',
+    image: '/teamedit.png',
+    tags: ['Teamwork', 'Leadership', 'Collaboration'],
+  },
+  {
+    id: 'showcase-3',
+    title: 'Industry Appreciation',
+    description:
+      'Appreciated by Lodha Group for consistent performance, collaborative execution, and a shared commitment to quality and excellence.',
+    category: 'showcase',
+    year: '2025',
+    image: '/Gemini_Generated_Image_mr7czrmr7czrmr7c.png',
+    tags: ['Industry Recognition', 'Excellence', 'Lodha Group'],
+  },
+];
+
+export const services: ServiceItem[] = [
+  {
+    title: 'Strategic Property Buying',
+    desc: 'Helping end-users and investors choose the right property at the right time.',
+  },
+  {
+    title: 'Honest Property Consultation',
+    desc: 'Clear answers about pricing, risks, future prospects, and suitability—without sales pressure.',
+  },
+  {
+    title: 'Local Market Intelligence',
+    desc: 'Deep understanding of Bandra, Khar, Santacruz, Andheri, Versova & Jogeshwari—micro-markets most outsiders miss.',
   },
 ];
 
