@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { XCircle, TrendingUp, Shield, Target, Lightbulb, ArrowDownLeft } from 'lucide-react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import SocialLinks from './SocialLinks';
 
 const AboutSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -98,7 +97,7 @@ const AboutSection: React.FC = () => {
                         Markets
                       </span>
                       <span className="text-stone-200 text-xs">
-                        Jogeshwari · Andheri
+                        Bandra · Andheri · Jogeshwari
                       </span>
                     </div>
                   </div>
@@ -162,9 +161,11 @@ const AboutSection: React.FC = () => {
               </p>
 
               <p className="text-stone-400 text-sm sm:text-base leading-relaxed">
-                I work closely with buyers and investors across <span className="text-white">Jogeshwari</span>,{' '}
-                <span className="text-white">Andheri</span>, and nearby micro-markets, helping them avoid the most common
-                (and expensive) mistakes people make while buying property in Mumbai.
+                I work closely with buyers and investors across Mumbai's western suburbs—{' '}
+                <span className="text-white">Bandra</span>, <span className="text-white">Khar</span>,{' '}
+                <span className="text-white">Santacruz</span>, <span className="text-white">Andheri</span>,{' '}
+                <span className="text-white">Versova</span>, and <span className="text-white">Jogeshwari</span>—helping them
+                avoid the most common (and expensive) mistakes people make while buying property in this corridor.
               </p>
 
               <div className="flex items-center gap-4 mt-4">
@@ -344,8 +345,6 @@ const AboutSection: React.FC = () => {
           </AnimatePresence>
         </div>
 
-        {/* Social — under About, before Properties */}
-        <SocialLinks />
       </motion.section>
     </div>
   );

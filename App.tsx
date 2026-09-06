@@ -9,6 +9,7 @@ import TermsPage from './pages/TermsPage';
 import { StrokeFill } from './components/StrokeFill';
 import TrustBuilderSection from './components/TrustBuilderSection';
 import AboutSection from './components/AboutSection';
+import StudioCreators from './components/StudioCreators';
 import { AppState } from './types';
 import { MOCK_PROJECTS, SHOWCASE_PROJECTS } from './constants';
 
@@ -28,7 +29,7 @@ const getHeroTextPositioning = () => {
   const mdBottomTextBottom = 'md:bottom-32';
   const lgBottomTextBottom = 'lg:bottom-[150px]';
   
-  // Spacing between headline and subtext ("Jogeshwari Real Estate..." ↔ "I help serious homebuyers...")
+  // Spacing between headline and subtext ("Western Suburb Real Estate..." ↔ "I help serious homebuyers...")
   // Options: space-y-4 (16px) | space-y-6 (24px) | space-y-8 (32px) | space-y-10 (40px) | space-y-12 (48px)
   const heroTextGap = 'space-y-8 sm:space-y-10 md:space-y-12';
   
@@ -231,12 +232,12 @@ const App: React.FC = () => {
           <div className={`absolute left-1/2 -translate-x-1/2 z-10 w-full px-4 sm:px-6 md:px-10 ${heroPositioning.bottomText} flex flex-col items-center ${heroPositioning.heroTextGap}`}>
             {/* Headline — refined, minimal, not loud */}
             <h2 className="text-white font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light max-w-4xl mx-auto leading-snug tracking-tight reveal active text-center">
-              Jogeshwari Real Estate, Explained Honestly.
+              Mumbai Western Suburbs, Explained Honestly.
             </h2>
             
             {/* Bottom Fixed Text */}
             <p className="text-stone-500 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed reveal active text-center" style={{ transitionDelay: '600ms' }}>
-              I help serious homebuyers and investors make clear, confident, and profitable property decisions—without pressure, misinformation, or overpricing.
+              From Bandra and Khar to Santacruz, Andheri, Versova, and Jogeshwari—I help serious homebuyers and investors make clear, confident property decisions without pressure, misinformation, or overpricing.
             </p>
           </div>
 
@@ -267,6 +268,9 @@ const App: React.FC = () => {
           <AboutSection />
         </section>
 
+        {/* Western suburb markets carousel */}
+        <StudioCreators onOpenBooking={() => setIsCallbackFormOpen(true)} />
+
         {/* Properties Section */}
         <section id="properties" className="relative">
           <PropertiesSection properties={MOCK_PROJECTS} />
@@ -291,9 +295,10 @@ const App: React.FC = () => {
             </p>
             <div className="w-32 sm:w-40 h-[1px] bg-stone-900 mx-auto mb-10 sm:mb-12 md:mb-16 reveal-pop" style={{ transitionDelay: '0.2s' }}></div>
             <p className="text-stone-400 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto px-2 sm:px-4 reveal-pop" style={{ transitionDelay: '0.3s' }}>
-              With years of experience in real estate, I specialize in helping clients find their perfect property. 
-              Whether you're buying, selling, or investing, I provide expert guidance, market insights, 
-              and personalized service to make your real estate journey seamless and successful.
+              With years of experience across Mumbai's western suburbs, I specialize in helping clients navigate
+              Bandra, Khar, Santacruz, Andheri, Versova, and Jogeshwari with clarity. Whether you're buying,
+              selling, or investing, you get honest market insight and guidance built around long-term value—
+              not short-term hype.
             </p>
           </div>
         </section>
@@ -337,7 +342,7 @@ const App: React.FC = () => {
               {[
                 { title: "Strategic Property Buying", desc: "Helping end-users and investors choose the right property at the right time." },
                 { title: "Honest Property Consultation", desc: "Clear answers about pricing, risks, future prospects, and suitability—without sales pressure." },
-                { title: "⁠Local Market Intelligence", desc: "Deep understanding of Jogeshwari & surrounding micro-markets that most outsiders miss." }
+                { title: "⁠Local Market Intelligence", desc: "Deep understanding of Bandra, Khar, Santacruz, Andheri, Versova & Jogeshwari—micro-markets most outsiders miss." }
               ].map((skill, idx) => (
                 <div key={idx} className="group cursor-pointer hover-lift animate-scale-in" style={{ animationDelay: `${idx * 0.2}s` }}>
                   <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-black border border-white/10 rounded-2xl flex items-center justify-center mb-6 sm:mb-8 md:mb-10 group-hover:bg-white group-hover:scale-110 transition-all duration-500 animate-glow">
@@ -370,8 +375,8 @@ const App: React.FC = () => {
             <div className="reveal animate-slide-left">
               <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-medium text-white mb-4 sm:mb-6 md:mb-8 lg:mb-10 tracking-[0.2em] hover-lift">AL-SAAD</h1>
               <p className="text-stone-600 max-w-sm mb-8 sm:mb-12 md:mb-16 leading-relaxed text-base font-light">
-                Let's find your perfect property together. 
-                I'm always available to discuss your real estate needs and answer any questions.
+                Looking across Mumbai's western suburbs? Let's find the right property together—
+                from Bandra to Jogeshwari. I'm always available to talk through your options with clarity.
               </p>
               <div className="flex flex-nowrap gap-6 sm:gap-8 md:gap-10 lg:gap-12">
                 {[

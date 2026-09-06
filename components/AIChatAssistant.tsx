@@ -4,7 +4,7 @@ import { ChatMessage } from '../types';
 
 const AIChatAssistant: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', content: "Hi! I'm Al-Saad's AI assistant. I'm here to help you with real estate inquiries, property information, and any questions about our services. How can I assist you today?" }
+    { role: 'model', content: "Hi! I'm Al-Saad's AI assistant. I can help with Mumbai western suburb real estate—Bandra, Khar, Santacruz, Andheri, Versova, Jogeshwari—plus property info and buying questions. How can I assist you today?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);

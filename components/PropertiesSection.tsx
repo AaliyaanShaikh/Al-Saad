@@ -41,7 +41,7 @@ const PropertiesSection: React.FC<PropertiesSectionProps> = ({ properties }) => 
             Carefully<br /> <span className="whitespace-nowrap">Selected Projects.</span>
           </h2>
           <p className="text-stone-400 text-sm sm:text-base leading-relaxed mt-6 sm:mt-8">
-            Every project here is featured with purpose. I highlight only properties that are correctly priced, clearly suited to the right buyer or investor, and built for long-term value—not short-term hype. Each is something I'd confidently recommend to my own family.
+            Curated across Mumbai's western suburbs—from Bandra and Khar through Santacruz, Andheri, Versova, and Jogeshwari. I highlight only properties that are correctly priced, suited to the right buyer or investor, and built for long-term value—not short-term hype. Each is something I'd confidently recommend to my own family.
           </p>
         </div>
         
