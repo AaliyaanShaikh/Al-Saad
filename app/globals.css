@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f3efe7;
+  --color-paper-2: #eae5da;
+  --color-paper-3: #ddd6c7;
+  --color-ivory: #faf8f3;
+  --color-ink: #191714;
+  --color-ink-2: #45413a;
+  --color-muted: #7f786c;
+  --color-void: #141311;
+  --color-clay: #c2673f;
+  --color-gold: #b08d57;
+  --color-gold-bright: #dcc59a;
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 22px;
+  --radius-panel: 32px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: auto;
+  }
+
+  html.has-cursor,
+  html.has-cursor * {
+    cursor: none !important;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-clay) 35%, transparent);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  .display {
+    font-family: var(--font-display);
+    font-weight: 300;
+    line-height: 0.96;
+    letter-spacing: -0.02em;
+  }
+
+  .lede {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.55;
+    color: var(--color-ink-2);
+    max-width: 36rem;
+  }
+
+  .kicker {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-clay);
+  }
+
+  .body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-ink-2);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    border-radius: 9999px;
+    padding: 0.85rem 1.5rem;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--color-ink);
+    color: var(--color-ivory);
+    transition: background-color 0.35s ease, color 0.35s ease, transform 0.35s ease;
+  }
+
+  .btn .btn-arrow {
+    transition: transform 0.35s ease;
+  }
+
+  .btn:hover {
+    background: var(--color-clay);
+  }
+
+  .btn:hover .btn-arrow {
+    transform: translateX(4px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--color-ivory);
+    border: 1px solid color-mix(in srgb, var(--color-ivory) 25%, transparent);
+  }
+
+  .btn-outline:hover {
+    background: var(--color-clay);
+    border-color: var(--color-clay);
+    color: var(--color-ivory);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-ink);
+    border: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent);
+  }
+
+  .btn-ghost:hover {
+    background: var(--color-clay);
+    border-color: var(--color-clay);
+    color: var(--color-ivory);
+  }
+
+  .card {
+    border-radius: var(--radius-card);
+    background: var(--color-ivory);
+    border: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+    overflow: hidden;
+  }
+
+  .panel {
+    border-radius: var(--radius-panel);
+    background: var(--color-paper-2);
+    border: 1px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
+  }
+
+  .field {
+    width: 100%;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent);
+    background: var(--color-ivory);
+    padding: 0.9rem 1.25rem;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    outline: none;
+    transition: border-color 0.25s ease;
+  }
+
+  .field:focus {
+    border-color: var(--color-clay);
+  }
+
+  .field-textarea {
+    border-radius: 22px;
+    resize: none;
+    min-height: 6rem;
+  }
+
+  .hairline {
+    height: 1px;
+    width: 100%;
+    background: color-mix(in srgb, var(--color-ink) 14%, transparent);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "name": "Al-Saad | Mumbai Western Suburbs Real Estate",
-  "description": "Honest property advisory across Mumbai's western suburbs—Bandra, Khar, Santacruz, Andheri, Versova, and Jogeshwari.",
-  "requestFramePermissions": [
-    "camera",
-    "microphone"
-  ]
-}

@@ -1,20 +1,30 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Al-Saad
 
-# Run and deploy your AI Studio app
+Honest property advisory across Mumbai’s western suburbs — editorial Next.js site.
 
-This contains everything you need to run your app locally.
+## Develop
 
-View your app in AI Studio: https://ai.studio/apps/drive/1CELIi-GsaCnK6Y7Yuez0wjBN3MThgwKX
+```bash
+npm install
+npm run dev
+```
 
-## Run Locally
+Open [http://localhost:3000](http://localhost:3000).
 
-**Prerequisites:**  Node.js
+## Environment
 
+Copy keys into `.env.local`:
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- `GOOGLE_SCRIPT_URL` — Google Apps Script web app for callback form
+- `NEXT_PUBLIC_GEMINI_API_KEY` — Gemini API key for the chat assistant
+
+## Build
+
+```bash
+npm run build
+npm start
+```
+
+## Stack
+
+Next.js App Router, Tailwind CSS v4, GSAP + ScrollTrigger, Lenis, `next/font` (Fraunces + Instrument Sans).
