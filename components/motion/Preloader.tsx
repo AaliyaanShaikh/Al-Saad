@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { site } from '@/lib/data';
 import { useReducedMotion } from '@/lib/useReducedMotion';
@@ -12,6 +12,22 @@ type PreloaderProps = {
   onReady?: () => void;
 };
 
+function hasSeenIntro() {
+  try {
+    return localStorage.getItem(STORAGE_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
+function markIntroSeen() {
+  try {
+    localStorage.setItem(STORAGE_KEY, '1');
+  } catch {
+    /* ignore quota / private mode */
+  }
+}
+
 export function Preloader({ onReady }: PreloaderProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const markRef = useRef<HTMLDivElement>(null);
@@ -21,24 +37,40 @@ export function Preloader({ onReady }: PreloaderProps) {
   const tagRef = useRef<HTMLParagraphElement>(null);
   const hintRef = useRef<HTMLParagraphElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const onReadyRef = useRef(onReady);
   const reduced = useReducedMotion();
+
+  // null = checking storage; false = skip; true = play once
+  const [shouldPlay, setShouldPlay] = useState<boolean | null>(null);
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    if (done) return;
+    onReadyRef.current = onReady;
+  }, [onReady]);
+
+  useLayoutEffect(() => {
+    if (hasSeenIntro()) {
+      onReadyRef.current?.();
+      setShouldPlay(false);
+      setDone(true);
+      return;
+    }
+    setShouldPlay(true);
+  }, []);
+
+  useEffect(() => {
+    if (!shouldPlay || done) return;
 
     const finish = () => {
-      sessionStorage.setItem(STORAGE_KEY, '1');
+      markIntroSeen();
       setDone(true);
     };
 
-    const seen = sessionStorage.getItem(STORAGE_KEY) === '1';
-
     if (reduced) {
       const t = setTimeout(() => {
-        onReady?.();
+        onReadyRef.current?.();
         finish();
-      }, seen ? 220 : 420);
+      }, 420);
       return () => clearTimeout(t);
     }
 
@@ -56,7 +88,7 @@ export function Preloader({ onReady }: PreloaderProps) {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
       tlRef.current = tl;
 
-      tl.to({}, { duration: seen ? 0.12 : 0.28 })
+      tl.to({}, { duration: 0.28 })
         .to(logoRef.current, {
           opacity: 1,
           scale: 1,
@@ -95,8 +127,8 @@ export function Preloader({ onReady }: PreloaderProps) {
           { opacity: 0.28, duration: 0.4 },
           '-=0.2'
         )
-        .to({}, { duration: seen ? 0.2 : 0.45 })
-        .add(() => onReady?.())
+        .to({}, { duration: 0.45 })
+        .add(() => onReadyRef.current?.())
         .to(hintRef.current, { opacity: 0, duration: 0.2 }, '<')
         .to(markRef.current, {
           opacity: 0,
@@ -125,19 +157,19 @@ export function Preloader({ onReady }: PreloaderProps) {
       tlRef.current = null;
       ctx.revert();
     };
-  }, [done, onReady, reduced]);
+  }, [shouldPlay, done, reduced]);
 
   const skip = () => {
-    if (done) return;
+    if (done || !shouldPlay) return;
+    markIntroSeen();
     if (tlRef.current) tlRef.current.progress(1);
     else {
-      onReady?.();
-      sessionStorage.setItem(STORAGE_KEY, '1');
+      onReadyRef.current?.();
       setDone(true);
     }
   };
 
-  if (done) return null;
+  if (shouldPlay === null || done || !shouldPlay) return null;
 
   return (
     <div
