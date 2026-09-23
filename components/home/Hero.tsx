@@ -87,7 +87,7 @@ export function Hero() {
           </p>
           <Words
             text="Western suburbs,//explained *honestly*."
-            className="display max-w-4xl text-3xl text-ivory sm:text-4xl md:text-5xl lg:text-6xl"
+            className="display max-w-4xl text-2xl font-extralight text-ivory sm:text-3xl md:text-4xl lg:text-5xl"
           />
           <p className="mt-6 max-w-md text-base leading-relaxed text-ivory/70 md:mt-8 md:text-lg">
             Clear counsel for buyers and investors from Bandra to Jogeshwari.

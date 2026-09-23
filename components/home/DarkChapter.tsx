@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { publicSrc, site, testimonials } from '@/lib/data';
 import { Reveal } from '@/components/motion/Reveal';
 import { Words } from '@/components/motion/Words';
@@ -28,6 +29,13 @@ export function DarkChapter() {
               </p>
               <p>My job is not to sell you a flat. It is to help you make the right decision.</p>
             </div>
+            <Link
+              href="/about"
+              className="mt-8 inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-silver transition-colors hover:text-ivory"
+            >
+              Read more
+              <span aria-hidden>→</span>
+            </Link>
           </Reveal>
         </div>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Magnetic } from '@/components/motion/Magnetic';
 import { Reveal } from '@/components/motion/Reveal';
 import { useCallModal } from '@/components/chrome/Providers';
@@ -35,10 +36,18 @@ export function FinalCTA() {
           <p className="mx-auto mb-10 max-w-md text-base leading-relaxed text-ivory/75">
             Buying now, later, or simply reading the market — start with clarity.
           </p>
-          <Magnetic onClick={openCall} className="btn">
-            Request a call
-            <span className="btn-arrow">→</span>
-          </Magnetic>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Magnetic onClick={openCall} className="btn">
+              Request a call
+              <span className="btn-arrow">→</span>
+            </Magnetic>
+            <Link
+              href="/contact"
+              className="text-[10px] font-medium uppercase tracking-[0.2em] text-ivory/55 transition-colors hover:text-ivory"
+            >
+              Contact page →
+            </Link>
+          </div>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-sm text-ivory/55">
             <a
               href={`tel:${site.phone.replace(/\s/g, '')}`}

@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { projects, publicSrc } from '@/lib/data';
 import { Reveal } from '@/components/motion/Reveal';
 
@@ -23,37 +24,45 @@ export function Projects() {
         <div className="space-y-8 md:space-y-12">
           {projects.map((project, i) => (
             <Reveal key={project.id} delay={(i % 2) * 0.06}>
-              <article
-                className={`group grid gap-0 overflow-hidden rounded-[28px] border border-ivory/10 bg-paper-2 md:grid-cols-2 ${
-                  i % 2 === 1 ? 'md:[&>*:first-child]:order-2' : ''
-                }`}
+              <Link
+                href={`/projects/${project.slug}`}
+                className="block"
                 data-cursor="view"
               >
-                <div className="relative aspect-[5/4] md:aspect-auto md:min-h-[360px]">
-                  <Image
-                    src={publicSrc(project.image)}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-                <div className="flex flex-col justify-center px-6 py-8 md:px-10 md:py-12 lg:px-14">
-                  <p className="kicker mb-4 text-muted">{project.location}</p>
-                  <h3 className="display text-3xl text-ivory md:text-4xl lg:text-5xl">
-                    {project.title}
-                  </h3>
-                  <p className="mt-4 max-w-md text-sm leading-relaxed text-ink-2 md:text-base">
-                    {project.description}
-                  </p>
-                  <div className="mt-8 flex flex-wrap items-end justify-between gap-4 border-t border-ivory/10 pt-6">
-                    <p className="display text-2xl text-ivory">{project.price}</p>
-                    <p className="text-xs uppercase tracking-[0.16em] text-muted">
-                      {project.beds} · {project.sqft} sq ft
-                    </p>
+                <article
+                  className={`group grid gap-0 overflow-hidden rounded-[28px] border border-ivory/10 bg-paper-2 transition-colors duration-300 hover:border-ivory/25 md:grid-cols-2 ${
+                    i % 2 === 1 ? 'md:[&>*:first-child]:order-2' : ''
+                  }`}
+                >
+                  <div className="relative aspect-[5/4] md:aspect-auto md:min-h-[360px]">
+                    <Image
+                      src={publicSrc(project.image)}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
                   </div>
-                </div>
-              </article>
+                  <div className="flex flex-col justify-center px-6 py-8 md:px-10 md:py-12 lg:px-14">
+                    <p className="kicker mb-4 text-muted">{project.location}</p>
+                    <h3 className="display text-3xl text-ivory md:text-4xl lg:text-5xl">
+                      {project.title}
+                    </h3>
+                    <p className="mt-4 max-w-md text-sm leading-relaxed text-ink-2 md:text-base">
+                      {project.description}
+                    </p>
+                    <div className="mt-8 flex flex-wrap items-end justify-between gap-4 border-t border-ivory/10 pt-6">
+                      <p className="display text-2xl text-ivory">{project.price}</p>
+                      <p className="flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-muted transition-colors group-hover:text-ivory">
+                        {project.beds} · {project.sqft} sq ft
+                        <span className="text-silver transition-transform duration-300 group-hover:translate-x-1">
+                          →
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </Link>
             </Reveal>
           ))}
         </div>

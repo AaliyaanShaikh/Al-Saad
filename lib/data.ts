@@ -13,6 +13,7 @@ export type Project = {
   slug: string;
   title: string;
   description: string;
+  body: string;
   category: string;
   year: string;
   image: string;
@@ -20,6 +21,8 @@ export type Project = {
   price: string;
   beds: string;
   sqft: string;
+  status: string;
+  highlights: string[];
   link?: string;
 };
 
@@ -77,11 +80,10 @@ export const site = {
 };
 
 export const nav: NavItem[] = [
-  { label: 'Markets', href: '/#markets' },
   { label: 'Projects', href: '/#projects' },
   { label: 'Process', href: '/#process' },
-  { label: 'About', href: '/#about' },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export const manifesto =
@@ -138,6 +140,7 @@ export const projects: Project[] = [
     slug: 'vision-heights',
     title: 'Vision Heights',
     description: 'Freehold land, nearing possession — Jogeshwari West, western suburbs.',
+    body: 'Vision Heights sits on freehold land in Jogeshwari West — a pocket where end-users and careful investors look for possession-ready stock without overpaying for theatre. Configurations span practical 2 BHKs and Grand 2 formats, priced for long-term holding rather than short-term noise.',
     category: 'exclusive',
     year: '2026',
     image: '/screenshot-2026-02-04-vision.png',
@@ -145,12 +148,20 @@ export const projects: Project[] = [
     price: '1.57 – 2 Cr',
     beds: '2 & Grand 2',
     sqft: '500–900',
+    status: 'Nearing possession',
+    highlights: [
+      'Freehold land title',
+      'Jogeshwari West western-suburb access',
+      '2 BHK and Grand 2 configurations',
+      'Possession-oriented timeline',
+    ],
   },
   {
     id: '2',
     slug: 'aksa',
     title: 'Aksa',
     description: 'Modern residences on Aqsa Masjid Road with careful pricing.',
+    body: 'Aksa offers modern 2 and 3 BHK residences on Aqsa Masjid Road. The brief is simple: clean layouts, measured pricing, and a location that works for families who want western-suburb connectivity without stretching into premium theatre.',
     category: 'exclusive',
     year: '2026',
     image: '/screenshot-2026-02-04-sayba.png',
@@ -158,12 +169,20 @@ export const projects: Project[] = [
     price: 'From 1.75 Cr',
     beds: '2 & 3',
     sqft: '621–1200',
+    status: 'Available',
+    highlights: [
+      '2 & 3 BHK formats',
+      'Aqsa Masjid Road address',
+      'Carpet range 621–1200 sq ft',
+      'Priced from 1.75 Cr',
+    ],
   },
   {
     id: '3',
     slug: 'dream-india',
     title: 'Dream India',
     description: 'Residential stock with strong connectivity on Relief Road.',
+    body: 'Dream India is residential inventory on Relief Road with strong everyday connectivity. 2 and 3 BHK options sit in a band that suits first-time upgraders and investors who care about ticket size as much as location.',
     category: 'exclusive',
     year: '2026',
     image: '/Screenshot-Dream india.png',
@@ -171,12 +190,20 @@ export const projects: Project[] = [
     price: '1.11 – 1.77 Cr',
     beds: '2 & 3',
     sqft: '530–860',
+    status: 'Available',
+    highlights: [
+      'Relief Road connectivity',
+      '2 & 3 BHK options',
+      'Entry band from 1.11 Cr',
+      'Compact, efficient floor plates',
+    ],
   },
   {
     id: '4',
     slug: 'paradigm-alaya',
     title: 'Paradigm Alaya',
     description: 'Elegant 1 & 2 BHK living with measured amenities.',
+    body: 'Paradigm Alaya brings elegant 1 and 2 BHK living to Relief Road with a measured amenity set — enough lifestyle support without the cost of unused facilities. Suited to buyers who want a refined address at a clear price.',
     category: 'exclusive',
     year: '2026',
     image: '/paradigm-alaya-replacement.png',
@@ -184,12 +211,20 @@ export const projects: Project[] = [
     price: '1.29 – 1.81 Cr',
     beds: '1 & 2',
     sqft: '2,800',
+    status: 'Available',
+    highlights: [
+      '1 & 2 BHK living',
+      'Paradigm Realty development',
+      'Measured amenity stack',
+      'Relief Road location',
+    ],
   },
   {
     id: '5',
     slug: 'roswalt-zaiden',
     title: 'Roswalt Zaiden',
     description: 'Spacious 1, 2 & 3 BHK formats for long-term living.',
+    body: 'Roswalt Zaiden is built for long-term living across 1, 2, and 3 BHK formats. Spacious planning and a wider price ladder make it relevant for both end-users sizing up and investors reading future demand in the corridor.',
     category: 'featured',
     year: '2026',
     image: '/screenshot-roswalt.png',
@@ -197,6 +232,13 @@ export const projects: Project[] = [
     price: '1.80 – 3.90 Cr',
     beds: '1, 2 & 3',
     sqft: '400–1200',
+    status: 'Featured',
+    highlights: [
+      '1, 2 & 3 BHK formats',
+      'Wide ticket ladder 1.80–3.90 Cr',
+      'Designed for long-term living',
+      'Walkthrough available on YouTube',
+    ],
     link: 'https://www.youtube.com/watch?v=C4tyDdTRhmM',
   },
   {
@@ -204,6 +246,7 @@ export const projects: Project[] = [
     slug: 'sayba-noor-2',
     title: 'Sayba Noor 2.0',
     description: 'Thoughtful inventory on Sahankar Road for end-users and investors.',
+    body: 'Sayba Noor 2.0 is thoughtful inventory on Sahankar Road — configured for end-users who want usable homes and investors who want a clear read on price versus product. 1, 2, and 3 BHK options keep the shortlist flexible.',
     category: 'featured',
     year: '2026',
     image: '/Screenshot-sayba.png',
@@ -211,6 +254,13 @@ export const projects: Project[] = [
     price: '1.28 – 2.41 Cr',
     beds: '1, 2 & 3',
     sqft: '460–1000',
+    status: 'Featured',
+    highlights: [
+      'Sahankar Road location',
+      '1, 2 & 3 BHK inventory',
+      'End-user and investor suited',
+      'Price band 1.28–2.41 Cr',
+    ],
   },
 ];
 
