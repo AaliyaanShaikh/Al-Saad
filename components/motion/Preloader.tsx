@@ -1,32 +1,15 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { site } from '@/lib/data';
 import { useReducedMotion } from '@/lib/useReducedMotion';
 
-const STORAGE_KEY = 'alsaad-preloader-seen';
 const LOGO_SRC = '/ChatGPT Image Jan 13, 2026 at 02_37_17 AM.png';
 
 type PreloaderProps = {
   onReady?: () => void;
 };
-
-function hasSeenIntro() {
-  try {
-    return localStorage.getItem(STORAGE_KEY) === '1';
-  } catch {
-    return false;
-  }
-}
-
-function markIntroSeen() {
-  try {
-    localStorage.setItem(STORAGE_KEY, '1');
-  } catch {
-    /* ignore quota / private mode */
-  }
-}
 
 export function Preloader({ onReady }: PreloaderProps) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -39,32 +22,16 @@ export function Preloader({ onReady }: PreloaderProps) {
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const onReadyRef = useRef(onReady);
   const reduced = useReducedMotion();
-
-  // null = checking storage; false = skip; true = play once
-  const [shouldPlay, setShouldPlay] = useState<boolean | null>(null);
   const [done, setDone] = useState(false);
 
   useEffect(() => {
     onReadyRef.current = onReady;
   }, [onReady]);
 
-  useLayoutEffect(() => {
-    if (hasSeenIntro()) {
-      onReadyRef.current?.();
-      setShouldPlay(false);
-      setDone(true);
-      return;
-    }
-    setShouldPlay(true);
-  }, []);
-
   useEffect(() => {
-    if (!shouldPlay || done) return;
+    if (done) return;
 
-    const finish = () => {
-      markIntroSeen();
-      setDone(true);
-    };
+    const finish = () => setDone(true);
 
     if (reduced) {
       const t = setTimeout(() => {
@@ -157,11 +124,10 @@ export function Preloader({ onReady }: PreloaderProps) {
       tlRef.current = null;
       ctx.revert();
     };
-  }, [shouldPlay, done, reduced]);
+  }, [done, reduced]);
 
   const skip = () => {
-    if (done || !shouldPlay) return;
-    markIntroSeen();
+    if (done) return;
     if (tlRef.current) tlRef.current.progress(1);
     else {
       onReadyRef.current?.();
@@ -169,7 +135,7 @@ export function Preloader({ onReady }: PreloaderProps) {
     }
   };
 
-  if (shouldPlay === null || done || !shouldPlay) return null;
+  if (done) return null;
 
   return (
     <div
