@@ -8,6 +8,18 @@ export type Market = {
   image: string;
 };
 
+export type Typology = {
+  name: string;
+  note?: string;
+  area: string;
+  price: string;
+};
+
+export type FloorBand = {
+  name: string;
+  floors: string;
+};
+
 export type Project = {
   id: string;
   slug: string;
@@ -17,12 +29,19 @@ export type Project = {
   category: string;
   year: string;
   image: string;
+  imagePosition?: string;
   location: string;
   price: string;
   beds: string;
   sqft: string;
   status: string;
+  developer?: string;
+  tagline?: string;
   highlights: string[];
+  typologies?: Typology[];
+  floorBands?: FloorBand[];
+  amenities?: string[];
+  rera?: string;
   link?: string;
 };
 
@@ -137,129 +156,132 @@ export const markets: Market[] = [
 export const projects: Project[] = [
   {
     id: '1',
-    slug: 'vision-heights',
-    title: 'Vision Heights',
-    description: 'Freehold land, nearing possession — Jogeshwari West, western suburbs.',
-    body: 'Vision Heights sits on freehold land in Jogeshwari West — a pocket where end-users and careful investors look for possession-ready stock without overpaying for theatre. Configurations span practical 2 BHKs and Grand 2 formats, priced for long-term holding rather than short-term noise.',
+    slug: 'autograph-residency',
+    title: 'Autograph Residency',
+    developer: 'Multistar Builders',
+    tagline: 'Where Luxury Bears Your Signature.',
+    description:
+      'An ultra-luxury residential landmark by Multistar Builders, in the prime heart of Andheri West – Oshiwara, Mumbai.',
+    body: 'Autograph Residency is an iconic G+37 storey tower with dedicated surface parking, basement + ground + 6-level podium parking, exclusive lifestyle amenities on the 7th floor, and residences from the 8th floor to the 37th floor. A 10-ft wide grand passage, four high-speed elevators including a stretcher lift, rooftop lifestyle amenities, and 30+ world-class premium amenities designed for elevated living. Exclusive residences include 3 BHKs, sky mansions, jodi apartments, and signature penthouses. Premium 3 bed homes start from ₹3.80 Cr all inclusive. The 3rd floor band is opening soon.',
     category: 'exclusive',
     year: '2026',
-    image: '/screenshot-2026-02-04-vision.png',
-    location: 'Jogeshwari West',
-    price: '1.57 – 2 Cr',
-    beds: '2 & Grand 2',
-    sqft: '500–900',
-    status: 'Nearing possession',
+    image: '/positions/g37-oshiwara.jpg',
+    imagePosition: 'object-[50%_18%]',
+    location: 'Andheri West – Oshiwara',
+    price: 'From ₹3.80 Cr all incl.',
+    beds: '3 BHK to penthouse',
+    sqft: '968.6–2518 carpet',
+    status: '3rd band opening soon',
+    rera: 'PR1180002501853',
     highlights: [
-      'Freehold land title',
-      'Jogeshwari West western-suburb access',
-      '2 BHK and Grand 2 configurations',
-      'Possession-oriented timeline',
+      'Iconic G+37 storey tower with dedicated surface parking',
+      'Basement + Ground + 6-level podium parking',
+      'Exclusive lifestyle amenities on the 7th floor',
+      'Residences from the 8th floor to the 37th floor',
+      '10-ft wide grand passage',
+      '4 high-speed elevators, including a stretcher lift',
+      'Rooftop lifestyle amenities',
+      '30+ world-class premium amenities',
+    ],
+    typologies: [
+      { name: '3 BHK Residences', note: '3 Bed Premium', area: '968.6', price: '₹3.80 Cr' },
+      { name: '3 BHK Premium Residences', note: '3 Bed Luxe', area: '1243.5', price: '₹4.90 Cr' },
+      { name: 'Sky Mansion', note: '4 Bed Duplex', area: '1789.5', price: '₹7.55 Cr' },
+      { name: 'Sky Mansion', note: '5 Bed Duplex', area: '2223.5', price: '₹9.20 Cr' },
+      { name: 'Jodi / Signature Penthouse', note: 'Crafted for the truly elite', area: '2518', price: '₹9.45 Cr' },
+    ],
+    floorBands: [
+      { name: '1st band', floors: '8th to 17th floor' },
+      { name: '2nd band', floors: '18th to 27th floor' },
+      { name: '3rd band', floors: 'Opening soon' },
     ],
   },
   {
     id: '2',
-    slug: 'aksa',
-    title: 'Aksa',
-    description: 'Modern residences on Aqsa Masjid Road with careful pricing.',
-    body: 'Aksa offers modern 2 and 3 BHK residences on Aqsa Masjid Road. The brief is simple: clean layouts, measured pricing, and a location that works for families who want western-suburb connectivity without stretching into premium theatre.',
-    category: 'exclusive',
+    slug: 'Aksa-residences',
+    title: 'Designer residences by the JVLR corridor',
+    description:
+      'Carefully finished homes along the Jogeshwari–Vikhroli link — for buyers who care how a plan lives, not what it is called.',
+    body: 'The JVLR corridor is a connectivity thesis: metro gravity, east–west movement, and a widening set of addresses that still feel residential. These designer residences are shortlisted for layout discipline and finish quality. Names are withheld. The question is whether the corridor, the light, and the ticket still make sense in five years.',
+    category: 'editorial',
     year: '2026',
     image: '/screenshot-2026-02-04-sayba.png',
-    location: 'Aqsa Masjid Road',
-    price: 'From 1.75 Cr',
-    beds: '2 & 3',
-    sqft: '621–1200',
-    status: 'Available',
+    location: 'JVLR corridor',
+    price: 'Private',
+    beds: '2 & 3 BHK',
+    sqft: 'Considered plans',
+    status: 'Private brief',
     highlights: [
-      '2 & 3 BHK formats',
-      'Aqsa Masjid Road address',
-      'Carpet range 621–1200 sq ft',
-      'Priced from 1.75 Cr',
+      'JVLR connectivity as the primary read',
+      'Designer-led interiors, not marketing finishes',
+      '2 & 3 BHK for families and careful investors',
+      'Shared only when the brief matches',
     ],
   },
   {
     id: '3',
-    slug: 'dream-india',
-    title: 'Dream India',
-    description: 'Residential stock with strong connectivity on Relief Road.',
-    body: 'Dream India is residential inventory on Relief Road with strong everyday connectivity. 2 and 3 BHK options sit in a band that suits first-time upgraders and investors who care about ticket size as much as location.',
-    category: 'exclusive',
+    slug: 'monolithic-residence',
+    title: 'Monolithic 3 & 6 BHKs in Andheri West',
+    description:
+      'Large-format residences with a single architectural line — Andheri West for those who need scale, not a label.',
+    body: 'Andheri West still has a thin supply of truly large homes. These monolithic 3 and 6 BHK plates are for families who have outgrown the typical tower product: one architectural language, generous rooms, and a micro-market that remains the western suburb’s work-and-life hinge. Identity stays editorial until you are in the room.',
+    category: 'editorial',
     year: '2026',
-    image: '/Screenshot-Dream india.png',
-    location: 'Relief Road',
-    price: '1.11 – 1.77 Cr',
-    beds: '2 & 3',
-    sqft: '530–860',
-    status: 'Available',
+    image: '/screenshot-roswalt.png',
+    location: 'Andheri West',
+    price: 'Private',
+    beds: '3 & 6 BHK',
+    sqft: 'Large-format',
+    status: 'Private brief',
     highlights: [
-      'Relief Road connectivity',
-      '2 & 3 BHK options',
-      'Entry band from 1.11 Cr',
-      'Compact, efficient floor plates',
+      'Monolithic 3 & 6 BHK plates',
+      'Andheri West as the lifestyle hinge',
+      'Scale without a developer headline',
+      'Introduced by conversation only',
     ],
   },
   {
     id: '4',
-    slug: 'paradigm-alaya',
-    title: 'Paradigm Alaya',
-    description: 'Elegant 1 & 2 BHK living with measured amenities.',
-    body: 'Paradigm Alaya brings elegant 1 and 2 BHK living to Relief Road with a measured amenity set — enough lifestyle support without the cost of unused facilities. Suited to buyers who want a refined address at a clear price.',
-    category: 'exclusive',
+    slug: 'oshiwara seashore',
+    title: '30:70 financial architectures in Oshiwara',
+    description:
+      'Structures built for how capital actually moves — Oshiwara for buyers who want the payment plan as considered as the plan.',
+    body: 'Oshiwara sits in a band where ticket size and cash-flow both matter. These residences are positioned around a 30:70 architecture: enough commitment to be serious, enough deferred capital to stay rational. The product is secondary to whether the structure still looks intelligent after possession. No board. No campaign. A private read.',
+    category: 'editorial',
     year: '2026',
     image: '/paradigm-alaya-replacement.png',
-    location: 'Relief Road',
-    price: '1.29 – 1.81 Cr',
-    beds: '1 & 2',
-    sqft: '2,800',
-    status: 'Available',
+    location: 'Oshiwara',
+    price: 'Private',
+    beds: 'Flexible formats',
+    sqft: 'Structure-led',
+    status: 'Private brief',
     highlights: [
-      '1 & 2 BHK living',
-      'Paradigm Realty development',
-      'Measured amenity stack',
-      'Relief Road location',
+      '30:70 payment architecture',
+      'Oshiwara micro-market, western belt',
+      'Capital timing treated as part of the product',
+      'Details released after a fit is clear',
     ],
   },
   {
     id: '5',
-    slug: 'roswalt-zaiden',
-    title: 'Roswalt Zaiden',
-    description: 'Spacious 1, 2 & 3 BHK formats for long-term living.',
-    body: 'Roswalt Zaiden is built for long-term living across 1, 2, and 3 BHK formats. Spacious planning and a wider price ladder make it relevant for both end-users sizing up and investors reading future demand in the corridor.',
-    category: 'featured',
+    slug: 'boutique-tower',
+    title: 'G+31 boutique towers opposite Café Safar',
+    description:
+      'A tall, tight address with neighbourhood character — opposite Café Safar, for those who buy the street before the skyline.',
+    body: 'Boutique height only works when the street underneath is already a life. Opposite Café Safar, these G+31 towers offer a vertical, limited-inventory read: fewer neighbours than a mass tower, more sky than a mid-rise, and a western-suburb pocket you can actually walk. The name on the gate is irrelevant. The corner is not.',
+    category: 'editorial',
     year: '2026',
-    image: '/screenshot-roswalt.png',
-    location: 'Upcoming',
-    price: '1.80 – 3.90 Cr',
-    beds: '1, 2 & 3',
-    sqft: '400–1200',
-    status: 'Featured',
+    image: '/Screenshot-Dream india.png',
+    location: 'Opposite Café Safar',
+    price: 'Private',
+    beds: 'Boutique formats',
+    sqft: 'G+31',
+    status: 'Private brief',
     highlights: [
-      '1, 2 & 3 BHK formats',
-      'Wide ticket ladder 1.80–3.90 Cr',
-      'Designed for long-term living',
-      'Walkthrough available on YouTube',
-    ],
-    link: 'https://www.youtube.com/watch?v=C4tyDdTRhmM',
-  },
-  {
-    id: '6',
-    slug: 'sayba-noor-2',
-    title: 'Sayba Noor 2.0',
-    description: 'Thoughtful inventory on Sahankar Road for end-users and investors.',
-    body: 'Sayba Noor 2.0 is thoughtful inventory on Sahankar Road — configured for end-users who want usable homes and investors who want a clear read on price versus product. 1, 2, and 3 BHK options keep the shortlist flexible.',
-    category: 'featured',
-    year: '2026',
-    image: '/Screenshot-sayba.png',
-    location: 'Sahankar Road',
-    price: '1.28 – 2.41 Cr',
-    beds: '1, 2 & 3',
-    sqft: '460–1000',
-    status: 'Featured',
-    highlights: [
-      'Sahankar Road location',
-      '1, 2 & 3 BHK inventory',
-      'End-user and investor suited',
-      'Price band 1.28–2.41 Cr',
+      'G+31 boutique vertical',
+      'Street-level character opposite Café Safar',
+      'Limited inventory, not a campus',
+      'Address shared in a private briefing',
     ],
   },
 ];
@@ -269,11 +291,11 @@ export const showcaseProjects: ShowcaseItem[] = [
     id: 'showcase-1',
     title: 'Awarded Excellence',
     description:
-      'Honored to receive an award from Paradigm Realty in recognition of professional excellence. A milestone that reflects dedication, consistency, and growth.',
+      'Honored in recognition of professional excellence — a milestone that reflects dedication, consistency, and growth.',
     category: 'showcase',
     year: '2024',
     image: '/IMG_4653.jpg',
-    tags: ['Recognition', 'Award Moment', 'Paradigm Realty'],
+    tags: ['Recognition', 'Award Moment', 'Excellence'],
   },
   {
     id: 'showcase-2',
@@ -289,11 +311,11 @@ export const showcaseProjects: ShowcaseItem[] = [
     id: 'showcase-3',
     title: 'Industry Appreciation',
     description:
-      'Appreciated by Lodha Group for consistent performance, collaborative execution, and a shared commitment to quality and excellence.',
+      'Recognised for consistent performance, collaborative execution, and a shared commitment to quality and excellence.',
     category: 'showcase',
     year: '2025',
     image: '/Gemini_Generated_Image_mr7czrmr7czrmr7c.png',
-    tags: ['Industry Recognition', 'Excellence', 'Lodha Group'],
+    tags: ['Industry Recognition', 'Excellence', 'Craft'],
   },
 ];
 

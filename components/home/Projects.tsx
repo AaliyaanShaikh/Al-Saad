@@ -11,12 +11,12 @@ export function Projects() {
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <div className="mb-14 md:mb-20">
-            <p className="kicker mb-5">Projects</p>
+            <p className="kicker mb-5">Positions</p>
             <h2 className="display max-w-3xl text-4xl text-ivory md:text-6xl">
-              Carefully chosen inventory.
+              Address first. Names never.
             </h2>
             <p className="lede mt-6">
-              Correctly priced. Suited to the right buyer. Built for long-term value.
+              Editorial briefs — sky, street, structure, and capital. The board stays off the page.
             </p>
           </div>
         </Reveal>
@@ -39,12 +39,16 @@ export function Projects() {
                       src={publicSrc(project.image)}
                       alt={project.title}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                      className={`object-cover transition-transform duration-700 group-hover:scale-[1.03] ${project.imagePosition ?? ''}`}
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>
                   <div className="flex flex-col justify-center px-6 py-8 md:px-10 md:py-12 lg:px-14">
-                    <p className="kicker mb-4 text-muted">{project.location}</p>
+                    <p className="kicker mb-4 text-muted">
+                      {project.developer
+                        ? `${project.developer} · ${project.location}`
+                        : project.location}
+                    </p>
                     <h3 className="display text-3xl text-ivory md:text-4xl lg:text-5xl">
                       {project.title}
                     </h3>
@@ -52,9 +56,9 @@ export function Projects() {
                       {project.description}
                     </p>
                     <div className="mt-8 flex flex-wrap items-end justify-between gap-4 border-t border-ivory/10 pt-6">
-                      <p className="display text-2xl text-ivory">{project.price}</p>
+                      <p className="display text-xl text-ivory md:text-2xl">{project.price}</p>
                       <p className="flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-muted transition-colors group-hover:text-ivory">
-                        {project.beds} · {project.sqft} sq ft
+                        {project.beds}
                         <span className="text-silver transition-transform duration-300 group-hover:translate-x-1">
                           →
                         </span>

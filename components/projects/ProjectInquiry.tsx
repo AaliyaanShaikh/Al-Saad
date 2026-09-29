@@ -3,12 +3,12 @@
 import { Magnetic } from '@/components/motion/Magnetic';
 import { useCallModal } from '@/components/chrome/Providers';
 
-export function ProjectInquiry({ projectTitle }: { projectTitle: string }) {
+export function ProjectInquiry() {
   const { openCall } = useCallModal();
 
   return (
     <Magnetic onClick={openCall} className="btn mt-8 w-full justify-center">
-      Enquire about {projectTitle}
+      Request a private briefing
       <span className="btn-arrow">→</span>
     </Magnetic>
   );

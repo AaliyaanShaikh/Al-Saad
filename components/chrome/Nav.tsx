@@ -94,7 +94,7 @@ export function Nav() {
                   </Link>
 
                   <div
-                    className={`absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-3 transition-all duration-200 ${
+                    className={`absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 pt-3 transition-all duration-200 ${
                       projectsOpen
                         ? 'pointer-events-auto translate-y-0 opacity-100'
                         : 'pointer-events-none -translate-y-1 opacity-0'
@@ -125,7 +125,7 @@ export function Nav() {
                           className="text-[9px] uppercase tracking-[0.18em] text-silver transition-colors hover:text-ivory"
                           onClick={() => setProjectsOpen(false)}
                         >
-                          View all projects →
+                          View all positions →
                         </Link>
                       </div>
                     </div>

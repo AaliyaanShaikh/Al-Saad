@@ -65,11 +65,11 @@ export function Hero() {
     >
       <div ref={mediaRef} className="absolute inset-0 will-change-transform" data-cursor="view">
         <Image
-          src={publicSrc('/Lodha.jpeg')}
+          src={publicSrc('/hero.png')}
           alt="Background"
           fill
           priority
-          className="object-cover"
+          className="object-cover object-[44%_50%] md:object-[54%_28%]"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-void via-void/55 to-void/25" />

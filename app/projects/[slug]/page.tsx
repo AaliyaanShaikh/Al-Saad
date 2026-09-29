@@ -38,7 +38,7 @@ export default async function ProjectPage({ params }: Props) {
             alt={project.title}
             fill
             priority
-            className="object-cover"
+            className={`object-cover ${project.imagePosition ?? ''}`}
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-void/55" />
@@ -51,12 +51,19 @@ export default async function ProjectPage({ params }: Props) {
               href="/#projects"
               className="kicker mb-8 inline-block text-ivory/55 transition-colors hover:text-ivory"
             >
-              ← All projects
+              ← All positions
             </Link>
-            <p className="kicker mb-4 text-silver-bright">{project.location}</p>
+            <p className="kicker mb-4 text-silver-bright">
+              {project.developer ? `${project.developer} · ${project.location}` : project.location}
+            </p>
             <h1 className="display max-w-4xl text-5xl text-ivory md:text-7xl lg:text-8xl">
               {project.title}
             </h1>
+            {project.tagline && (
+              <p className="mt-4 font-display text-lg italic text-ivory/70 md:text-xl">
+                “{project.tagline}”
+              </p>
+            )}
             <p className="mt-5 max-w-xl text-base leading-relaxed text-ivory/70 md:text-lg">
               {project.description}
             </p>
@@ -68,7 +75,7 @@ export default async function ProjectPage({ params }: Props) {
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
             <Reveal>
-              <p className="kicker mb-5">Overview</p>
+              <p className="kicker mb-5">The brief</p>
               <p className="body max-w-2xl text-base md:text-lg">{project.body}</p>
 
               <ul className="mt-10 grid gap-3 sm:grid-cols-2">
@@ -81,33 +88,22 @@ export default async function ProjectPage({ params }: Props) {
                   </li>
                 ))}
               </ul>
-
-              {project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn mt-10 inline-flex"
-                >
-                  Watch walkthrough
-                  <span className="btn-arrow">→</span>
-                </a>
-              )}
             </Reveal>
           </div>
 
           <div className="lg:col-span-5">
             <Reveal delay={0.08}>
               <div className="rounded-[28px] border border-ivory/10 bg-paper-2 p-7 md:p-9">
-                <p className="kicker mb-6 text-muted">Property details</p>
+                <p className="kicker mb-6 text-muted">The position</p>
                 <dl className="space-y-5">
                   {[
-                    ['Price', project.price],
-                    ['Configuration', project.beds],
-                    ['Area', `${project.sqft} sq ft`],
+                    ...(project.developer ? [['Developer', project.developer] as const] : []),
+                    ['Pricing', project.price],
+                    ['Format', project.beds],
+                    ['Carpet', project.sqft],
                     ['Location', project.location],
-                    ['Status', project.status],
-                    ['Category', project.category],
+                    ['Access', project.status],
+                    ...(project.rera ? [['MahaRERA', project.rera] as const] : []),
                   ].map(([label, value]) => (
                     <div
                       key={label}
@@ -116,22 +112,88 @@ export default async function ProjectPage({ params }: Props) {
                       <dt className="text-[10px] uppercase tracking-[0.18em] text-muted">
                         {label}
                       </dt>
-                      <dd className="text-right text-sm text-ivory capitalize">{value}</dd>
+                      <dd className="text-right text-sm text-ivory">{value}</dd>
                     </div>
                   ))}
                 </dl>
-                <ProjectInquiry projectTitle={project.title} />
+                <ProjectInquiry />
               </div>
             </Reveal>
           </div>
         </div>
       </section>
 
+      {project.typologies && project.typologies.length > 0 && (
+        <section className="border-t border-ivory/10 px-5 py-16 md:px-10 md:py-24">
+          <div className="mx-auto max-w-7xl">
+            <Reveal>
+              <p className="kicker mb-4">Exclusive residences</p>
+              <h2 className="display mb-10 text-3xl text-ivory md:text-4xl">
+                Pricing & RERA carpet
+              </h2>
+            </Reveal>
+            <Reveal delay={0.06}>
+              <div className="overflow-hidden rounded-[22px] border border-ivory/10">
+                <table className="w-full text-left text-sm">
+                  <thead className="bg-paper-2 text-[10px] uppercase tracking-[0.16em] text-muted">
+                    <tr>
+                      <th className="px-5 py-4 font-medium md:px-7">Typology</th>
+                      <th className="px-5 py-4 font-medium md:px-7">RERA carpet (sq ft)</th>
+                      <th className="px-5 py-4 font-medium md:px-7">Price (all incl.)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {project.typologies.map((row) => (
+                      <tr key={`${row.name}-${row.area}`} className="border-t border-ivory/10">
+                        <td className="px-5 py-4 text-ivory md:px-7">
+                          <span className="block">{row.name}</span>
+                          {row.note && (
+                            <span className="mt-1 block text-[11px] text-muted">{row.note}</span>
+                          )}
+                        </td>
+                        <td className="px-5 py-4 text-ink-2 md:px-7">{row.area}</td>
+                        <td className="px-5 py-4 text-ivory md:px-7">{row.price}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-4 text-[11px] leading-relaxed text-muted">
+                All-inclusive pricing as briefed. Figures are indicative and subject to change.
+                {project.rera ? ` MahaRERA ${project.rera}.` : ''}
+              </p>
+            </Reveal>
+          </div>
+        </section>
+      )}
+
+      {project.floorBands && project.floorBands.length > 0 && (
+        <section className="border-t border-ivory/10 px-5 py-16 md:px-10 md:py-24">
+          <div className="mx-auto max-w-7xl">
+            <Reveal>
+              <p className="kicker mb-4">Floor bands</p>
+              <h2 className="display mb-10 text-3xl text-ivory md:text-4xl">How the tower is read</h2>
+            </Reveal>
+            <div className="grid gap-4 md:grid-cols-3">
+              {project.floorBands.map((band, i) => (
+                <Reveal key={band.name} delay={i * 0.05}>
+                  <div className="rounded-[22px] border border-ivory/10 bg-paper-2 px-6 py-8">
+                    <p className="kicker mb-3 text-muted">{String(i + 1).padStart(2, '0')}</p>
+                    <h3 className="display text-2xl text-ivory">{band.name}</h3>
+                    <p className="mt-3 text-sm text-ink-2">{band.floors}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {others.length > 0 && (
         <section className="border-t border-ivory/10 px-5 py-16 md:px-10 md:py-24">
           <div className="mx-auto max-w-7xl">
             <Reveal>
-              <p className="kicker mb-4">More projects</p>
+              <p className="kicker mb-4">More positions</p>
               <h2 className="display mb-10 text-3xl text-ivory md:text-4xl">Continue exploring</h2>
             </Reveal>
             <div className="grid gap-6 md:grid-cols-3">
@@ -146,7 +208,7 @@ export default async function ProjectPage({ params }: Props) {
                         src={publicSrc(item.image)}
                         alt={item.title}
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                        className={`object-cover transition-transform duration-700 group-hover:scale-[1.03] ${item.imagePosition ?? ''}`}
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
                     </div>
