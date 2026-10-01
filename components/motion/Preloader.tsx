@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import { site } from '@/lib/data';
 import { useReducedMotion } from '@/lib/useReducedMotion';
 
-const LOGO_SRC = '/ChatGPT Image Jan 13, 2026 at 02_37_17 AM.png';
+const LOGO_SRC = '/ChatGPT Image Jan 13, 2026 at 02_37_17 AM.webp';
 
 type PreloaderProps = {
   onReady?: () => void;

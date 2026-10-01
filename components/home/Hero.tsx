@@ -65,7 +65,7 @@ export function Hero() {
     >
       <div ref={mediaRef} className="absolute inset-0 will-change-transform" data-cursor="view">
         <Image
-          src={publicSrc('/hero.png')}
+          src={publicSrc('/hero.webp')}
           alt="Background"
           fill
           priority

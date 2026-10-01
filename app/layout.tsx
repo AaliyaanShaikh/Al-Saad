@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   title: `${site.name} | Mumbai Western Suburbs Real Estate`,
   description: site.tagline,
   icons: {
-    icon: '/ChatGPT%20Image%20Jan%2013%2C%202026%20at%2002_37_17%20AM.png',
-    apple: '/ChatGPT%20Image%20Jan%2013%2C%202026%20at%2002_37_17%20AM.png',
+    icon: '/ChatGPT%20Image%20Jan%2013%2C%202026%20at%2002_37_17%20AM.webp',
+    apple: '/ChatGPT%20Image%20Jan%2013%2C%202026%20at%2002_37_17%20AM.webp',
   },
 };
 

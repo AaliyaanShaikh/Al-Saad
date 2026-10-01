@@ -13,8 +13,9 @@ type ProjectDetailPageProps = {
 
 export function ProjectDetailPage({ project, others }: ProjectDetailPageProps) {
   const [activeTab, setActiveTab] = useState<'home' | 'location-map' | 'floor-plan' | 'unit-plan' | 'video' | 'renders' | 'rera' | 'al-saad-opinion'>('home');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const brochureUrl = project.brochureUrl ?? '/brochures/Noor A3 presenter Final_compressed.pdf';
+  const brochureUrl = project.brochureUrl ?? '/brochures/Luxury_Real_Estate_Brochure_No_Developer_Branding.pdf';
 
   const sidebarItems = [
     { id: 'home', label: 'Home' },
@@ -28,39 +29,39 @@ export function ProjectDetailPage({ project, others }: ProjectDetailPageProps) {
   ] as const;
 
   const locationImages = [
-    '/Project1/View 1_ (1).jpg',
-    '/Project1/View 2_ (1).jpg',
-    '/Project1/Terrace View 2_.jpg',
-    '/Project1/Terrace View 4_.jpg',
+    '/Project1/View 1_ (1).webp',
+    '/Project1/View 2_ (1).webp',
+    '/Project1/Terrace View 2_.webp',
+    '/Project1/Terrace View 4_.webp',
   ];
 
   const floorPlanImages = [
-    '/Project1/006_n_Post.jpg',
-    '/Project1/001_n_Post (1).jpeg',
-    '/Project1/WhatsApp Image 2026-01-15 at 5.44.21 PM.jpg',
+    '/Project1/006_n_Post.webp',
+    '/Project1/001_n_Post (1).webp',
+    '/Project1/WhatsApp Image 2026-01-15 at 5.44.21 PM.webp',
   ];
 
   const unitPlanImages = [
-    '/Project1/LIVING ROOM _3BHK TYPE A (1) (2).jpg',
-    '/Project1/POWDER BATHROOM -3BHK TYPE A (2).jpg',
-    '/Project1/Secondary Bedroom 3BHK (1).jpg',
-    '/Project1/IMG_7946.JPG',
+    '/Project1/LIVING ROOM _3BHK TYPE A (1) (2).webp',
+    '/Project1/POWDER BATHROOM -3BHK TYPE A (2).webp',
+    '/Project1/Secondary Bedroom 3BHK (1).webp',
+    '/Project1/IMG_7946.webp',
   ];
 
   const renderImages = [
-    '/Project1/BANQUET RENDER 1.png',
-    '/Project1/CONFERENCE ROOM RENDER 1 .png',
-    '/Project1/LIFT LOBBY REDNER 1 EDITED2.png',
-    '/Project1/MAIN LOBBY 2- EDITED .png',
-    '/Project1/MEETING ROOM RENDER 1 - EDITED.png',
-    '/Project1/Multistar_night_001_8K_.jpg',
-    '/Project1/duplex render REal.jpg',
+    '/Project1/BANQUET RENDER 1.webp',
+    '/Project1/CONFERENCE ROOM RENDER 1 .webp',
+    '/Project1/LIFT LOBBY REDNER 1 EDITED2.webp',
+    '/Project1/MAIN LOBBY 2- EDITED .webp',
+    '/Project1/MEETING ROOM RENDER 1 - EDITED.webp',
+    '/Project1/Multistar_night_001_8K_.webp',
+    '/Project1/duplex render REal.webp',
   ];
 
   const creativeImages = [
-    '/Project1/76e5c69f-774f-4782-9fba-b5d6e88bf6b6.jpg',
-    '/Project1/c97a90e9-4be5-4152-92e1-87dad9dfb14d.jpg',
-    '/Project1/WhatsApp Image 2026-01-14 at 4.14.59 PM.jpg',
+    '/Project1/76e5c69f-774f-4782-9fba-b5d6e88bf6b6.webp',
+    '/Project1/c97a90e9-4be5-4152-92e1-87dad9dfb14d.webp',
+    '/Project1/WhatsApp Image 2026-01-14 at 4.14.59 PM.webp',
   ];
 
   const contentMap = {
@@ -337,17 +338,56 @@ export function ProjectDetailPage({ project, others }: ProjectDetailPageProps) {
             </aside>
 
             <div className="pb-10 xl:pb-14">
-              <div className="mb-8 flex flex-col gap-5 xl:mb-10 xl:flex-row xl:items-end xl:justify-between">
-                <div className="max-w-xl">
-                  <p className="kicker mb-5 text-[9px] text-silver-bright md:text-[10px]">
+              <div className="mb-5 flex items-center justify-between gap-3 xl:hidden">
+                <div className="min-w-0 flex-1">
+                  <p className="kicker truncate text-[9px] text-silver-bright md:text-[10px]">
                     {project.developer ? `${project.developer} · ${project.location}` : project.location}
                   </p>
-                  <h1 className="display max-w-5xl text-[3.6rem] leading-[0.82] text-ivory sm:text-[5rem] md:text-[6.5rem] lg:text-[7.2rem]">
+                </div>
+                <button
+                  type="button"
+                  aria-expanded={mobileMenuOpen}
+                  onClick={() => setMobileMenuOpen((open) => !open)}
+                  className="inline-flex w-[180px] items-center justify-between gap-2 rounded-full border border-ivory/15 bg-[#111821]/80 px-3.5 py-2.5 text-[9px] font-medium uppercase tracking-[0.2em] text-ivory/90 shadow-[0_12px_32px_rgba(0,0,0,0.25)] backdrop-blur-md transition-all hover:border-ivory/30"
+                >
+                  <span className="truncate">{activeTab === 'home' ? 'Overview' : activeContent.eyebrow}</span>
+                  <span aria-hidden="true" className="text-[12px]">▾</span>
+                </button>
+              </div>
+
+              {mobileMenuOpen && (
+                <div className="mb-6 rounded-[22px] border border-ivory/10 bg-[#060b10]/90 p-3 shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-md xl:hidden">
+                  <div className="grid gap-2">
+                    {sidebarItems.map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => {
+                          setActiveTab(item.id);
+                          setMobileMenuOpen(false);
+                        }}
+                        className={`rounded-full px-3 py-2.5 text-left text-[10px] uppercase tracking-[0.18em] transition-colors ${
+                          activeTab === item.id ? 'bg-ivory text-[#050b11]' : 'bg-white/5 text-ivory/75 hover:bg-white/10'
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="mb-8 flex flex-col gap-5 xl:mb-10 xl:flex-row xl:items-end xl:justify-between">
+                <div className="max-w-xl">
+                  <p className="kicker mb-5 hidden text-[9px] text-silver-bright md:text-[10px] xl:block">
+                    {project.developer ? `${project.developer} · ${project.location}` : project.location}
+                  </p>
+                  <h1 className="display max-w-5xl text-[3.2rem] leading-[0.82] text-ivory sm:text-[4.5rem] md:text-[5.2rem] lg:text-[7.2rem] xl:text-[6.5rem]">
                     {activeTab === 'home' ? project.title : activeContent.title}
                   </h1>
                 </div>
 
-                <button type="button" className="btn btn-outline w-fit self-start xl:self-end">
+                <button type="button" className="btn btn-outline hidden w-fit self-start xl:inline-flex xl:self-end">
                   Request a call
                   <span className="btn-arrow">→</span>
                 </button>
@@ -474,12 +514,12 @@ export function ProjectDetailPage({ project, others }: ProjectDetailPageProps) {
                 return (
                   <div
                     key={label}
-                    className={`grid gap-4 border-t border-ivory/10 py-5 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] ${isLast ? 'border-b border-ivory/10' : ''}`}
+                    className={`grid gap-3 border-t border-ivory/10 py-4 sm:gap-4 sm:py-5 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] ${isLast ? 'border-b border-ivory/10' : ''}`}
                   >
-                    <div className="text-[11px] uppercase tracking-[0.22em] text-ivory/60 md:text-[12px]">
+                    <div className="text-[10px] uppercase tracking-[0.22em] text-ivory/60 sm:text-[11px] md:text-[12px]">
                       {label}
                     </div>
-                    <div className="text-left text-[1.05rem] font-medium text-ivory md:text-[1.6rem] md:font-normal">
+                    <div className="text-left text-[1rem] font-medium text-ivory sm:text-[1.1rem] md:text-[1.6rem] md:font-normal">
                       {value}
                     </div>
                   </div>

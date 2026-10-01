@@ -43,7 +43,7 @@ export function AIChat() {
             <div className="flex items-center space-x-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/ChatGPT Image Jan 13, 2026 at 02_37_17 AM.png"
+                src="/ChatGPT Image Jan 13, 2026 at 02_37_17 AM.webp"
                 alt="Al-Saad Logo"
                 className="h-10 w-10 rounded-2xl object-contain"
               />

@@ -43,7 +43,7 @@ export function DarkChapter() {
           <Reveal delay={0.1}>
             <div className="relative aspect-[4/5] overflow-hidden rounded-[28px]" data-cursor="view">
               <Image
-                src={publicSrc('/profile.jpeg')}
+                src={publicSrc('/profile.webp')}
                 alt={site.founder}
                 fill
                 className="object-cover"

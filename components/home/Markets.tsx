@@ -5,24 +5,24 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { publicSrc } from '@/lib/data';
 import { useCallModal } from '@/components/chrome/Providers';
 
-const FALLBACK_IMAGE = publicSrc('/screenshot-jogeshwari.png');
+const FALLBACK_IMAGE = publicSrc('/screenshot-jogeshwari.webp');
 
 const CREATORS = [
-  { id: '1', name: 'Bandra', followers: 'Premium apex', media: publicSrc('/screenshot-jogeshwari-2.png') },
-  { id: '2', name: 'Khar', followers: 'Redevelopment hub', media: publicSrc('/screenshot-jogeshwari.png') },
+  { id: '1', name: 'Bandra', followers: 'Premium apex', media: publicSrc('/screenshot-jogeshwari-2.webp') },
+  { id: '2', name: 'Khar', followers: 'Redevelopment hub', media: publicSrc('/screenshot-jogeshwari.webp') },
   {
     id: '3',
     name: 'Santacruz',
     followers: 'Growth corridor',
-    media: publicSrc('/WhatsApp Image 2026-01-25 at 13.07.14.jpeg'),
+    media: publicSrc('/WhatsApp Image 2026-01-25 at 13.07.14.webp'),
   },
-  { id: '4', name: 'Andheri', followers: 'Connectivity play', media: publicSrc('/screenshot-bandivali.png') },
-  { id: '5', name: 'Versova', followers: 'Coastal upside', media: publicSrc('/screenshot-2026-01-30.png') },
+  { id: '4', name: 'Andheri', followers: 'Connectivity play', media: publicSrc('/screenshot-bandivali.webp') },
+  { id: '5', name: 'Versova', followers: 'Coastal upside', media: publicSrc('/screenshot-2026-01-30.webp') },
   {
     id: '6',
     name: 'Jogeshwari',
     followers: 'Value micro-market',
-    media: publicSrc('/screenshot-2026-01-31-jogeshwari.png'),
+    media: publicSrc('/screenshot-2026-01-31-jogeshwari.webp'),
   },
 ];
 
@@ -83,7 +83,7 @@ export function Markets() {
         <div className="mt-12 mb-6 overflow-hidden rounded-2xl border border-ivory/10 shadow-xl md:mt-20 md:mb-10">
           <div
             className="relative flex min-h-[240px] items-center justify-center bg-cover bg-[center_28%] px-6 py-14 sm:min-h-[260px] md:min-h-[360px] md:px-16 md:py-20 lg:min-h-[420px] lg:px-20 lg:py-28"
-            style={{ backgroundImage: `url("${publicSrc('/IMG_4653.jpg')}")` }}
+            style={{ backgroundImage: `url("${publicSrc('/IMG_4653.webp')}")` }}
           >
             <div className="absolute inset-0 bg-void/70" />
             <div className="relative z-10 flex w-full max-w-2xl flex-col items-center px-2 text-center sm:px-4 md:max-w-3xl lg:max-w-4xl">
