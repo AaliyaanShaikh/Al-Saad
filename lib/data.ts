@@ -37,7 +37,9 @@ export type Project = {
   status: string;
   developer?: string;
   tagline?: string;
+  brochureUrl?: string;
   highlights: string[];
+  gallery?: string[];
   typologies?: Typology[];
   floorBands?: FloorBand[];
   amenities?: string[];
@@ -157,16 +159,18 @@ export const projects: Project[] = [
   {
     id: '1',
     slug: 'autograph-residency',
-    title: 'Autograph Residency',
+    title: 'The A-List Residences',
     developer: 'Multistar Builders',
     tagline: 'Where Luxury Bears Your Signature.',
+    brochureUrl: '/brochures/Noor A3 presenter Final_compressed.pdf',
     description:
-      'An ultra-luxury residential landmark by Multistar Builders, in the prime heart of Andheri West – Oshiwara, Mumbai.',
-    body: 'Autograph Residency is an iconic G+37 storey tower with dedicated surface parking, basement + ground + 6-level podium parking, exclusive lifestyle amenities on the 7th floor, and residences from the 8th floor to the 37th floor. A 10-ft wide grand passage, four high-speed elevators including a stretcher lift, rooftop lifestyle amenities, and 30+ world-class premium amenities designed for elevated living. Exclusive residences include 3 BHKs, sky mansions, jodi apartments, and signature penthouses. Premium 3 bed homes start from ₹3.80 Cr all inclusive. The 3rd floor band is opening soon.',
+      'The Chosen Address of Cinema Icons: Ultra-Exclusive 3 Bed Premium & Luxe Homes, 4 & 5 Bed Duplexes, and Sky-High Penthouses in Andheri West Defined by A-List Privacy, Star-Studded Neighborhood Covenants, and Monolithic Scale.',
+    body: 'The A-List Residences is an iconic G+37 storey tower with dedicated surface parking, basement + ground + 6-level podium parking, exclusive lifestyle amenities on the 7th floor, and residences from the 8th floor to the 37th floor. A 10-ft wide grand passage, four high-speed elevators including a stretcher lift, rooftop lifestyle amenities, and 30+ world-class premium amenities designed for elevated living. Exclusive residences include 3 BHKs, sky mansions, jodi apartments, and signature penthouses. Premium 3 bed homes start from ₹3.80 Cr all inclusive. The 3rd floor band is opening soon.',
     category: 'exclusive',
     year: '2026',
     image: '/positions/g37-oshiwara.jpg',
     imagePosition: 'object-[50%_18%]',
+    gallery: ['/positions/g37-oshiwara.jpg', '/positions/oshiwara-g37-tower.jpg'],
     location: 'Andheri West – Oshiwara',
     price: 'From ₹3.80 Cr all incl.',
     beds: '3 BHK to penthouse',
