@@ -72,7 +72,7 @@ export default function AboutPage() {
             <Reveal delay={0.1}>
               <div className="relative aspect-[4/5] overflow-hidden rounded-[28px]">
                 <Image
-                  src={publicSrc('/profile.webp')}
+                  src={publicSrc('/profile.jpeg')}
                   alt={site.founder}
                   fill
                   className="object-cover"
