@@ -299,8 +299,8 @@ export function ProjectNarrative({ project }: { project: Project }) {
           {project.tagline && (
             <p className="mt-4 font-display text-lg italic text-ivory/75 md:text-2xl">{project.tagline}</p>
           )}
-          <p className="mt-6 max-w-xl text-sm text-ivory/70 md:text-base">
-            G+37 · Homes from the 8th floor · From ₹3.80 Cr all inclusive
+          <p className="mt-6 max-w-3xl text-sm leading-relaxed text-ivory/70 md:text-base">
+            {project.description}
           </p>
         </div>
       </section>
@@ -310,7 +310,7 @@ export function ProjectNarrative({ project }: { project: Project }) {
           <Reveal className="lg:col-span-7">
             <p className="kicker mb-5">How to read this</p>
             <p className="display text-3xl font-extralight leading-tight text-ivory md:text-5xl">
-              {project.description}
+              {project.title}
             </p>
             <p className="body mt-8 max-w-2xl text-base md:text-lg">{project.body}</p>
           </Reveal>
