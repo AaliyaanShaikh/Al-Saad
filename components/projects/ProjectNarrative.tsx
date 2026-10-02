@@ -332,18 +332,14 @@ export function ProjectNarrative({ project }: { project: Project }) {
                     key={`${row.name}-${row.area}`}
                     className="rounded-[18px] border border-ivory/10 bg-paper-2 px-4 py-4"
                   >
-                    <p className="text-sm text-ivory">{row.name}</p>
-                    {row.note && <p className="mt-1 text-xs text-muted">{row.note}</p>}
-                    <dl className="mt-3 grid grid-cols-2 gap-3 text-sm">
-                      <div>
-                        <dt className="text-[10px] uppercase tracking-[0.16em] text-muted">Carpet</dt>
-                        <dd className="mt-1 text-ink-2">{row.area} sq ft</dd>
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="min-w-0">
+                        <p className="text-sm text-ivory">{row.name}</p>
+                        {row.note && <p className="mt-1 text-xs text-muted">{row.note}</p>}
+                        <p className="mt-2 text-xs text-ink-2">{row.area} sq ft</p>
                       </div>
-                      <div>
-                        <dt className="text-[10px] uppercase tracking-[0.16em] text-muted">All incl.</dt>
-                        <dd className="mt-1 text-ivory">{row.price}</dd>
-                      </div>
-                    </dl>
+                      <p className="shrink-0 text-right text-sm text-ivory">{row.price}</p>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -353,7 +349,7 @@ export function ProjectNarrative({ project }: { project: Project }) {
                     <tr>
                       <th className="px-4 py-4 font-medium lg:px-6">Home</th>
                       <th className="px-4 py-4 font-medium lg:px-6">Carpet sq ft</th>
-                      <th className="px-4 py-4 font-medium lg:px-6">All inclusive</th>
+                      <th className="px-4 py-4 text-right font-medium lg:px-6">All inclusive</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -364,7 +360,7 @@ export function ProjectNarrative({ project }: { project: Project }) {
                           {row.note && <span className="mt-1 block text-xs text-muted">{row.note}</span>}
                         </td>
                         <td className="whitespace-nowrap px-4 py-4 text-ink-2 lg:px-6">{row.area}</td>
-                        <td className="whitespace-nowrap px-4 py-4 text-ivory lg:px-6">{row.price}</td>
+                        <td className="whitespace-nowrap px-4 py-4 text-right text-ivory lg:px-6">{row.price}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -380,32 +376,19 @@ export function ProjectNarrative({ project }: { project: Project }) {
             <Reveal delay={0.06}>
               <div className="rounded-[28px] border border-ivory/10 bg-paper-2 p-5 sm:p-6 md:p-8">
                 <p className="kicker mb-6 text-muted">Floor bands</p>
-                <ul className="space-y-3 md:hidden">
+                <ul className="space-y-3">
                   {project.floorBands?.map((band) => (
-                    <li key={band.name} className="rounded-[16px] border border-ivory/10 px-4 py-4">
-                      <p className="text-[10px] uppercase tracking-[0.16em] text-muted">{band.name}</p>
-                      <p className="mt-2 text-sm leading-relaxed text-ivory">{band.floors}</p>
+                    <li
+                      key={band.name}
+                      className="flex items-baseline justify-between gap-4 border-b border-ivory/10 pb-3 last:border-0"
+                    >
+                      <p className="shrink-0 text-[10px] uppercase tracking-[0.16em] text-muted">
+                        {band.name}
+                      </p>
+                      <p className="text-right text-sm whitespace-nowrap text-ivory">{band.floors}</p>
                     </li>
                   ))}
                 </ul>
-                <div className="hidden overflow-x-auto md:block">
-                  <table className="w-full text-left text-sm">
-                    <thead className="text-[10px] uppercase tracking-[0.16em] text-muted">
-                      <tr>
-                        <th className="pb-3 pr-4 font-medium">Band</th>
-                        <th className="pb-3 font-medium">Floors</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {project.floorBands?.map((band) => (
-                        <tr key={band.name} className="border-t border-ivory/10">
-                          <td className="py-4 pr-4 text-ivory">{band.name}</td>
-                          <td className="py-4 text-ink-2">{band.floors}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
                 <ProjectInquiry />
               </div>
             </Reveal>
