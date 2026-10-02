@@ -6,9 +6,10 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      { source: '/projects/g37-oshiwara', destination: '/projects/autograph-residency', permanent: true },
-      { source: '/projects/vision-heights', destination: '/projects/autograph-residency', permanent: true },
-      { source: '/projects/sky-gardens-jogeshwari-west', destination: '/projects/autograph-residency', permanent: true },
+      { source: '/projects/autograph-residency', destination: '/projects/the-a-list-residences', permanent: true },
+      { source: '/projects/g37-oshiwara', destination: '/projects/the-a-list-residences', permanent: true },
+      { source: '/projects/vision-heights', destination: '/projects/the-a-list-residences', permanent: true },
+      { source: '/projects/sky-gardens-jogeshwari-west', destination: '/projects/the-a-list-residences', permanent: true },
       { source: '/projects/aksa', destination: '/projects/designer-residences-jvlr', permanent: true },
       { source: '/projects/dream-india', destination: '/projects/boutique-tower-cafe-safar', permanent: true },
       { source: '/projects/paradigm-alaya', destination: '/projects/oshiwara-30-70', permanent: true },
