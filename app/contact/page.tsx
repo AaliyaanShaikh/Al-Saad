@@ -16,7 +16,7 @@ export default function ContactPage() {
       <section className="relative isolate min-h-[85svh] overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <Image
-            src={publicSrc('/teamedit.png')}
+            src={publicSrc('/teamedit.webp')}
             alt=""
             fill
             priority

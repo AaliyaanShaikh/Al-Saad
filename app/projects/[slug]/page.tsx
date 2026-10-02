@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { bySlug, projects, publicSrc, site } from '@/lib/data';
 import { Reveal } from '@/components/motion/Reveal';
 import { ProjectInquiry } from '@/components/projects/ProjectInquiry';
+import { ProjectNarrative } from '@/components/projects/ProjectNarrative';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -28,6 +29,10 @@ export default async function ProjectPage({ params }: Props) {
   if (!project) notFound();
 
   const others = projects.filter((p) => p.slug !== project.slug).slice(0, 3);
+
+  if (project.chapters?.length) {
+    return <ProjectNarrative project={project} />;
+  }
 
   return (
     <div className="bg-void">

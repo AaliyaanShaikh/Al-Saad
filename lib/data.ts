@@ -20,6 +20,14 @@ export type FloorBand = {
   floors: string;
 };
 
+export type ProjectChapter = {
+  id: string;
+  kicker: string;
+  title: string;
+  body: string;
+  image: string;
+};
+
 export type Project = {
   id: string;
   slug: string;
@@ -38,6 +46,7 @@ export type Project = {
   developer?: string;
   tagline?: string;
   brochureUrl?: string;
+  chapters?: ProjectChapter[];
   highlights: string[];
   typologies?: Typology[];
   floorBands?: FloorBand[];
@@ -157,17 +166,47 @@ export const markets: Market[] = [
 export const projects: Project[] = [
   {
     id: '1',
-    slug: 'autograph-residency',
-    title: 'Autograph Residency',
+    slug: 'the-a-list-residences',
+    title: 'The A-List Residences',
     developer: 'Multistar Builders',
     tagline: 'Where Luxury Bears Your Signature.',
     description:
-      'An ultra-luxury residential landmark by Multistar Builders, in the prime heart of Andheri West – Oshiwara, Mumbai.',
-    body: 'Autograph Residency is an iconic G+37 storey tower with dedicated surface parking, basement + ground + 6-level podium parking, exclusive lifestyle amenities on the 7th floor, and residences from the 8th floor to the 37th floor. A 10-ft wide grand passage, four high-speed elevators including a stretcher lift, rooftop lifestyle amenities, and 30+ world-class premium amenities designed for elevated living. Exclusive residences include 3 BHKs, sky mansions, jodi apartments, and signature penthouses. Premium 3 bed homes start from ₹3.80 Cr all inclusive. The 3rd floor band is opening soon.',
+      'The Chosen Address of Cinema Icons: Ultra-Exclusive 3 Bed Premium & Luxe Homes, 4 & 5 Bed Duplexes, and Sky-High Penthouses in Andheri West Defined by A-List Privacy, Star-Studded Neighborhood Covenants, and Monolithic Scale.',
+    body: 'The A-List Residences is an iconic G+37 storey tower with dedicated surface parking, basement + ground + 6-level podium parking, exclusive lifestyle amenities on the 7th floor, and residences from the 8th floor to the 37th floor. A 10-ft wide grand passage, four high-speed elevators including a stretcher lift, rooftop lifestyle amenities, and 30+ world-class premium amenities designed for elevated living. Exclusive residences include 3 BHKs, sky mansions, jodi apartments, and signature penthouses. Premium 3 bed homes start from ₹3.80 Cr all inclusive. The 3rd floor band is opening soon.',
     category: 'exclusive',
     year: '2026',
-    image: '/positions/g37-oshiwara.jpg',
-    imagePosition: 'object-[50%_18%]',
+    image: '/Project1/001_n_Post (1).webp',
+    imagePosition: 'object-[center_30%]',
+    chapters: [
+      {
+        id: 'arrival',
+        kicker: '01 — Arrival',
+        title: 'A porte-cochère, not a driveway.',
+        body: 'The drop-off sits under a perforated metal canopy. Stone walls, a lit threshold, and enough room to arrive without theatre. Parking continues below: basement, ground, and six podium levels, plus dedicated surface parking.',
+        image: '/Project1/006_n_Post.webp',
+      },
+      {
+        id: 'lobby',
+        kicker: '02 — Lobby',
+        title: 'The ground floor is a room, not a corridor.',
+        body: 'Stone, a single reception desk, and a 10-ft passage lead to four high-speed elevators, including a stretcher lift. Homes do not begin here. The 7th floor is the amenity deck. Residences run from the 8th floor to the 37th.',
+        image: '/Project1/MAIN LOBBY 2- EDITED .webp',
+      },
+      {
+        id: 'residence',
+        kicker: '03 — A 3 bed home',
+        title: '968.6 and 1,243.5 sq ft, read as rooms.',
+        body: 'The 3 Bed Premium is 968.6 sq ft at ₹3.80 Cr all inclusive. The 3 Bed Luxe is 1,243.5 sq ft at ₹4.90 Cr. Timber, stone, and a dining table that can actually seat the household — this is the everyday plate, not the duplex.',
+        image: '/Project1/LIVING ROOM _3BHK TYPE A (1) (2).webp',
+      },
+      {
+        id: 'duplex',
+        kicker: '04 — Duplex & penthouse',
+        title: 'Two floors, then the sky.',
+        body: '4 Bed duplexes are 1,789.5 sq ft at ₹7.55 Cr. 5 Bed duplexes are 2,223.5 sq ft at ₹9.20 Cr. The jodi penthouse is 2,518 sq ft at ₹9.45 Cr. The stair is part of the living room, not a service core tucked out of sight.',
+        image: '/Project1/duplex render REal.webp',
+      },
+    ],
     location: 'Andheri West – Oshiwara',
     price: 'From ₹3.80 Cr all incl.',
     beds: '3 BHK to penthouse',

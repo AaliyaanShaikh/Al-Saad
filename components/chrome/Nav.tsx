@@ -106,13 +106,13 @@ export function Nav() {
                           <li key={project.id}>
                             <Link
                               href={`/projects/${project.slug}`}
-                              className="block px-5 py-2.5 text-[11px] tracking-[0.04em] text-ivory/65 transition-colors hover:bg-ivory/5 hover:text-ivory"
+                              className="block px-5 py-2.5 text-[13px] tracking-[0.02em] text-ivory/65 transition-colors hover:bg-ivory/5 hover:text-ivory"
                               onClick={() => setProjectsOpen(false)}
                             >
                               <span className="block font-medium text-ivory/90">
                                 {project.title}
                               </span>
-                              <span className="mt-0.5 block text-[9px] uppercase tracking-[0.16em] text-muted">
+                              <span className="mt-0.5 block text-[11px] uppercase tracking-[0.14em] text-muted">
                                 {project.location}
                               </span>
                             </Link>
@@ -122,7 +122,7 @@ export function Nav() {
                       <div className="border-t border-ivory/10 px-5 py-3">
                         <Link
                           href="/#projects"
-                          className="text-[9px] uppercase tracking-[0.18em] text-silver transition-colors hover:text-ivory"
+                          className="text-[11px] uppercase tracking-[0.16em] text-silver transition-colors hover:text-ivory"
                           onClick={() => setProjectsOpen(false)}
                         >
                           View all positions →
