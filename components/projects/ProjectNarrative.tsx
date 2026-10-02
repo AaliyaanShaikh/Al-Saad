@@ -9,6 +9,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { publicSrc, type Project } from '@/lib/data';
 import { Reveal } from '@/components/motion/Reveal';
 import { ProjectInquiry } from '@/components/projects/ProjectInquiry';
+import { BrochureFrame } from '@/components/projects/BrochureFrame';
 import { useReducedMotion } from '@/lib/useReducedMotion';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -415,11 +416,7 @@ export function ProjectNarrative({ project }: { project: Project }) {
           </Reveal>
           {project.brochureUrl && (
             <div className="mt-10 overflow-hidden rounded-[24px] border border-ivory/10">
-              <iframe
-                title="Residence brochure"
-                src={project.brochureUrl}
-                className="h-[70vh] w-full bg-ivory md:h-[75vh]"
-              />
+              <BrochureFrame src={project.brochureUrl} />
             </div>
           )}
         </div>
