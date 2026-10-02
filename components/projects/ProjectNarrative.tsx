@@ -281,9 +281,21 @@ export function ProjectNarrative({ project }: { project: Project }) {
             alt="Evening view of the G+37 tower in Andheri West"
             fill
             priority
-            className={`object-cover ${project.imagePosition ?? 'object-center'}`}
+            className={`object-cover ${project.imagePosition ?? 'object-center'} ${
+              project.desktopImage ? 'lg:hidden' : ''
+            }`}
             sizes="100vw"
           />
+          {project.desktopImage && (
+            <Image
+              src={publicSrc(project.desktopImage)}
+              alt="Evening view of the G+37 tower in Andheri West"
+              fill
+              priority
+              className="hidden object-cover object-[center_42%] lg:block"
+              sizes="100vw"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-void via-void/45 to-void/25" />
         </div>
         <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pb-12 pt-32 md:px-10 md:pb-16">

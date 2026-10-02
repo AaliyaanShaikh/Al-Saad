@@ -38,6 +38,7 @@ export type Project = {
   year: string;
   image: string;
   imagePosition?: string;
+  desktopImage?: string;
   location: string;
   price: string;
   beds: string;
@@ -176,6 +177,7 @@ export const projects: Project[] = [
     category: 'exclusive',
     year: '2026',
     image: '/Project1/001_n_Post (1).webp',
+    desktopImage: '/Project1/a-list-desktop.webp',
     imagePosition: 'object-[center_30%]',
     chapters: [
       {
