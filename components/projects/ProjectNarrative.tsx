@@ -6,7 +6,7 @@ import { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { publicSrc, type Project } from '@/lib/data';
+import { publicSrc, type Project, type ProjectChapter } from '@/lib/data';
 import { Reveal } from '@/components/motion/Reveal';
 import { ProjectInquiry } from '@/components/projects/ProjectInquiry';
 import { BrochureFrame } from '@/components/projects/BrochureFrame';
@@ -164,6 +164,86 @@ function RoomSlider() {
   );
 }
 
+function ChapterPanel({ chapter, index }: { chapter: ProjectChapter; index: number }) {
+  const root = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
+  const flip = index % 2 === 1;
+
+  useGSAP(
+    () => {
+      const el = root.current;
+      if (!el || reduced) return;
+      const frame = el.querySelector('.chapter-frame');
+      const media = el.querySelector('.chapter-media');
+      const indexMark = el.querySelector('.chapter-index');
+      const lines = el.querySelectorAll('.chapter-line');
+
+      gsap
+        .timeline({
+          scrollTrigger: { trigger: el, start: 'top 78%', once: true },
+        })
+        .fromTo(
+          indexMark,
+          { y: 36, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' }
+        )
+        .fromTo(
+          frame,
+          { clipPath: flip ? 'inset(0% 0% 0% 18%)' : 'inset(0% 18% 0% 0%)' },
+          { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.15, ease: 'power3.inOut' },
+          0.05
+        )
+        .fromTo(
+          media,
+          { scale: 1.12 },
+          { scale: 1, duration: 1.4, ease: 'power2.out' },
+          0.05
+        )
+        .fromTo(
+          lines,
+          { y: 28, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out' },
+          0.2
+        );
+    },
+    { dependencies: [reduced, flip] }
+  );
+
+  return (
+    <section
+      ref={root}
+      id={chapter.id}
+      className="scroll-mt-24 overflow-hidden border-t border-ivory/10 px-5 py-14 md:px-10 md:py-24"
+    >
+      <div
+        className={`mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-12 lg:gap-14 ${
+          flip ? 'lg:[&>*:first-child]:order-2' : ''
+        }`}
+      >
+        <div className="chapter-frame relative aspect-[4/5] overflow-hidden rounded-[24px] sm:aspect-[16/11] lg:col-span-7">
+          <Image
+            src={publicSrc(chapter.image)}
+            alt={chapter.title}
+            fill
+            className="chapter-media object-cover"
+            sizes="(max-width: 1024px) 100vw, 58vw"
+          />
+          <span className="chapter-index display pointer-events-none absolute bottom-4 left-4 text-6xl font-extralight text-ivory/90 md:bottom-6 md:left-6 md:text-8xl">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+        </div>
+        <div className="lg:col-span-5">
+          <p className="chapter-line kicker mb-4 text-muted">{chapter.kicker}</p>
+          <h2 className="chapter-line display text-3xl font-extralight text-ivory md:text-5xl">
+            {chapter.title}
+          </h2>
+          <p className="chapter-line body mt-5 text-base md:text-lg">{chapter.body}</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function ProjectNarrative({ project }: { project: Project }) {
   const heroRef = useRef<HTMLElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
@@ -256,34 +336,7 @@ export function ProjectNarrative({ project }: { project: Project }) {
       </section>
 
       {project.chapters?.map((chapter, index) => (
-        <section
-          key={chapter.id}
-          id={chapter.id}
-          className="scroll-mt-24 border-t border-ivory/10 px-5 py-14 md:px-10 md:py-20"
-        >
-          <div
-            className={`mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-12 lg:gap-14 ${
-              index % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''
-            }`}
-          >
-            <Reveal className="lg:col-span-7">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] sm:aspect-[16/11]">
-                <Image
-                  src={publicSrc(chapter.image)}
-                  alt={chapter.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 58vw"
-                />
-              </div>
-            </Reveal>
-            <Reveal delay={0.06} className="lg:col-span-5">
-              <p className="kicker mb-4 text-muted">{chapter.kicker}</p>
-              <h2 className="display text-3xl font-extralight text-ivory md:text-5xl">{chapter.title}</h2>
-              <p className="body mt-5 text-base md:text-lg">{chapter.body}</p>
-            </Reveal>
-          </div>
-        </section>
+        <ChapterPanel key={chapter.id} chapter={chapter} index={index} />
       ))}
 
       <section className="relative isolate min-h-[70svh] overflow-hidden border-t border-ivory/10">
