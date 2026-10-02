@@ -94,7 +94,7 @@ export function Nav() {
                   </Link>
 
                   <div
-                    className={`absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 pt-3 transition-all duration-200 ${
+                    className={`absolute left-1/2 top-full z-50 w-96 -translate-x-1/2 pt-3 transition-all duration-200 ${
                       projectsOpen
                         ? 'pointer-events-auto translate-y-0 opacity-100'
                         : 'pointer-events-none -translate-y-1 opacity-0'
@@ -106,13 +106,13 @@ export function Nav() {
                           <li key={project.id}>
                             <Link
                               href={`/projects/${project.slug}`}
-                              className="block px-5 py-2.5 text-[13px] tracking-[0.02em] text-ivory/65 transition-colors hover:bg-ivory/5 hover:text-ivory"
+                              className="block px-5 py-3 text-base tracking-[0.01em] text-ivory/65 transition-colors hover:bg-ivory/5 hover:text-ivory"
                               onClick={() => setProjectsOpen(false)}
                             >
                               <span className="block font-medium text-ivory/90">
                                 {project.title}
                               </span>
-                              <span className="mt-0.5 block text-[11px] uppercase tracking-[0.14em] text-muted">
+                              <span className="mt-1 block text-sm uppercase tracking-[0.08em] text-muted">
                                 {project.location}
                               </span>
                             </Link>
@@ -122,7 +122,7 @@ export function Nav() {
                       <div className="border-t border-ivory/10 px-5 py-3">
                         <Link
                           href="/#projects"
-                          className="text-[11px] uppercase tracking-[0.16em] text-silver transition-colors hover:text-ivory"
+                          className="text-sm uppercase tracking-[0.12em] text-silver transition-colors hover:text-ivory"
                           onClick={() => setProjectsOpen(false)}
                         >
                           View all positions →
