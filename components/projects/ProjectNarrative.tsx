@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -86,6 +86,82 @@ const contents = [
   { href: '#figures', label: 'Figures' },
   { href: '#brochure', label: 'Brochure' },
 ];
+
+function RoomCard({ space }: { space: (typeof spaces)[number] }) {
+  return (
+    <figure className="overflow-hidden rounded-[22px] border border-ivory/10 bg-paper-2">
+      <div className="relative aspect-[4/3]">
+        <Image
+          src={publicSrc(space.image)}
+          alt={space.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+      </div>
+      <figcaption className="p-5">
+        <h3 className="display text-2xl text-ivory">{space.title}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-ink-2">{space.caption}</p>
+      </figcaption>
+    </figure>
+  );
+}
+
+function RoomSlider() {
+  const scroller = useRef<HTMLDivElement>(null);
+  const [index, setIndex] = useState(0);
+
+  const go = (next: number) => {
+    const el = scroller.current;
+    if (!el) return;
+    const clamped = Math.max(0, Math.min(spaces.length - 1, next));
+    el.scrollTo({ left: clamped * el.clientWidth, behavior: 'smooth' });
+    setIndex(clamped);
+  };
+
+  return (
+    <div className="sm:hidden">
+      <div
+        ref={scroller}
+        className="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        onScroll={(event) => {
+          const el = event.currentTarget;
+          if (!el.clientWidth) return;
+          setIndex(Math.round(el.scrollLeft / el.clientWidth));
+        }}
+      >
+        {spaces.map((space) => (
+          <div key={space.title} className="w-full shrink-0 snap-center">
+            <RoomCard space={space} />
+          </div>
+        ))}
+      </div>
+      <div className="mt-4 flex items-center justify-between gap-3">
+        <button
+          type="button"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-ivory/20 text-ivory disabled:opacity-30"
+          onClick={() => go(index - 1)}
+          disabled={index === 0}
+          aria-label="Previous room"
+        >
+          ←
+        </button>
+        <p className="text-[11px] uppercase tracking-[0.18em] text-muted">
+          {index + 1} / {spaces.length}
+        </p>
+        <button
+          type="button"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-ivory/20 text-ivory disabled:opacity-30"
+          onClick={() => go(index + 1)}
+          disabled={index === spaces.length - 1}
+          aria-label="Next room"
+        >
+          →
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export function ProjectNarrative({ project }: { project: Project }) {
   const heroRef = useRef<HTMLElement>(null);
@@ -233,24 +309,11 @@ export function ProjectNarrative({ project }: { project: Project }) {
               What each picture is.
             </h2>
           </Reveal>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <RoomSlider />
+          <div className="hidden gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3">
             {spaces.map((space) => (
               <Reveal key={space.title}>
-                <figure className="overflow-hidden rounded-[22px] border border-ivory/10 bg-paper-2">
-                  <div className="relative aspect-[4/3]">
-                    <Image
-                      src={publicSrc(space.image)}
-                      alt={space.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                  </div>
-                  <figcaption className="p-5">
-                    <h3 className="display text-2xl text-ivory">{space.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-2">{space.caption}</p>
-                  </figcaption>
-                </figure>
+                <RoomCard space={space} />
               </Reveal>
             ))}
           </div>
@@ -263,24 +326,45 @@ export function ProjectNarrative({ project }: { project: Project }) {
             <Reveal>
               <p className="kicker mb-4">Figures</p>
               <h2 className="display mb-8 text-3xl font-extralight md:text-4xl">Pricing and RERA carpet</h2>
-              <div className="overflow-x-auto rounded-[22px] border border-ivory/10">
-                <table className="w-full min-w-[32rem] text-left text-sm">
+              <ul className="space-y-3 md:hidden">
+                {project.typologies?.map((row) => (
+                  <li
+                    key={`${row.name}-${row.area}`}
+                    className="rounded-[18px] border border-ivory/10 bg-paper-2 px-4 py-4"
+                  >
+                    <p className="text-sm text-ivory">{row.name}</p>
+                    {row.note && <p className="mt-1 text-xs text-muted">{row.note}</p>}
+                    <dl className="mt-3 grid grid-cols-2 gap-3 text-sm">
+                      <div>
+                        <dt className="text-[10px] uppercase tracking-[0.16em] text-muted">Carpet</dt>
+                        <dd className="mt-1 text-ink-2">{row.area} sq ft</dd>
+                      </div>
+                      <div>
+                        <dt className="text-[10px] uppercase tracking-[0.16em] text-muted">All incl.</dt>
+                        <dd className="mt-1 text-ivory">{row.price}</dd>
+                      </div>
+                    </dl>
+                  </li>
+                ))}
+              </ul>
+              <div className="hidden overflow-x-auto rounded-[22px] border border-ivory/10 md:block">
+                <table className="w-full text-left text-sm">
                   <thead className="bg-paper-2 text-[10px] uppercase tracking-[0.16em] text-muted">
                     <tr>
-                      <th className="px-4 py-4 font-medium md:px-6">Home</th>
-                      <th className="px-4 py-4 font-medium md:px-6">Carpet sq ft</th>
-                      <th className="px-4 py-4 font-medium md:px-6">All inclusive</th>
+                      <th className="px-4 py-4 font-medium lg:px-6">Home</th>
+                      <th className="px-4 py-4 font-medium lg:px-6">Carpet sq ft</th>
+                      <th className="px-4 py-4 font-medium lg:px-6">All inclusive</th>
                     </tr>
                   </thead>
                   <tbody>
                     {project.typologies?.map((row) => (
                       <tr key={`${row.name}-${row.area}`} className="border-t border-ivory/10">
-                        <td className="px-4 py-4 text-ivory md:px-6">
+                        <td className="px-4 py-4 text-ivory lg:px-6">
                           {row.name}
                           {row.note && <span className="mt-1 block text-xs text-muted">{row.note}</span>}
                         </td>
-                        <td className="px-4 py-4 text-ink-2 md:px-6">{row.area}</td>
-                        <td className="px-4 py-4 text-ivory md:px-6">{row.price}</td>
+                        <td className="whitespace-nowrap px-4 py-4 text-ink-2 lg:px-6">{row.area}</td>
+                        <td className="whitespace-nowrap px-4 py-4 text-ivory lg:px-6">{row.price}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -294,16 +378,34 @@ export function ProjectNarrative({ project }: { project: Project }) {
           </div>
           <div className="lg:col-span-5">
             <Reveal delay={0.06}>
-              <div className="rounded-[28px] border border-ivory/10 bg-paper-2 p-6 md:p-8">
+              <div className="rounded-[28px] border border-ivory/10 bg-paper-2 p-5 sm:p-6 md:p-8">
                 <p className="kicker mb-6 text-muted">Floor bands</p>
-                <ul className="space-y-4">
+                <ul className="space-y-3 md:hidden">
                   {project.floorBands?.map((band) => (
-                    <li key={band.name} className="border-b border-ivory/10 pb-4 last:border-0">
-                      <p className="text-sm text-ivory">{band.name}</p>
-                      <p className="mt-1 text-sm text-ink-2">{band.floors}</p>
+                    <li key={band.name} className="rounded-[16px] border border-ivory/10 px-4 py-4">
+                      <p className="text-[10px] uppercase tracking-[0.16em] text-muted">{band.name}</p>
+                      <p className="mt-2 text-sm leading-relaxed text-ivory">{band.floors}</p>
                     </li>
                   ))}
                 </ul>
+                <div className="hidden overflow-x-auto md:block">
+                  <table className="w-full text-left text-sm">
+                    <thead className="text-[10px] uppercase tracking-[0.16em] text-muted">
+                      <tr>
+                        <th className="pb-3 pr-4 font-medium">Band</th>
+                        <th className="pb-3 font-medium">Floors</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {project.floorBands?.map((band) => (
+                        <tr key={band.name} className="border-t border-ivory/10">
+                          <td className="py-4 pr-4 text-ivory">{band.name}</td>
+                          <td className="py-4 text-ink-2">{band.floors}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
                 <ProjectInquiry />
               </div>
             </Reveal>
