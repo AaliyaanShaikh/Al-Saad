@@ -23,6 +23,7 @@ export type FloorBand = {
 export type ProjectChapter = {
   id: string;
   kicker: string;
+  label?: string;
   title: string;
   body: string;
   image: string;
@@ -38,7 +39,12 @@ export type Project = {
   year: string;
   image: string;
   imagePosition?: string;
+  imageAlt?: string;
   desktopImage?: string;
+  desktopImagePosition?: string;
+  mapUrl?: string;
+  bandsLabel?: string;
+  figuresFoot?: string;
   location: string;
   price: string;
   beds: string;
@@ -169,7 +175,6 @@ export const projects: Project[] = [
     id: '1',
     slug: 'the-a-list-residences',
     title: 'The A-List Residences',
-    developer: 'Multistar Builders',
     tagline: 'Where Luxury Bears Your Signature.',
     description:
       'The Chosen Address of Cinema Icons: Ultra-Exclusive 3 Bed Premium & Luxe Homes, 4 & 5 Bed Duplexes, and Sky-High Penthouses in Andheri West Defined by A-List Privacy, Star-Studded Neighborhood Covenants, and Monolithic Scale.',
@@ -241,24 +246,64 @@ export const projects: Project[] = [
   },
   {
     id: '2',
-    slug: 'Aksa-residences',
-    title: 'Designer residences by the JVLR corridor',
+    slug: 'the-metro-view-balcony-residences',
+    title: 'The Metro View Balcony Residences',
     description:
-      'Carefully finished homes along the Jogeshwari–Vikhroli link — for buyers who care how a plan lives, not what it is called.',
-    body: 'The JVLR corridor is a connectivity thesis: metro gravity, east–west movement, and a widening set of addresses that still feel residential. These designer residences are shortlisted for layout discipline and finish quality. Names are withheld. The question is whether the corridor, the light, and the ticket still make sense in five years.',
-    category: 'editorial',
-    year: '2026',
-    image: '/screenshot-2026-02-04-sayba.webp',
-    location: 'JVLR corridor',
-    price: 'Private',
-    beds: '2 & 3 BHK',
-    sqft: 'Considered plans',
-    status: 'Private brief',
+      'Metro Facing Apartments, Private Balconies, and High-Yield Pricing in the Heart of Oshiwara.',
+    body: 'The Metro View Balcony Residences is a Ground + 22 storey tower opposite Vicino Mall, on Best Colony Road, Anand Nagar, Oshiwara. Possession is December 2027. The curved elevation is a run of private balconies. A 340 sq ft 1 BHK is ₹1.08 Cr all inclusive. The 746 sq ft 2 BHK with a balcony is ₹2.36 Cr all inclusive. Link Road is the immediate exit. Goregaon West Metro is about two minutes away, and Goregaon railway station is within ten minutes.',
+    category: 'exclusive',
+    year: '2027',
+    image: '/project2/metro-view-tower.webp',
+    desktopImage: '/project2/metro-view-skyline.webp',
+    desktopImagePosition: 'object-center',
+    imagePosition: 'object-[center_40%]',
+    imageAlt: 'Golden-hour view of the G+22 balcony tower in Oshiwara',
+    chapters: [
+      {
+        id: 'tower',
+        label: 'The tower',
+        kicker: '01 — The tower',
+        title: 'A balcony on the curved face.',
+        body: 'Ground + 22 storeys, with a stone screen at the base and open terraces at the crown. This is the elevation from the street: stacked private balconies, not a sealed glass slab. Possession is December 2027. Inside, the specification includes vitrified flooring, anti-skid bathroom tiles, a granite kitchen platform, a stainless-steel sink, an intercom, and a video door phone. The brochure also lists a grand lobby and a rooftop pool.',
+        image: '/project2/metro-view-tower.webp',
+      },
+      {
+        id: 'street',
+        label: 'The street',
+        kicker: '02 — The street',
+        title: 'Opposite Vicino Mall.',
+        body: 'Best Colony Road, Anand Nagar, Oshiwara. Link Road is immediate. Goregaon West Metro is about two minutes away, and Goregaon railway station is within ten minutes. Nearby reads from the brochure: Infinity Mall about five minutes, Lokhandwala Market about five, Kokilaben Dhirubhai Ambani Hospital about eight, and the airport about fifteen.',
+        image: '/project2/metro-view-skyline.webp',
+      },
+    ],
+    location: 'Oshiwara',
+    price: 'From ₹1.08 Cr all incl.',
+    beds: '1 & 2 BHK',
+    sqft: '340–746',
+    status: 'Possession Dec 2027',
+    mapUrl: 'https://maps.app.goo.gl/rPYfWtN9eNwsVrDB9',
+    brochureUrl: '/brochures/Luxury_Real_Estate_Brochure_Broker_Version_removed.pdf',
+    bandsLabel: 'The building',
+    figuresFoot:
+      'All inclusive. Indicative, and subject to change. A typical floor plate on the 3rd–7th and 9th–14th floors holds these four homes.',
     highlights: [
-      'JVLR connectivity as the primary read',
-      'Designer-led interiors, not marketing finishes',
-      '2 & 3 BHK for families and careful investors',
-      'Shared only when the brief matches',
+      'Ground + 22 storey balcony tower',
+      'Opposite Vicino Mall, Best Colony Road, Oshiwara',
+      'About 2 minutes from Goregaon West Metro',
+      'Possession December 2027',
+    ],
+    typologies: [
+      { name: '1 BHK', area: '340', price: '₹1.08 Cr' },
+      { name: '1 BHK', area: '355', price: '₹1.13 Cr' },
+      { name: 'Smart 2 BHK', area: '496', price: '₹1.57 Cr' },
+      { name: 'Luxury 2 BHK', note: 'With balcony', area: '746', price: '₹2.36 Cr' },
+    ],
+    floorBands: [
+      { name: 'Elevation', floors: 'Ground + 22' },
+      { name: 'Possession', floors: 'December 2027' },
+      { name: 'Landmark', floors: 'Opposite Vicino Mall' },
+      { name: 'Metro', floors: '2 min, Goregaon West' },
+      { name: 'Railway', floors: '10 min, Goregaon' },
     ],
   },
   {

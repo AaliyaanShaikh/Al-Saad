@@ -244,6 +244,19 @@ function ChapterPanel({ chapter, index }: { chapter: ProjectChapter; index: numb
   );
 }
 
+function pageContents(project: Project) {
+  if (project.id === '1') return contents;
+  return [
+    { href: '#read', label: 'The read' },
+    ...(project.chapters ?? []).map((chapter) => ({
+      href: `#${chapter.id}`,
+      label: chapter.label ?? chapter.title,
+    })),
+    ...(project.typologies?.length ? [{ href: '#figures', label: 'Figures' }] : []),
+    ...(project.brochureUrl ? [{ href: '#brochure', label: 'Brochure' }] : []),
+  ];
+}
+
 export function ProjectNarrative({ project }: { project: Project }) {
   const heroRef = useRef<HTMLElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
@@ -278,7 +291,7 @@ export function ProjectNarrative({ project }: { project: Project }) {
         <div ref={mediaRef} className="absolute inset-0 will-change-transform">
           <Image
             src={publicSrc(project.image)}
-            alt="Evening view of the G+37 tower in Andheri West"
+            alt={project.imageAlt ?? project.title}
             fill
             priority
             className={`object-cover ${project.imagePosition ?? 'object-center'} ${
@@ -289,10 +302,12 @@ export function ProjectNarrative({ project }: { project: Project }) {
           {project.desktopImage && (
             <Image
               src={publicSrc(project.desktopImage)}
-              alt="Evening view of the G+37 tower in Andheri West"
+              alt={project.imageAlt ?? project.title}
               fill
               priority
-              className="hidden object-cover object-[center_42%] lg:block"
+              className={`hidden object-cover lg:block ${
+                project.desktopImagePosition ?? 'object-[center_42%]'
+              }`}
               sizes="100vw"
             />
           )}
@@ -303,7 +318,7 @@ export function ProjectNarrative({ project }: { project: Project }) {
             ← All projects
           </Link>
           <p className="kicker mb-4 text-silver-bright">
-            {project.developer} · {project.location}
+            {project.developer ? `${project.developer} · ${project.location}` : project.location}
           </p>
           <h1 className="display max-w-4xl text-4xl font-extralight sm:text-5xl md:text-6xl lg:text-7xl">
             {project.title}
@@ -329,7 +344,7 @@ export function ProjectNarrative({ project }: { project: Project }) {
           <Reveal delay={0.08} className="lg:col-span-4 lg:col-start-9">
             <p className="kicker mb-4 text-muted">On this page</p>
             <ol className="space-y-2">
-              {contents.map((item, i) => (
+              {pageContents(project).map((item, i) => (
                 <li key={item.href}>
                   <a
                     href={item.href}
@@ -351,6 +366,7 @@ export function ProjectNarrative({ project }: { project: Project }) {
         <ChapterPanel key={chapter.id} chapter={chapter} index={index} />
       ))}
 
+      {project.id === '1' && (
       <section className="relative isolate min-h-[70svh] overflow-hidden border-t border-ivory/10">
         <Image
           src={publicSrc('/Project1/Multistar_night_001_8K_.webp')}
@@ -366,7 +382,9 @@ export function ProjectNarrative({ project }: { project: Project }) {
           </p>
         </div>
       </section>
+      )}
 
+      {project.id === '1' && (
       <section id="spaces" className="scroll-mt-24 border-t border-ivory/10 px-5 py-16 md:px-10 md:py-24">
         <div className="mx-auto max-w-7xl">
           <Reveal>
@@ -385,13 +403,16 @@ export function ProjectNarrative({ project }: { project: Project }) {
           </div>
         </div>
       </section>
+      )}
 
       <section id="figures" className="scroll-mt-24 border-t border-ivory/10 px-5 py-16 md:px-10 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Reveal>
               <p className="kicker mb-4">Figures</p>
-              <h2 className="display mb-8 text-3xl font-extralight md:text-4xl">Pricing and RERA carpet</h2>
+              <h2 className="display mb-8 text-3xl font-extralight md:text-4xl">
+                {project.rera ? 'Pricing and RERA carpet' : 'Pricing, all inclusive'}
+              </h2>
               <ul className="space-y-3 md:hidden">
                 {project.typologies?.map((row) => (
                   <li
@@ -433,28 +454,46 @@ export function ProjectNarrative({ project }: { project: Project }) {
                 </table>
               </div>
               <p className="mt-4 text-xs leading-relaxed text-muted">
-                Indicative, and subject to change.
-                {project.rera ? ` MahaRERA ${project.rera}.` : ''} The third floor band is opening soon.
+                {project.figuresFoot ?? (
+                  <>
+                    Indicative, and subject to change.
+                    {project.rera ? ` MahaRERA ${project.rera}.` : ''} The third floor band is opening soon.
+                  </>
+                )}
               </p>
             </Reveal>
           </div>
           <div className="lg:col-span-5">
             <Reveal delay={0.06}>
               <div className="rounded-[28px] border border-ivory/10 bg-paper-2 p-5 sm:p-6 md:p-8">
-                <p className="kicker mb-6 text-muted">Floor bands</p>
-                <ul className="space-y-3">
-                  {project.floorBands?.map((band) => (
-                    <li
-                      key={band.name}
-                      className="flex items-baseline justify-between gap-4 border-b border-ivory/10 pb-3 last:border-0"
-                    >
-                      <p className="shrink-0 text-[10px] uppercase tracking-[0.16em] text-muted">
-                        {band.name}
-                      </p>
-                      <p className="text-right text-sm whitespace-nowrap text-ivory">{band.floors}</p>
-                    </li>
-                  ))}
-                </ul>
+                {!!project.floorBands?.length && (
+                  <>
+                    <p className="kicker mb-6 text-muted">{project.bandsLabel ?? 'Floor bands'}</p>
+                    <ul className="space-y-3">
+                      {project.floorBands.map((band) => (
+                        <li
+                          key={band.name}
+                          className="flex items-baseline justify-between gap-4 border-b border-ivory/10 pb-3 last:border-0"
+                        >
+                          <p className="shrink-0 text-[10px] uppercase tracking-[0.16em] text-muted">
+                            {band.name}
+                          </p>
+                          <p className="text-right text-sm whitespace-nowrap text-ivory">{band.floors}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+                {project.mapUrl && (
+                  <a
+                    href={project.mapUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-6 inline-flex text-sm text-ivory/80 underline decoration-ivory/30 underline-offset-4 hover:text-ivory"
+                  >
+                    Open the map pin
+                  </a>
+                )}
                 <ProjectInquiry />
               </div>
             </Reveal>

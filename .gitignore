@@ -28,6 +28,7 @@ out
 # Brochure PDFs
 public/brochures/*.pdf
 !public/brochures/Luxury_Real_Estate_Brochure_No_Developer_Branding.pdf
+!public/brochures/Luxury_Real_Estate_Brochure_Broker_Version_removed.pdf
 
 # Env
 .env
